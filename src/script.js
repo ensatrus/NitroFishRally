@@ -1,8 +1,10 @@
-function devuelveTextoDeAlerta() {
-  return "uooooo! Vaya alerta";
-}
 
-function desaparece(nombre) {
-	var button = document.getElementById(nombre);
-  button.style.visibility='hidden';
-}
+new Phaser.Game({
+  type: Phaser.CANVAS,
+  canvas: document.getElementById('juego'),
+  width: auto,
+  height: auto,
+  //scene:
+})
+
+export default class escena extends Phaser.Scene{};
