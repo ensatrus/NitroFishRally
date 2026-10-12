@@ -1,6 +1,6 @@
 body{
-  background-color:white;
-  padding-top: 7%;
+  background-color:black;
+  padding-top: 125px;
 }
 
 h1 {
@@ -19,9 +19,9 @@ h2{
 }
 
 canvas{
-  border: 2px solid blue; 
-  width: 800px;
-  height: 600px;
+  border: 2px solid white; 
+  width: 1024px;
+  height: 768px;
   display: block;
   margin: auto;
 }
@@ -66,8 +66,8 @@ a:active {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: aliceblue;
-  padding: 12px 0;
+  background-color: black;
+  padding: 10px 0;
   z-index: 1000;
 }
 
@@ -76,7 +76,7 @@ a:active {
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  width: 70px;
+  width: 150px;
   height: auto;
 }
 
@@ -94,4 +94,9 @@ a:active {
   width: 100%;
   background-color: aliceblue;
   padding: 2px 0;
+}
+
+.titulo{
+  width: auto;
+  height: 100px;
 }
