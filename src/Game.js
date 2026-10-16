@@ -8,10 +8,5 @@ new Phaser.Game({
   scene: [MenuPrincipal],
   physics: {
     default: 'matter',
-    matter: {
-      gravity: {
-        y: 0
-      }
-    }
   }
 })
