@@ -5,15 +5,11 @@
   <title>NitroFishRally</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/estilo.css"> <!-- Esto cargaria un archivo de estilo, pero no es necesario en Fiddle porque lo hace automáticamente -->
-  <script src="./src/Game.js"></script> <!--Aquí podriamos cargar los scripts, también se puede en el <body>, y pasa lo mismo que con el css de antes, en verdad aquí no estamos cargando nada-->
   <script src="./lib/phaser.js"></script>
+  <script src="./src/Game.js" type="module"></script> <!--Aquí podriamos cargar los scripts, también se puede en el <body>, y pasa lo mismo que con el css de antes, en verdad aquí no estamos cargando nada-->
 </head>
 
 <body>
-  <div class = menu>
-    <img class="logo" src="./assets/web/BannerYoutube(negro).jpg" alt="Logo">
-    <h1><img class="titulo" src = "./assets/sprites/titulo640x480.png" alt= "Nitro Fish Rally DX"></h1>
-  </div>
   <div>
     <canvas id="juego"></canvas>
     <h2 class="descripcion">Nitro Fish Rally (硝化魚ラリ) DX es un juego de carreras 2D de vista cenital. Está compuesto de tres circuitos que el jugador irá desbloqueando progresivamente al completarlos en el menor tiempo posible. 
