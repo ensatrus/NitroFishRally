@@ -1,4 +1,4 @@
-import MenuPrincipal from './MenuPricipal.js';
+import MenuPrincipal from './MenuPrincipal.js';
 
 new Phaser.Game({
   type: Phaser.CANVAS,
