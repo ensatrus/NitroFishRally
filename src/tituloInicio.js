@@ -44,7 +44,11 @@ export default class tituloInicio extends Phaser.Scene{
                 callback: () => { textoInicio.visible = !textoInicio.visible; }
             })
 
-            this.time.delayedCall(1200, () => {
+            this.time.delayedCall(900, () => {
+                this.cameras.main.fadeOut(900, 0, 0, 0);
+            }, [], this)
+
+            this.time.delayedCall(1800, () => {
                 parpadeoTexto.destroy();
                 this.scene.start("PruebaFisicas");
             }, [], this);
