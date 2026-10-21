@@ -46,7 +46,7 @@ export default class tituloInicio extends Phaser.Scene{
 
             this.time.delayedCall(1200, () => {
                 parpadeoTexto.destroy();
-                this.scene.start("menuPrincipal");
+                this.scene.start("PruebaFisicas");
             }, [], this);
 
         }, this);
