@@ -13,10 +13,10 @@ export default class PruebaFisicas extends Phaser.Scene{
 	    this.load.image('cubo', './assets/sprites/fih.png');
 	}
     create(){
-        let fih = this.matter.add.fromVertices(300, 300, '50 0 63 38 100 38 69 59 82 100 50 75 18 100 31 59 0 38 37 38', {}, true);
+        let fih = this.matter.add.image(200,200,'cubo');
         const coliderForm = [(1,2), (100,150), (200, 200), (1, 200)]
 
-        
+        fih.setBody().fromVertices(300, 300, '50 0 63 38 100 38 69 59 82 100 50 75 18 100 31 59 0 38 37 38', {}, true);
         fih.setAngle(2);
         fih.setFrictionAir(0);
         fih.setMass(10);
