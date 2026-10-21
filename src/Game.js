@@ -1,5 +1,7 @@
-import MenuPrincipal from '.\menuPricipal.js';
-import PruebaFisicas from '.\pruebaFisicas.js';
+import MenuPrincipal from './MenuPrincipal.js';
+import PruebaFisicas from './PruebaFisicas.js';
+import tituloInicio from './tituloInicio.js';
+
 
 new Phaser.Game({
   type: Phaser.CANVAS,
@@ -7,7 +9,7 @@ new Phaser.Game({
   width: 800,
   height: 600,
   mode: Phaser.Scale.FIT,
-  scene: [PruebaFisicas, MenuPrincipal],
+  scene: [tituloInicio, PruebaFisicas, MenuPrincipal],
   physics: {
     default: 'matter',
     matter:{
