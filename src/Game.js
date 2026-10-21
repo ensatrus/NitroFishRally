@@ -1,5 +1,5 @@
 import MenuPrincipal from './menuPrincipal.js';
-import PruebaFisicas from './PruebaFisicas.js';
+import PruebaFisicas from './pruebaFisicas.js';
 import tituloInicio from './tituloInicio.js';
 
 
@@ -13,7 +13,7 @@ new Phaser.Game({
   physics: {
     default: 'matter',
     matter:{
-      debug:true,
+      debug: true,
       gravity: { y: 0, x:0}
     }
   }
