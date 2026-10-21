@@ -14,6 +14,9 @@ export default class PruebaFisicas extends Phaser.Scene{
 	}
     create(){
         this.fih = this.matter.add.image(200,200,'cubo');
+        const coliderForm = [(1,2), (100,150), (200, 200), (1, 200)]
+
+        this.fih.setBody.fromVertices(1, 1, coliderForm);
         this.fih.setAngle(2);
         this.fih.setFrictionAir(0);
         this.fih.setMass(0.5);

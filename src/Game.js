@@ -1,5 +1,5 @@
-import MenuPrincipal from './MenuPrincipal.js';
-import PruebaFisicas from './PruebaFisicas.js';
+import MenuPrincipal from '.\menuPricipal.js';
+import PruebaFisicas from '.\pruebaFisicas.js';
 
 new Phaser.Game({
   type: Phaser.CANVAS,
