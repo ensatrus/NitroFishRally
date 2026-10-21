@@ -1,5 +1,5 @@
-import MenuPrincipal from '.\menuPricipal.js';
-import PruebaFisicas from '.\pruebaFisicas.js';
+import MenuPrincipal from './menuPricipal.js';
+import PruebaFisicas from './pruebaFisicas.js';
 
 new Phaser.Game({
   type: Phaser.CANVAS,
@@ -11,7 +11,7 @@ new Phaser.Game({
   physics: {
     default: 'matter',
     matter:{
-      debug:true,
+      debug: true,
       gravity: { y: 0, x:0}
     }
   }
