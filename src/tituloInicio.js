@@ -9,9 +9,7 @@ export default class tituloInicio extends Phaser.Scene{
 
     preload(){
         this.load.image("tituloImagen", "./assets/sprites/titulo640x480.png");
-        // this.load.image("botonInicio", "");
         // this.load.spritesheet("pez", "", {frameWidth, frameHeight});
-
     }
 
     create(){
@@ -34,6 +32,7 @@ export default class tituloInicio extends Phaser.Scene{
             callback: () => { textoInicio.visible = !textoInicio.visible; }
         })
 
+        // Eventos al pulsar cualquier tecla
         this.input.keyboard.once("keydown", (event) => {
             textoInicio.setColor("#00ff00");
             parpadeoTexto.destroy();
@@ -44,22 +43,18 @@ export default class tituloInicio extends Phaser.Scene{
                 callback: () => { textoInicio.visible = !textoInicio.visible; }
             })
 
+            // Efecto fadeout
             this.time.delayedCall(900, () => {
                 this.cameras.main.fadeOut(900, 0, 0, 0);
             }, [], this)
 
+            // Cambio de escena
             this.time.delayedCall(1800, () => {
                 parpadeoTexto.destroy();
                 this.scene.start("PruebaFisicas");
             }, [], this);
 
         }, this);
-
-        // let button = this.add.image(0, 0, " ");
-        // button.setInteractive();
-        // button.on("pointerup", ()=>{
-        //     this.scene.start("menuPrincipal")
-        // })
 
         // this.createAnims();
     }
