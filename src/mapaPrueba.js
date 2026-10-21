@@ -1,4 +1,4 @@
-import objetosPrueba from "src/objetosPrueba.js";
+// import objetosPrueba from "src/objetosPrueba.js";
 
 export default class mapaPrueba extends Phaser.scene{
     constructor(){
@@ -10,7 +10,7 @@ export default class mapaPrueba extends Phaser.scene{
     }
 
     preload(){
-        // this.load.image("fondo", "")
+        // this.load.image("fondo", " ")
     }
 
     create(){
@@ -18,8 +18,11 @@ export default class mapaPrueba extends Phaser.scene{
         // imagenFondo.setScale(0.5, 0.5);
 
         // let textoPuntos = this.add.text(0, 0, "Puntos: 0", {font: ""});
+        //textoPuntos.setScrollFactor(0,0); // Para que sea parte de la interfaz
 
         // let juan = new objetosPrueba(this, 0, 0, "textura");
+
+        // this.cameras.main.startFollow(juan); // Para que la camara siga a juan
     }
 
     update(){

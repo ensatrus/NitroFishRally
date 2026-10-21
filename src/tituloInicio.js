@@ -36,5 +36,13 @@ export default class tituloInicio extends Phaser.scene{
         //     frameRate: 9, 
         //     repeat: -1, // -1 para bucle, 0 para no bucle
         // })
+
+        // this.anims.create({
+        //     key: "animacion_andar_ejemplo",
+        //     frames: this.anims.generateFrameNumbers("textura", {start: 0, end:6}),
+        //     frameRate: 9, 
+        //     repeat: -1, // -1 para bucle, 0 para no bucle
+
+        // })
     }
 }
