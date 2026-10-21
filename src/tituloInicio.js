@@ -1,4 +1,4 @@
-export default class tituloInicio extends Phaser.scene{
+export default class tituloInicio extends Phaser.Scene{
     constructor(){
         super({key: "titulo"});
     }
@@ -8,14 +8,49 @@ export default class tituloInicio extends Phaser.scene{
     }
 
     preload(){
-        this.load.image("tituloInicio", "assets/sprites/titulo640x480.jpg");
+        this.load.image("tituloImagen", "./assets/sprites/titulo640x480.png");
         // this.load.image("botonInicio", "");
         // this.load.spritesheet("pez", "", {frameWidth, frameHeight});
 
     }
 
     create(){
-        this.add.image(0, 0, "tituloInicio").setOrigin(0, 0);
+        const centroX = this.cameras.main.width / 2;
+        const centroY = this.cameras.main.height / 2;
+        
+        this.add.image(centroX, centroY - 80, "tituloImagen").setOrigin(0.5).setScale(1.2);
+
+        let textoInicio = this.add.text(centroX, centroY + 150, "PULSA CUALQUIER TECLA", {
+            fontFamily: '"Courier New", monospace',
+            fontSize: '30px',
+            //color: #ffffff,
+            //align: center,
+        }).setOrigin(0.5);
+
+        // Parpadeo de texto
+        let parpadeoTexto = this.time.addEvent({
+            delay: 700,
+            loop: true,
+            callback: () => { textoInicio.visible = !textoInicio.visible; }
+        })
+
+        this.input.keyboard.once("keydown", (event) => {
+            textoInicio.setColor("#00ff00");
+            parpadeoTexto.destroy();
+
+            parpadeoTexto = this.time.addEvent({
+                delay: 100,
+                loop : true,
+                callback: () => { textoInicio.visible = !textoInicio.visible; }
+            })
+
+            this.time.delayedCall(1200, () => {
+                parpadeoTexto.destroy();
+                this.scene.start("menuPrincipal");
+            }, [], this);
+
+        }, this);
+
         // let button = this.add.image(0, 0, " ");
         // button.setInteractive();
         // button.on("pointerup", ()=>{
