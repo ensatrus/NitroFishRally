@@ -25,7 +25,7 @@ export default class PruebaFisicas extends Phaser.Scene{
 
         this.matter.world.setBounds(0, 0, 800, 600);
 
-        let boton = this.add.rectangle(10, 10, 150, 50, 0x3287d1).setOrigin(0,0);
+        let boton = this.add.rectangle(100, 50, 150, 50, 0x3287d1);
 
         boton.setInteractive();
 
@@ -33,12 +33,12 @@ export default class PruebaFisicas extends Phaser.Scene{
             this.scene.start("menuPruebas"); 
         });
 
-        this.add.text(50, 25, "Volver",{
+        this.add.text(100, 50, "Volver",{
             fontSize: "18px",
             fill: "#ffffff",
             fontStyle: "bold",
             fontFamily: "Arial"
-        }).setOrigin(0.0)
+        }).setOrigin(0.5)
     }
     update(){
         
