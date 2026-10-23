@@ -10,7 +10,7 @@ new Phaser.Game({
   width: 800,
   height: 600,
   mode: Phaser.Scale.FIT,
-  scene: [menuPruebas, tituloInicio, PruebaFisicas, /*MenuPrincipal*/],
+  scene: [tituloInicio, menuPruebas, PruebaFisicas, /*MenuPrincipal*/],
   physics: {
     default: 'matter',
     matter:{

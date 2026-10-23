@@ -14,7 +14,7 @@ export default class menuPruebas extends Phaser.Scene{
             this.scene.start("mapaPrueba"); 
         });
 
-        this.add.text(400, 220, "Escena prueba 1",{
+        this.add.text(400, 220, "Prueba Mapa",{
             fontSize: "18px",
             fill: "#ffffff",
             fontStyle: "bold",
@@ -29,7 +29,7 @@ export default class menuPruebas extends Phaser.Scene{
             this.scene.start("PruebaFisicas"); 
         });
 
-        this.add.text(400, 300, "Escena prueba 2", {
+        this.add.text(400, 300, "Prueba Físicas", {
             fontSize: "18px",
             fill: "#ffffff",
             fontStyle: "bold",
@@ -44,7 +44,7 @@ export default class menuPruebas extends Phaser.Scene{
             this.scene.start("objetosPrueba"); 
         });
 
-        this.add.text(400, 380, "Escena prueba 3", {
+        this.add.text(400, 380, "Prueba Objetos", {
             fontSize: "18px",
             fill: "#ffffff",
             fontStyle: "bold",

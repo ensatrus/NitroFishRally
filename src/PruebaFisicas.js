@@ -15,7 +15,6 @@ export default class PruebaFisicas extends Phaser.Scene{
     create(){
         let fih = this.matter.add.image(0,0,'cubo');
         const coliderForm = [(1,2), (100,150), (200, 200), (1, 200)]
-
         
         fih.setFixedRotation();
         fih.setFrictionAir(0);
@@ -25,6 +24,21 @@ export default class PruebaFisicas extends Phaser.Scene{
         fih.setBounce(1);
 
         this.matter.world.setBounds(0, 0, 800, 600);
+
+        let boton = this.add.rectangle(10, 10, 150, 50, 0x3287d1).setOrigin(0,0);
+
+        boton.setInteractive();
+
+        boton.on("pointerdown", () => {
+            this.scene.start("menuPruebas"); 
+        });
+
+        this.add.text(50, 25, "Volver",{
+            fontSize: "18px",
+            fill: "#ffffff",
+            fontStyle: "bold",
+            fontFamily: "Arial"
+        }).setOrigin(0.0)
     }
     update(){
         

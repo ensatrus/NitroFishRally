@@ -51,7 +51,7 @@ export default class tituloInicio extends Phaser.Scene{
             // Cambio de escena
             this.time.delayedCall(1800, () => {
                 parpadeoTexto.destroy();
-                this.scene.start("PruebaFisicas");
+                this.scene.start("menuPruebas");
             }, [], this);
 
         }, this);
