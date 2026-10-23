@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
+  
 <head>
   <meta charset="utf-8">
-  <title>NItroFishRally</title>
+  <title>Nitro Fish Rally</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="estilo.css"> <!-- Esto cargaria un archivo de estilo, pero no es necesario en Fiddle porque lo hace automáticamente -->
-  <script src="script.js"></script> <!--Aquí podriamos cargar los scripts, también se puede en el <body>, y pasa lo mismo que con el css de antes, en verdad aquí no estamos cargando nada-->
+  <link rel="stylesheet" href="./css/estilo.css"> <!-- Esto cargaria un archivo de estilo, pero no es necesario en Fiddle porque lo hace automáticamente -->
+  <script src="./lib/phaser.js"></script>
+  <script src="./src/Game.js" type="module"></script> <!--Aquí podriamos cargar los scripts, también se puede en el <body>, y pasa lo mismo que con el css de antes, en verdad aquí no estamos cargando nada-->
 </head>
 
 <body>
-  <div class = menu>
-    <img class="logo" src="Imagenes/LogoYoutube.jpg" alt="Logo">
-    <h1>NITRO FISH RALLY DX</h1>
-    <h2>LUHPENG</h2>
-  </div>
   <div>
+    <canvas id="juego"></canvas>
     <h2 class="descripcion">Nitro Fish Rally (硝化魚ラリ) DX es un juego de carreras 2D de vista cenital. Está compuesto de tres circuitos que el jugador irá desbloqueando progresivamente al completarlos en el menor tiempo posible. 
     </h2>
     <h2 class="descripcion">El juego se ambienta en Japón, y los circuitos del juego son ríos que recorre un pez. La historia del juego sigue el viaje de un pez desde el mar hasta la montaña, a lo largo de los tres circuitos. Al final de cada circuito, el pez llega a la cascada y se transforma en dragón.
-</h2>
-    <p><img class="imagen" src="https://i.pinimg.com/236x/88/be/a5/88bea53db51d24f54972d9106c49654d.jpg?nii=t" alt="Imagen del juego"></p>
+    </h2>
   </div>
   <div class="creditos">
     <p>Miembros fundadores de LUHPENG:</p> 

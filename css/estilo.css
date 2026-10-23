@@ -1,3 +1,7 @@
+body{
+  background-color:black;
+}
+
 h1 {
   color: rgb(0, 0, 0);
   text-align: center;
@@ -11,6 +15,14 @@ h2{
   text-align: center;
   margin: 2px 0;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+canvas{
+  border: 2px solid white; 
+  width: 64%;
+  aspect-ratio: 4/3;
+  display: block;
+  margin: auto;
 }
 
 p{
@@ -53,8 +65,8 @@ a:active {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: aliceblue;
-  padding: 12px 0;
+  background-color: black;
+  padding: 10px 0;
   z-index: 1000;
 }
 
@@ -63,7 +75,7 @@ a:active {
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  width: 70px;
+  width: 10%;
   height: auto;
 }
 
@@ -83,8 +95,7 @@ a:active {
   padding: 2px 0;
 }
 
-
-body{
-  background-color:black;
-  padding-top: 7%;
+.titulo{
+  width: 30%;
+  height: auto;
 }
