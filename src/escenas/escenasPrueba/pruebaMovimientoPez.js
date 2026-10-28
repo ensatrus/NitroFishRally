@@ -11,15 +11,10 @@ export default class PruebaMovimientoPez extends Phaser.Scene{
     }
 
     create(){
-        let pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 1.5, 30);
+        let pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 6, 6, 3);
         
-        pez.setCircle();
-        pez.setScale(0.2)
         this.add.existing(pez);
-        pez.setFriction(0.9, 0.05, 10)
-        pez.setFixedRotation();
-        pez.setMass(20);
-        pez.setBounce(0.5);
+
         this.matter.world.setBounds(0, 0, 800, 600);
 
         let boton = this.add.rectangle(100, 50, 150, 50, 0x3287d1);

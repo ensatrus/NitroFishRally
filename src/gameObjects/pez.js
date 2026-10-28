@@ -1,14 +1,20 @@
 export default class Pez extends Phaser.Physics.Matter.Sprite{
-    constructor(scene, x, y, textura, aceleracion, control){
+    constructor(scene, x, y, textura, aceleracion, control, freno){
         super(scene, x, y, textura);
 
         // Variables
-        this.aceleracion = aceleracion/100;
-        this.control = control;
-        this.INCREMENTO = 0.5; 
+        this.masa = aceleracion+control+freno;
+        this.aceleracion = aceleracion/800;
+        this.control = control*5;
+        this.freno = -freno/10.0;
         this.direccion = 0.0;
 
-        this.scene.add.existing(this);
+        this.setCircle();
+        this.setScale(0.1);
+        this.setFriction(0.2, 0.01, 30)
+        this.setFixedRotation();
+        this.setMass(this.masa);
+        this.setBounce(0.4);
 
         // this.play("animacion_idle");
 
@@ -23,11 +29,17 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         super.preUpdate(t, dt);
 
         if (this.keys.w.isDown) {
+            this.setFrictionAir(0.01);
             this.acelerar(1);
         }
-        if (this.keys.s.isDown){
-            this.acelerar(-0.5)
+        else{
+            this.setFrictionAir(0.02);
         }
+        if (this.keys.s.isDown){
+            this.acelerar(this.freno);
+            this.setFrictionAir(-this.freno/10);
+        }
+        
         if(this.keys.a.isDown){
             this.rotar(-this.control*dt/100);
         }
@@ -41,10 +53,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
 
 
     acelerar(sentido) {
-        const fuerza = new Phaser.Math.Vector2(
-            Math.cos(this.rotation),
-            Math.sin(this.rotation)
-        ).normalize().scale(this.aceleracion * sentido);
+        const fuerza = new Phaser.Math.Vector2().setToPolar(this.rotation, this.aceleracion*sentido* this.masa/10);
 
         this.applyForce(fuerza);
     }
