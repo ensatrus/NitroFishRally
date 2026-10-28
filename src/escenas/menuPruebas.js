@@ -4,6 +4,7 @@ export default class menuPruebas extends Phaser.Scene{
     }
 
     create(){
+
         this.add.rectangle(400, 300, 800, 600, 0x333333);
         
         let boton1 = this.add.rectangle(400, 220, 300, 50, 0x3287d1)
@@ -26,7 +27,7 @@ export default class menuPruebas extends Phaser.Scene{
         boton2.setInteractive(); 
         
         boton2.on("pointerdown", () => {
-            this.scene.start("PruebaFisicas"); 
+            this.scene.start("pruebaFisicas"); 
         });
 
         this.add.text(400, 300, "Prueba Físicas", {
@@ -41,10 +42,10 @@ export default class menuPruebas extends Phaser.Scene{
         boton3.setInteractive(); 
         
         boton3.on("pointerdown", () => {
-            this.scene.start("objetosPrueba"); 
+            this.scene.start("pruebaMovimientoPez"); 
         });
 
-        this.add.text(400, 380, "Prueba Objetos", {
+        this.add.text(400, 380, "Prueba Movimiento Pez", {
             fontSize: "18px",
             fill: "#ffffff",
             fontStyle: "bold",
