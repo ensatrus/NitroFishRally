@@ -1,6 +1,6 @@
 export default class tituloInicio extends Phaser.Scene{
     constructor(){
-        super({key: "titulo"});
+        super({key: "tituloInicio"});
     }
 
     init(){
@@ -8,8 +8,7 @@ export default class tituloInicio extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image("tituloImagen", "./assets/sprites/titulo640x480.png");
-        // this.load.spritesheet("pez", "", {frameWidth, frameHeight});
+       
     }
 
     create(){

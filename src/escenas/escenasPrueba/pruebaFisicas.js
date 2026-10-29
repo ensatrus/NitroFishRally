@@ -12,7 +12,7 @@ export default class PruebaFisicas extends Phaser.Scene{
     }
 
     preload(){
-	    this.load.image('fih', './assets/sprites/fih.png');
+	   
 	}
     create(){
         // Objetos

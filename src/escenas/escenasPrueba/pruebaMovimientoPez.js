@@ -7,13 +7,11 @@ export default class PruebaMovimientoPez extends Phaser.Scene{
         super({key: "pruebaMovimientoPez"})
     }
     preload(){
-        this.load.image('pezquesemueve', './assets/sprites/pezquesemueve.png');
+        
     }
 
     create(){
-        let pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 6, 6, 3);
-        
-        this.add.existing(pez);
+        let pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 6, 6, 6);
 
         this.matter.world.setBounds(0, 0, 800, 600);
 

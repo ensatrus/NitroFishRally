@@ -9,8 +9,7 @@ export default class MenuPrincipal extends Phaser.Scene{
     }
 
     preload(){
-	    this.load.image("titulo", "./assets/sprites/titulo640x480.png");
-        // this.load.image("botonInicio", "");
+	   
 	}
     create(){
         this.add.image(0, 0, "titulo").setOrigin(0, 0);
