@@ -16,5 +16,6 @@ export default class Debut extends Phaser.Scene {
 
     create() {
         this.scene.start("tituloInicio");
+        
     }
 }

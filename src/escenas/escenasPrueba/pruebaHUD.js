@@ -76,6 +76,13 @@ export default class PruebaHUD extends Phaser.Scene {
 
         // Dibujar la barra inicialmente
         this.actualizarAuraHUD();
+
+        this.actualizarPez = () => pez.actualizarPasoFisico();
+        this.matter.world.on("beforeupdate", this.actualizarPez);
+
+        this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+            this.matter.world.off("beforeupdate", this.actualizarPez);
+        });
     }
 
     update() {
