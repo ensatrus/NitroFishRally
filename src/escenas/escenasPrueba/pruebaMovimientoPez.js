@@ -19,8 +19,6 @@ export default class PruebaMovimientoPez extends Phaser.Scene{
 
         let boton = this.add.rectangle(100, 50, 150, 50, 0x3287d1);
 
-        
-
         boton.setInteractive();
 
         boton.on("pointerdown", () => {
@@ -33,6 +31,9 @@ export default class PruebaMovimientoPez extends Phaser.Scene{
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5) 
+
+        this.cameras.main.startFollow(this.pez, true, 0.1, 0.1);
+        this.cameras.main.setZoom();
 
         const mundo = this.matter.world;
 
