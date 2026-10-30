@@ -51,6 +51,21 @@ export default class menuPruebas extends Phaser.Scene{
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5);
+
+        let boton4 = this.add.rectangle(400, 460, 300, 50, 0x3287d1);
+
+        boton4.setInteractive(); 
+        
+        boton4.on("pointerdown", () => {
+            this.scene.start("pruebaHUD"); 
+        });
+
+        this.add.text(400, 460, "Prueba HUD", {
+            fontSize: "18px",
+            fill: "#ffffff",
+            fontStyle: "bold",
+            fontFamily: "Arial"
+        }).setOrigin(0.5);
     }
 };
 
