@@ -77,5 +77,4 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
             this.angle = this.direccion;
         }
     }
-
 }

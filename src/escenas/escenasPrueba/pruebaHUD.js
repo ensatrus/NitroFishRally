@@ -12,6 +12,8 @@ export default class PruebaHUD extends Phaser.Scene {
     }
 
     create() {
+        this.inicioTimer = this.time.now;
+
         const anchoPantalla = this.sys.game.config.width;
         const altoPantalla = this.sys.game.config.height;
         const bg = this.add.image(0, 0, 'fondoPrueba');
@@ -33,17 +35,18 @@ export default class PruebaHUD extends Phaser.Scene {
         this.auraMaxima = 200;
         this.auraAncho = 150;
         this.auraAlto = 20;
+        this.velPez = 0;
 
-        let pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 6, 6, 6);
+        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 6, 6, 6);
 
-        let textoTiempo = this.add.text(tiempoX, tiempoY, "00:00:00", {
+        this.textoTiempo = this.add.text(tiempoX, tiempoY, "00:00:00", {
             fontSize: "20px",
             fill: "#eca33d",
             fontStyle: "bold",
             fontFamily: "Arial" 
         });
 
-        let textoVelocidad = this.add.text(velHUDX, velHUDY, "27", {
+        this.textoVelocidad = this.add.text(velHUDX, velHUDY, this.velPez, {
             fontSize: "60px",
             fill: "#221274",
             fontStyle: "bold",
@@ -57,7 +60,7 @@ export default class PruebaHUD extends Phaser.Scene {
 
         señal.setDisplaySize(señalDim, señalDim); 
 
-        this.cameras.main.startFollow(pez);
+        this.cameras.main.startFollow(this.pez);
 
         bg.setOrigin(0, 0);
         bg.setDepth(-1);
@@ -66,18 +69,18 @@ export default class PruebaHUD extends Phaser.Scene {
         this.barraAura.setScrollFactor(0, 0); 
         this.barraAura.setDepth(10);
 
-        textoTiempo.setOrigin(1, 0);
-        textoTiempo.setScrollFactor(0, 0); 
-        textoTiempo.setDepth(10);
+        this.textoTiempo.setOrigin(1, 0);
+        this.textoTiempo.setScrollFactor(0, 0); 
+        this.textoTiempo.setDepth(10);
 
-        textoVelocidad.setOrigin(0.5, 0);
-        textoVelocidad.setScrollFactor(0, 0); 
-        textoVelocidad.setDepth(10);
+        this.textoVelocidad.setOrigin(0.5, 0);
+        this.textoVelocidad.setScrollFactor(0, 0); 
+        this.textoVelocidad.setDepth(10);
 
         // Dibujar la barra inicialmente
         this.actualizarAuraHUD();
 
-        this.actualizarPez = () => pez.actualizarPasoFisico();
+        this.actualizarPez = () => this.pez.actualizarPasoFisico();
         this.matter.world.on("beforeupdate", this.actualizarPez);
 
         this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
@@ -86,7 +89,8 @@ export default class PruebaHUD extends Phaser.Scene {
     }
 
     update() {
-        
+        this.actualizarVelocidadHUD();
+        this.actualizarTimerHUD();
     }
 
     // Seria conveniente meter los métodos que siguen en un HUDmanager o algo del estilo
@@ -109,11 +113,21 @@ export default class PruebaHUD extends Phaser.Scene {
     }
 
     actualizarTimerHUD(){
+        const tiempoMs = Math.floor(this.time.now - this.inicioTimer);
+        const minutos = Math.floor(tiempoMs / 60000);
+        const segundos = Math.floor(tiempoMs / 1000) % 60;
+        const milisegundos = tiempoMs % 1000;
 
+        this.textoTiempo.setText(
+            `${String(minutos).padStart(2, "0")}:${String(segundos).padStart(2, "0")}:${String(milisegundos).padStart(3, "0")}`
+        );
     }
 
-    actualizarvelocidadHUD(){
-
+    actualizarVelocidadHUD(){
+        const multVel = 6;
+        let vel = this.pez.getSpeed() * multVel;
+        this.velPez = vel.toFixed(0);
+        this.textoVelocidad.setText(this.velPez);
     }
 
     actualizarSeñalHUD(){
