@@ -25,33 +25,38 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         this.scene.add.existing(this);
     }
 
+    getSpeed() {
+        const { x, y } = this.getVelocity();
+        return Math.hypot(x, y);
+    }
+
     preUpdate(time, delta) {
     super.preUpdate(time, delta);
-}
-
-actualizarPasoFisico() {
-    if (this.keys.a.isDown) {
-        this.rotar(-this.control / 6);
     }
 
-    if (this.keys.d.isDown) {
-        this.rotar(this.control / 6);
-    }
+    actualizarPasoFisico() {
+        if (this.keys.a.isDown) {
+            this.rotar(-this.control / 6);
+        }
 
-    this.dirToAngle();
+        if (this.keys.d.isDown) {
+            this.rotar(this.control / 6);
+        }
 
-    if (this.keys.w.isDown) {
-        this.setFrictionAir(this.masa / 1600);
-        this.acelerar(1);
-    } else {
-        this.setFrictionAir(0.025);
-    }
+        this.dirToAngle();
 
-    if (this.keys.s.isDown) {
-        this.acelerar(this.freno);
-        this.setFrictionAir(-this.freno / 10);
+        if (this.keys.w.isDown) {
+            this.setFrictionAir(this.masa / 1600);
+            this.acelerar(1);
+        } else {
+            this.setFrictionAir(0.025);
+        }
+
+        if (this.keys.s.isDown) {
+            this.acelerar(this.freno);
+            this.setFrictionAir(-this.freno / 10);
+        }
     }
-}
 
     acelerar(sentido){
         const fuerza = new Phaser.Math.Vector2().setToPolar(this.rotation, this.aceleracion * sentido);
@@ -72,4 +77,5 @@ actualizarPasoFisico() {
             this.angle = this.direccion;
         }
     }
+
 }
