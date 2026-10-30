@@ -19,5 +19,6 @@ new Phaser.Game({
       debug: true,
       gravity: { y: 0, x:0}
     }
-  }
+  },
+  roundPixels: true
 })

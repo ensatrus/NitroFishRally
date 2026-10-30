@@ -3,7 +3,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         super(scene, x, y, textura);
 
         this.masa = aceleracion + control + freno/2;
-        this.aceleracion = aceleracion / 800;
+        this.aceleracion = aceleracion / 600;
         this.control = control * 5;
         this.freno = -freno / 15;
         this.direccion = 0;
@@ -25,37 +25,37 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         this.scene.add.existing(this);
     }
 
-    preUpdate(t, dt) {
-        super.preUpdate(t, dt);
+    preUpdate(time, delta) {
+    super.preUpdate(time, delta);
+}
 
-        if (this.keys.w.isDown) {
-            this.setFrictionAir(this.masa/1600);
-            this.acelerar(1);
-        } else {
-            this.setFrictionAir(0.025);
-        }
-
-        if (this.keys.s.isDown) {
-            this.acelerar(this.freno);
-            this.setFrictionAir(-this.freno/10);
-        }
-
-        if (this.keys.a.isDown) {
-            this.rotar(-this.control*dt/100);
-        }
-
-        if (this.keys.d.isDown) {
-            this.rotar(this.control*dt/100);
-        }
-
-        this.dirToAngle();
-
-        super.update(t, dt);
+actualizarPasoFisico() {
+    if (this.keys.a.isDown) {
+        this.rotar(-this.control / 6);
     }
 
-    acelerar(sentido) {
-        const fuerza = new Phaser.Math.Vector2()
-            .setToPolar(this.rotation, this.aceleracion * sentido);
+    if (this.keys.d.isDown) {
+        this.rotar(this.control / 6);
+    }
+
+    this.dirToAngle();
+
+    if (this.keys.w.isDown) {
+        this.setFrictionAir(this.masa / 1600);
+        this.acelerar(1);
+    } else {
+        this.setFrictionAir(0.025);
+    }
+
+    if (this.keys.s.isDown) {
+        this.acelerar(this.freno);
+        this.setFrictionAir(-this.freno / 10);
+    }
+}
+
+    acelerar(sentido){
+        const fuerza = new Phaser.Math.Vector2().setToPolar(this.rotation, this.aceleracion * sentido);
+
         this.applyForce(fuerza);
     }
 
