@@ -9,6 +9,8 @@ export default class PruebaHUD extends Phaser.Scene {
         this.load.image("fondoPrueba", "./assets/sprites/fondoPrueba.jpg");
         this.load.image("señalIzq", "./assets/sprites/signalIzq.png");
         this.load.image("señalDch", "./assets/sprites/signalDch.png");
+        this.load.font("Reloj Digital", "./assets/fonts/CursedTimerUlil-Aznm.ttf", "truetype");
+        this.load.font("Velocidad", "./assets/fonts/AmericanCaptainPatrius02Fre-PvPd.ttf", "truetype");
     }
 
     create() {
@@ -41,16 +43,20 @@ export default class PruebaHUD extends Phaser.Scene {
 
         this.textoTiempo = this.add.text(tiempoX, tiempoY, "00:00:00", {
             fontSize: "20px",
-            fill: "#eca33d",
+            fill: "#13e800", // Color del texto
             fontStyle: "bold",
-            fontFamily: "Arial" 
+            fontFamily: "Reloj Digital",
+            stroke: '#000000', // Color del borde 
+            strokeThickness: 5 
         });
 
         this.textoVelocidad = this.add.text(velHUDX, velHUDY, this.velPez, {
             fontSize: "60px",
-            fill: "#221274",
+            fill: "#ffffff", // Color del texto
             fontStyle: "bold",
-            fontFamily: "Arial" 
+            fontFamily: "Velocidad",
+            stroke: '#000000', // Color del borde 
+            strokeThickness: 7
         });
 
         const señal = this.add.image(señalX, señalY, "señalDch");
@@ -72,10 +78,13 @@ export default class PruebaHUD extends Phaser.Scene {
         this.textoTiempo.setOrigin(1, 0);
         this.textoTiempo.setScrollFactor(0, 0); 
         this.textoTiempo.setDepth(10);
+        this.textoTiempo.scaleX = 0.7;
 
         this.textoVelocidad.setOrigin(0.5, 0);
         this.textoVelocidad.setScrollFactor(0, 0); 
         this.textoVelocidad.setDepth(10);
+
+        
 
         // Dibujar la barra inicialmente
         this.actualizarAuraHUD();
