@@ -31,8 +31,8 @@ export default class PruebaHUD extends Phaser.Scene {
         const señalY = altoPantalla - 20;
         const señalDim = 64;
 
-        this.auraActual = 100; 
-        this.auraMaxima = 200;
+        this.auraActual = 0; 
+        this.auraMaxima = 1000;
         this.auraAncho = 150;
         this.auraAlto = 20;
         this.velPez = 0;
@@ -91,20 +91,24 @@ export default class PruebaHUD extends Phaser.Scene {
     update() {
         this.actualizarVelocidadHUD();
         this.actualizarTimerHUD();
+        this.actualizarAuraHUD();
     }
 
     // Seria conveniente meter los métodos que siguen en un HUDmanager o algo del estilo
     // (no deberia de hacer falta cambiar nada de dentro de los métodos)
     actualizarAuraHUD() {
+        this.pez.actualizarAura();
+        this.auraActual = this.pez.getAura();
+        
         this.barraAura.clear();
 
         // Fondo de la barra 
         this.barraAura.fillStyle(0x333333, 1);
         this.barraAura.fillRect(this.auraX, this.auraY, this.auraAncho, this.auraAlto);
 
-        // Relleno de la barra 
+        // Relleno de la barra
         const porcentaje = this.auraActual / this.auraMaxima;
-        const anchoRelleno = this.auraAncho * porcentaje;
+        const anchoRelleno = Math.min(this.auraAncho * porcentaje, this.auraAncho);
 
         if (anchoRelleno > 0) {
             this.barraAura.fillStyle(0x00ffff, 1); 
