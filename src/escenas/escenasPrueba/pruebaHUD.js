@@ -19,6 +19,7 @@ export default class PruebaHUD extends Phaser.Scene {
         const anchoPantalla = this.sys.game.config.width;
         const altoPantalla = this.sys.game.config.height;
         const bg = this.add.image(0, 0, 'fondoPrueba');
+        bg.setScale(5);
 
         this.auraX = 20;
         this.auraY = 20;
@@ -56,15 +57,32 @@ export default class PruebaHUD extends Phaser.Scene {
             fontStyle: "bold",
             fontFamily: "Velocidad",
             stroke: '#000000', // Color del borde 
-            strokeThickness: 7
+            strokeThickness: 6
         });
 
-        const señal = this.add.image(señalX, señalY, "señalDch");
-        señal.setOrigin(0.5, 1);       
-        señal.setScrollFactor(0);    
-        señal.setDepth(10);
+        this.textoKMH = this.add.text(velHUDX + 25, velHUDY, "km/h", {
+            fontSize: "10px",
+            fill: "#ffffff", // Color del texto
+            fontStyle: "bold",
+            fontFamily: "Velocidad",
+            stroke: '#000000', // Color del borde 
+            strokeThickness: 5
+        });
 
-        señal.setDisplaySize(señalDim, señalDim); 
+        const señalDerecha = this.add.image(señalX, señalY, "señalDch");
+        señalDerecha.setVisible(false);
+        señalDerecha.setOrigin(0.5, 1);       
+        señalDerecha.setScrollFactor(0);    
+        señalDerecha.setDepth(10);
+
+        const señalIzquierda = this.add.image(señalX, señalY, "señalIzq");
+        señalIzquierda.setVisible(false);
+        señalIzquierda.setOrigin(0.5, 1);       
+        señalIzquierda.setScrollFactor(0);    
+        señalIzquierda.setDepth(10);
+
+        señalDerecha.setDisplaySize(señalDim, señalDim); 
+        señalIzquierda.setDisplaySize(señalDim, señalDim); 
 
         this.cameras.main.startFollow(this.pez);
 
@@ -83,8 +101,11 @@ export default class PruebaHUD extends Phaser.Scene {
         this.textoVelocidad.setOrigin(0.5, 0);
         this.textoVelocidad.setScrollFactor(0, 0); 
         this.textoVelocidad.setDepth(10);
+        this.textoVelocidad.scaleX = 1.2;
 
-        
+        this.textoKMH.setScrollFactor(0, 0);
+        this.textoKMH.setDepth(10);
+        this.textoKMH.scaleX = 1.2;
 
         // Dibujar la barra inicialmente
         this.actualizarAuraHUD();
@@ -95,12 +116,62 @@ export default class PruebaHUD extends Phaser.Scene {
         this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
             this.matter.world.off("beforeupdate", this.actualizarPez);
         });
+
+        // Prueba de sistema de señal de curva (provisionalmente con las flechas)
+        const flechaIzq = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        const flechaDch = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+
+        let estaParpadeando = false;
+
+        this.input.keyboard.on('keydown', (event) => {
+            if (event.key === 'ArrowLeft' && !this.estaParpadeando) {
+                estaParpadeando = true;
+
+                señalIzquierda.setVisible(true);
+                señalIzquierda.setAlpha(1);
+
+                const parpadeo = this.tweens.add({
+                    targets: señalIzquierda,
+                    alpha: 0,           
+                    duration: 90,      
+                    yoyo: true,        
+                    repeat: -1         
+                });
+
+                this.time.delayedCall(2000, () => {
+                    parpadeo.remove();   
+                    señalIzquierda.setVisible(false); 
+                    estaParpadeando = false;    
+                });
+            }
+
+            if (event.key === 'ArrowRight' && !this.estaParpadeando) {
+                estaParpadeando = true;
+
+                señalDerecha.setVisible(true);
+                señalDerecha.setAlpha(1);
+
+                const parpadeo = this.tweens.add({
+                    targets: señalDerecha,
+                    alpha: 0,           
+                    duration: 90,      
+                    yoyo: true,        
+                    repeat: -1         
+                });
+
+                this.time.delayedCall(2000, () => {
+                    parpadeo.remove();   
+                    señalDerecha.setVisible(false); 
+                    estaParpadeando = false;    
+                });
+            }
+        })
     }
 
     update() {
         this.actualizarVelocidadHUD();
         this.actualizarTimerHUD();
-        this.actualizarAuraHUD();
+        this.actualizarAuraHUD();        
     }
 
     // Seria conveniente meter los métodos que siguen en un HUDmanager o algo del estilo
