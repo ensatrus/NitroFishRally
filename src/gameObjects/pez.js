@@ -7,6 +7,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         this.control = control * 5;
         this.freno = -freno / 15;
         this.direccion = 0;
+        this.aura = 0;
 
         this.setCircle();
         this.setScale(0.1);
@@ -28,6 +29,10 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
     getSpeed() {
         const { x, y } = this.getVelocity();
         return Math.hypot(x, y);
+    }
+
+    getAura() {
+        return this.aura;
     }
 
     preUpdate(time, delta) {
@@ -58,6 +63,14 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         }
     }
 
+    actualizarAura() {
+        const velocidad = this.getSpeed();
+        const minVelocidad = 6;
+
+        const incrementoAura = (velocidad - minVelocidad);
+        this.aura = Math.max(0, this.aura + incrementoAura);
+    }
+
     acelerar(sentido){
         const fuerza = new Phaser.Math.Vector2().setToPolar(this.rotation, this.aceleracion * sentido);
 
@@ -77,5 +90,4 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
             this.angle = this.direccion;
         }
     }
-
 }
