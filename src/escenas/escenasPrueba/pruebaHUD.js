@@ -34,7 +34,7 @@ export default class PruebaHUD extends Phaser.Scene {
         this.auraAncho = 150;
         this.auraAlto = 20;
 
-        let pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 6, 6, 6);
+        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 6, 6, 6);
 
         let textoTiempo = this.add.text(tiempoX, tiempoY, "00:00:00", {
             fontSize: "20px",
@@ -57,7 +57,7 @@ export default class PruebaHUD extends Phaser.Scene {
 
         señal.setDisplaySize(señalDim, señalDim); 
 
-        this.cameras.main.startFollow(pez);
+        this.cameras.main.startFollow(this.pez);
 
         bg.setOrigin(0, 0);
         bg.setDepth(-1);
@@ -77,7 +77,7 @@ export default class PruebaHUD extends Phaser.Scene {
         // Dibujar la barra inicialmente
         this.actualizarAuraHUD();
 
-        this.actualizarPez = () => pez.actualizarPasoFisico();
+        this.actualizarPez = () => this.pez.actualizarPasoFisico();
         this.matter.world.on("beforeupdate", this.actualizarPez);
 
         this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
