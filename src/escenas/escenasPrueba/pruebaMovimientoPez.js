@@ -49,7 +49,7 @@ export default class PruebaMovimientoPez extends Phaser.Scene{
     }
 
     update() {
-        const velocidad = this.pez.getVelocity();
+    const velocidad = this.pez.getVelocity();
         const anticipacion = 6;
 
         this.cameras.main.setFollowOffset(

@@ -166,12 +166,15 @@ export default class PruebaHUD extends Phaser.Scene {
                 });
             }
         })
+
+        this.cameras.main.startFollow(this.pez, false, 1, 1);
     }
 
     update() {
         this.actualizarVelocidadHUD();
         this.actualizarTimerHUD();
         this.actualizarAuraHUD();        
+        this.actualizarCamara();
     }
 
     // Seria conveniente meter los métodos que siguen en un HUDmanager o algo del estilo
@@ -216,5 +219,15 @@ export default class PruebaHUD extends Phaser.Scene {
 
     actualizarSeñalHUD(){
 
+    }
+
+    actualizarCamara(){
+        const velocidad = this.pez.getVelocity();
+        const anticipacion = 6;
+
+        this.cameras.main.setFollowOffset(
+            -velocidad.x * anticipacion,
+            -velocidad.y * anticipacion
+        );
     }
 }
