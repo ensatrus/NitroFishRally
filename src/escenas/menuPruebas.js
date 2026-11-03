@@ -66,6 +66,8 @@ export default class menuPruebas extends Phaser.Scene{
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5);
+
+        this.cameras.main.fadeIn(200, 0, 0, 0); 
     }
 };
 
