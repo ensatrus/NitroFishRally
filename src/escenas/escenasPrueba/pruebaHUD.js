@@ -19,7 +19,7 @@ export default class PruebaHUD extends Phaser.Scene {
         const anchoPantalla = this.sys.game.config.width;
         const altoPantalla = this.sys.game.config.height;
         const bg = this.add.image(0, 0, 'fondoPrueba');
-        bg.setScale(5);
+        bg.setScale(7);
 
         this.auraX = 20;
         this.auraY = 20;
@@ -35,12 +35,12 @@ export default class PruebaHUD extends Phaser.Scene {
         const señalDim = 64;
 
         this.auraActual = 0; 
-        this.auraMaxima = 10000;
+        this.auraMaxima = 30000;
         this.auraAncho = 400;
         this.auraAlto = 20;
         this.velPez = 0;
 
-        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 5, 5, 5);
+        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 7, 3, 7);
 
         this.textoTiempo = this.add.text(tiempoX, tiempoY, "00:00:00", {
             fontSize: "20px",
