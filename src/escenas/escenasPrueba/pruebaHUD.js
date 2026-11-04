@@ -41,7 +41,7 @@ export default class PruebaHUD extends Phaser.Scene {
         this.auraAlto = 20;
         this.velPez = 0;
 
-        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 7, 5, 5);
+        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 5, 5, 5);
 
         this.textoTiempo = this.add.text(tiempoX, tiempoY, "00:00:00", {
             fontSize: "20px",

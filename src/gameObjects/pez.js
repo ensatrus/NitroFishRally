@@ -73,7 +73,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         
         if(this.keys.space.isDown){
             if(this.getSpeed() > 0.1) this.frenar();
-            this.setFrictionAir((this.freno+2)/400);
+            this.setFrictionAir((this.freno+2)/450);
         }
     }
 
@@ -92,7 +92,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
     }
 
     frenar(){
-        const fuerza = new Phaser.Math.Vector2(this.getVelocity().x, this.getVelocity().y).setLength(-this.freno*this.getSpeed()/2000);
+        const fuerza = new Phaser.Math.Vector2(this.getVelocity().x, this.getVelocity().y).setLength(-this.freno*this.getSpeed()/3000);
 
         this.applyForce(fuerza);
     }
