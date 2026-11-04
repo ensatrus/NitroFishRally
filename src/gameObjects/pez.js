@@ -2,10 +2,10 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
     constructor(scene, x, y, textura, aceleracion, control, freno){
         super(scene, x, y, textura);
 
-        this.masa = aceleracion + control + freno/2;
-        this.aceleracion = aceleracion / 600;
-        this.control = control * 5;
-        this.freno = -freno / 15;
+        this.masa = aceleracion + control + freno;
+        this.aceleracion = aceleracion;
+        this.control = control;
+        this.freno = freno;
         this.direccion = 0;
         this.aura = 0;
 
@@ -20,7 +20,8 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
             a: this.scene.input.keyboard.addKey("A"),
             s: this.scene.input.keyboard.addKey("S"),
             w: this.scene.input.keyboard.addKey("W"),
-            d: this.scene.input.keyboard.addKey("D")
+            d: this.scene.input.keyboard.addKey("D"),
+            space: this.scene.input.keyboard.addKey("SPACE")
         };
 
         this.scene.add.existing(this);
@@ -40,39 +41,54 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
     }
 
     actualizarPasoFisico() {
+       
+        const derrape = this.getDerrape();
+
         if (this.keys.a.isDown) {
-            this.rotar(-this.control / 6);
+            this.rotar(-this.control  * 5/6);
         }
 
         if (this.keys.d.isDown) {
-            this.rotar(this.control / 6);
+            this.rotar(this.control  * 5/6);
         }
 
         this.dirToAngle();
 
         if (this.keys.w.isDown) {
-            this.setFrictionAir(this.masa / 1600);
-            this.acelerar(1);
-        } else {
-            this.setFrictionAir(0.025);
+            if(this.getSpeed()< 250 * (1.0/this.masa)) this.acelerar(1);
+            this.setFrictionAir(derrape * this.masa / 1000);
+        } 
+        else {
+            this.setFrictionAir(derrape* 0.07);
         }
 
         if (this.keys.s.isDown) {
-            this.acelerar(this.freno);
-            this.setFrictionAir(-this.freno / 10);
+            this.acelerar(-0.25);
+            this.setFrictionAir(derrape* 0.07);
+        }
+        
+        if(this.keys.space.isDown){
+            if(this.getSpeed() > 0.1) this.frenar();
+            this.setFrictionAir(this.freno/250);
         }
     }
 
     actualizarAura() {
         const velocidad = this.getSpeed();
-        const minVelocidad = 6;
+        const minVelocidad = this.masa / 3;
 
         const incrementoAura = (velocidad - minVelocidad);
         this.aura = Math.max(0, this.aura + incrementoAura);
     }
 
     acelerar(sentido){
-        const fuerza = new Phaser.Math.Vector2().setToPolar(this.rotation, this.aceleracion * sentido);
+        const fuerza = new Phaser.Math.Vector2().setToPolar(this.rotation, this.aceleracion* this.masa * sentido / 8500);
+
+        this.applyForce(fuerza);
+    }
+
+    frenar(){
+        const fuerza = new Phaser.Math.Vector2(this.getVelocity().x, this.getVelocity().y).setLength(-this.freno/625)
 
         this.applyForce(fuerza);
     }
@@ -89,5 +105,21 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         else {
             this.angle = this.direccion;
         }
+    }
+
+    getDerrape() {
+        const { x, y } = this.getVelocity();
+        const rapidez = Math.hypot(x, y);
+
+        if (rapidez === 0) {
+            return 0;
+        }
+
+        const seno = (
+            Math.cos(this.rotation) * y -
+            Math.sin(this.rotation) * x
+        ) / rapidez;
+
+        return Phaser.Math.Clamp(Math.abs(seno)+0.2, 0, 1);
     }
 }

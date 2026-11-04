@@ -9,7 +9,6 @@ export default class PruebaHUD extends Phaser.Scene {
         this.load.image("fondoPrueba", "./assets/sprites/fondoPrueba.jpg");
         this.load.image("señalIzq", "./assets/sprites/signalIzq.png");
         this.load.image("señalDch", "./assets/sprites/signalDch.png");
-
         this.load.font("Reloj Digital", "./assets/fonts/CursedTimerUlil-Aznm.ttf", "truetype");
         this.load.font("Velocidad", "./assets/fonts/AmericanCaptainPatrius02Fre-PvPd.ttf", "truetype");
     }
@@ -23,7 +22,7 @@ export default class PruebaHUD extends Phaser.Scene {
         bg.setScale(5);
 
         this.auraX = 20;
-        this.auraY = 40;
+        this.auraY = 20;
 
         const tiempoX = anchoPantalla - 20; 
         const tiempoY = 20;
@@ -34,16 +33,14 @@ export default class PruebaHUD extends Phaser.Scene {
         const señalX = anchoPantalla / 2;
         const señalY = altoPantalla - 20;
         const señalDim = 64;
-        const señalEscala = 1.5;
-
 
         this.auraActual = 0; 
-        this.auraMaxima = 1000;
-        this.auraAncho = 150;
+        this.auraMaxima = 10000;
+        this.auraAncho = 400;
         this.auraAlto = 20;
         this.velPez = 0;
 
-        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 6, 6, 6);
+        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 5, 5, 5);
 
         this.textoTiempo = this.add.text(tiempoX, tiempoY, "00:00:00", {
             fontSize: "20px",
@@ -72,15 +69,6 @@ export default class PruebaHUD extends Phaser.Scene {
             strokeThickness: 5
         });
 
-        this.textoAura = this.add.text(25, this.auraY - this.auraAlto, "AURA", {
-            fontSize: "12px",
-            fill: "#ffc800", // Color del texto
-            fontStyle: "bold",
-            fontFamily: "Velocidad",
-            stroke: '#000000', // Color del borde 
-            strokeThickness: 4
-        });
-
         const señalDerecha = this.add.image(señalX, señalY, "señalDch");
         señalDerecha.setVisible(false);
         señalDerecha.setOrigin(0.5, 1);       
@@ -93,8 +81,8 @@ export default class PruebaHUD extends Phaser.Scene {
         señalIzquierda.setScrollFactor(0);    
         señalIzquierda.setDepth(10);
 
-        señalDerecha.setDisplaySize(señalDim * señalEscala, señalDim * señalEscala); 
-        señalIzquierda.setDisplaySize(señalDim * señalEscala, señalDim * señalEscala); 
+        señalDerecha.setDisplaySize(señalDim, señalDim); 
+        señalIzquierda.setDisplaySize(señalDim, señalDim); 
 
         this.cameras.main.startFollow(this.pez);
 
@@ -105,15 +93,10 @@ export default class PruebaHUD extends Phaser.Scene {
         this.barraAura.setScrollFactor(0, 0); 
         this.barraAura.setDepth(10);
 
-        this.textoAura.setOrigin(0, 0);
-        this.textoAura.setScrollFactor(0, 0); 
-        this.textoAura.setDepth(10);
-        this.textoAura.scaleX = 1.5;
-
         this.textoTiempo.setOrigin(1, 0);
         this.textoTiempo.setScrollFactor(0, 0); 
         this.textoTiempo.setDepth(10);
-        this.textoTiempo.scaleX = 0.8;
+        this.textoTiempo.scaleX = 0.7;
 
         this.textoVelocidad.setOrigin(0.5, 0);
         this.textoVelocidad.setScrollFactor(0, 0); 
@@ -123,6 +106,9 @@ export default class PruebaHUD extends Phaser.Scene {
         this.textoKMH.setScrollFactor(0, 0);
         this.textoKMH.setDepth(10);
         this.textoKMH.scaleX = 1.2;
+
+        // Dibujar la barra inicialmente
+        this.actualizarAuraHUD();
 
         this.actualizarPez = () => this.pez.actualizarPasoFisico();
         this.matter.world.on("beforeupdate", this.actualizarPez);
@@ -138,7 +124,7 @@ export default class PruebaHUD extends Phaser.Scene {
         let estaParpadeando = false;
 
         this.input.keyboard.on('keydown', (event) => {
-            if (event.key === 'ArrowLeft' && !estaParpadeando) {
+            if (event.key === 'ArrowLeft' && !this.estaParpadeando) {
                 estaParpadeando = true;
 
                 señalIzquierda.setVisible(true);
@@ -159,7 +145,7 @@ export default class PruebaHUD extends Phaser.Scene {
                 });
             }
 
-            if (event.key === 'ArrowRight' && !estaParpadeando) {
+            if (event.key === 'ArrowRight' && !this.estaParpadeando) {
                 estaParpadeando = true;
 
                 señalDerecha.setVisible(true);
