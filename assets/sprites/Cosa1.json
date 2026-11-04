@@ -1,0 +1,36 @@
+{
+	"generator_info": "Shape definitions generated with PhysicsEditor. Visit https://www.codeandweb.com/physicseditor",
+	"Circuit": {
+		"type": "fromPhysicsEditor",
+		"label": "Circuit",
+		"isStatic": true,
+		"density": 0.1,
+		"restitution": 0,
+		"friction": 0.1,
+		"frictionAir": 0.01,
+		"frictionStatic": 0.5,
+		"collisionFilter": {
+			"group": 0,
+			"category": 1,
+			"mask": 255
+		},
+		"fixtures": [
+			{
+				"label": "",
+				"isSensor": false,
+				"circle": {
+					"x": 357,
+					"y": 417,
+					"radius": 147.2175261305528
+				}
+			},
+			{
+				"label": "",
+				"isSensor": false,
+				"vertices": [
+					[ { "x":506, "y":410 }, { "x":511, "y":231 }, { "x":336, "y":270 } ]
+				]
+			}
+		]
+	}
+}

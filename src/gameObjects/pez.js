@@ -63,17 +63,17 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
             this.setFrictionAir(derrape * this.masa / 1000);
         } 
         else {
-            this.setFrictionAir(derrape* 0.04);
+            this.setFrictionAir(derrape* 0.035);
         }
 
         if (this.keys.s.isDown || this.keys.down.isDown) {
             this.acelerar(-0.25);
-            this.setFrictionAir(derrape* 0.05);
+            this.setFrictionAir(derrape* 0.04);
         }
         
         if(this.keys.space.isDown){
             if(this.getSpeed() > 0.1) this.frenar();
-            this.setFrictionAir(derrape * (this.freno+2)/110);
+            this.setFrictionAir((this.freno+2)/250);
         }
     }
 
@@ -92,7 +92,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
     }
 
     frenar(){
-        const fuerza = new Phaser.Math.Vector2(this.getVelocity().x, this.getVelocity().y).setLength(-this.freno/625)
+        const fuerza = new Phaser.Math.Vector2(this.getVelocity().x/this.getVelocity().x, this.getVelocity().y/this.getVelocity().y).setLength(-this.freno/4000);
 
         this.applyForce(fuerza);
     }

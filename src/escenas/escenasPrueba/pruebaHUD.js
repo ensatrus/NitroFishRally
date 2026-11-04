@@ -40,7 +40,7 @@ export default class PruebaHUD extends Phaser.Scene {
         this.auraAlto = 20;
         this.velPez = 0;
 
-        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 7, 3, 7);
+        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 5, 5, 5);
 
         this.textoTiempo = this.add.text(tiempoX, tiempoY, "00:00:00", {
             fontSize: "20px",
@@ -84,7 +84,7 @@ export default class PruebaHUD extends Phaser.Scene {
         señalDerecha.setDisplaySize(señalDim, señalDim); 
         señalIzquierda.setDisplaySize(señalDim, señalDim); 
 
-        this.cameras.main.startFollow(this.pez);
+        this.cameras.main.startFollow(this.pez, false, 0.9, 0.9);
 
         bg.setOrigin(0, 0);
         bg.setDepth(-1);

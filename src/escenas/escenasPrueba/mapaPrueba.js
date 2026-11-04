@@ -1,4 +1,4 @@
-// import objetosPrueba from "src/objetosPrueba.js";
+import Pez from "../../gameObjects/pez.js";
 
 export default class mapaPrueba extends Phaser.Scene{
     constructor(){
@@ -12,23 +12,33 @@ export default class mapaPrueba extends Phaser.Scene{
     preload(){
         // this.load.image("fondo", " ")
         this.load.image('Circuit', 'assets/sprites/Circuit.png');
-        this.load.json('Circuit_t', 'assets/Circuit.json');
+        this.load.json('Circuit_t', 'assets/sprites/Cosa1.json');
     }
 
     create(){
         const datos = this.cache.json.get('Circuit_t');
         const miObjeto = this.matter.add.sprite(600, 420, 'Circuit', null, { 
-            shape: datos.Circuit 
+            shape: datos.Circuit,
+            isStatic: true,
         });
 
-        miObjeto.setStatic(true);
-        miObjeto.setOrigin(0.5, 0.5);
-        
-        // Ajustamos la cámara para ver la pantalla estándar
-        this.cameras.main.centerOn(400, 300);
-        this.cameras.main.setZoom(0.4); 
+        miObjeto.setScale(12);        
+        this.cameras.main.setZoom(0.5);
+        this.pez = new Pez(this.matter.world, 1000, 750, 'pezquesemueve', 6, 6, 6);
+        this.pez.setDepth(1);
 
+        this.matter.world.debugConfig.showStaticBody = true;
+        this.matter.world.debugConfig.showInternalEdges = true;
         
+        this.cameras.main.centerOn(miObjeto.x, miObjeto.y);
+        this.cameras.main.startFollow(this.pez, true, 1, 1);
+
+        this.actualizarPez = () => this.pez.actualizarPasoFisico();
+        this.matter.world.on("beforeupdate", this.actualizarPez);
+
+        this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+            this.matter.world.off("beforeupdate", this.actualizarPez);
+        });
     }
 
     update(){
