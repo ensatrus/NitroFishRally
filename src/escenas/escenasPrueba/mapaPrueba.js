@@ -1,6 +1,6 @@
 // import objetosPrueba from "src/objetosPrueba.js";
 
-export default class mapaPrueba extends Phaser.scene{
+export default class mapaPrueba extends Phaser.Scene{
     constructor(){
         super({key: "mapaPrueba"});
     }
@@ -11,34 +11,24 @@ export default class mapaPrueba extends Phaser.scene{
 
     preload(){
         // this.load.image("fondo", " ")
+        this.load.image('Circuit', 'assets/sprites/Circuit.png');
+        this.load.json('Circuit_t', 'assets/Circuit.json');
     }
 
     create(){
-        // let imagenFondo = this.add.image(0, 0, "fondo");
-        // imagenFondo.setScale(0.5, 0.5);
-
-        // let textoPuntos = this.add.text(0, 0, "Puntos: 0", {font: ""});
-        //textoPuntos.setScrollFactor(0,0); // Para que sea parte de la interfaz
-
-        // let juan = new objetosPrueba(this, 0, 0, "textura");
-
-        // this.cameras.main.startFollow(juan); // Para que la camara siga a juan
-
-        let boton = this.add.rectangle(10, 10, 150, 50, 0x3287d1).setOrigin(0,0);
-
-        boton.setInteractive();
-
-        boton.on("pointerdown", () => {
-            this.scene.start("menuPruebas"); 
+        const datos = this.cache.json.get('Circuit_t');
+        const miObjeto = this.matter.add.sprite(600, 420, 'Circuit', null, { 
+            shape: datos.Circuit 
         });
 
-        this.add.text(50, 25, "Volver",{
-            fontSize: "18px",
-            fill: "#ffffff",
-            fontStyle: "bold",
-            fontFamily: "Arial"
-        }).setOrigin(0.0)
+        miObjeto.setStatic(true);
+        miObjeto.setOrigin(0.5, 0.5);
+        
+        // Ajustamos la cámara para ver la pantalla estándar
+        this.cameras.main.centerOn(400, 300);
+        this.cameras.main.setZoom(0.4); 
 
+        
     }
 
     update(){
