@@ -10,11 +10,11 @@ export default class PruebaPiezas extends Phaser.Scene{
     }
 
     create(){
-        this.add.image(1600,1200,"placeholderBackground").setScale(3);
+        this.add.image(2600, 1800,"fondoPrueba").setScale(7);
         
         this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 5, 5, 5);
         
-        this.matter.world.setBounds(0, 0, 3200, 2400);
+        this.matter.world.setBounds(0, 0, 5200, 3400);
         
         this.cameras.main.startFollow(this.pez, true, 0.9, 0.9);
         this.cameras.main.setZoom();
