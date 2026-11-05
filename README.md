@@ -16,17 +16,21 @@ Desarrollado por **LUHPEN Games**
   
 ![](./assets/images/hudNivel(provisional).png)
 
+
 * ✨ **Acumula Aura:** ¡Cuidado! No solo es suficiente con completar el circuito. Acumula aura superando los obstáculos con destreza y sin chocarte para avanzar en la increíble historia de alfredo-chan.
   
 ![](./assets/images/menu(provisional).png)
+
 
 * 🔧 **Personaliza:** Encuentra la armonía modificando las distintas piezas de alfredo-chan hasta encontrar la combinación perfecta de aceleración, control y freno.
   
 ![](./assets/images/menuPiezas(provisional).png)
 
+
 * 🐉 **Asciende:** Convierte a alfredo-chan en un dragón milenario como dictan los pergaminos de la profecía.
   
 ![](./assets/images/mainMenu.png)
+
 
 ## 🎮 Controles
 * **Acelerar:** <kbd>W</kbd> | **Frenar:** <kbd>S</kbd> | **Girar:** <kbd>A</kbd> / <kbd>D</kbd> 
