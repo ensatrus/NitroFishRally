@@ -4,37 +4,37 @@ Nitro Fish Rally Deluxe es un juego de carreras de rally desarrollado por LUHPEN
 
 
 
-##### Acelera a fondo
+### Acelera a fondo
 
 Derrapa en cada curva para rascar el mejor tiempo en tres desafiantes circuitos a lo largo de todo Japón
 
 
 
-##### Acumula Aura
+### Acumula Aura
 
 ¡Cuidado! No solo es suficiente con completar el circuito. Acumula aura superando los obstáculos con destreza y sin chocarte para avanzar en la increíble historia de alfredo-chan
 
 
 
-##### Hazlo tuyo
+### Hazlo tuyo
 
 Encuentra la armonía modificando las distintas piezas de alfredo-chan hasta encontrar la combinación perfecta de aceleración, control y freno
 
 
 
-##### Asciende
+### Asciende
 
 Convierte a alfredo-chan en un dragón milenario como dictan los pergaminos de la profecía
 
 
 
-!\[mainMenu](./assets/images/mainMenu.png "menu principal")
+!\[mainMenu](./assets/images/mainMenu.png)
 
-!\[menu](./assets/images/menu(provisional).png "menu")
+!\[menu](./assets/images/menu(provisional).png)
 
-!\[pieces](./assets/images/menuPiezas(provisional).png "piezas")
+!\[pieces](./assets/images/menuPiezas(provisional).png)
 
-!\[gameplay](./assets/images/hudNivel(provisional).png "gameplay")
+!\[gameplay](./assets/images/hudNivel(provisional).png)
 
 
 
