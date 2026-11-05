@@ -28,13 +28,13 @@ Convierte a alfredo-chan en un dragón milenario como dictan los pergaminos de l
 
 
 
-!\[](./assets/images/mainMenu.png)
+![](./assets/images/mainMenu.png)
 
-!\[](./assets/images/menu(provisional).png)
+![](./assets/images/menu(provisional).png)
 
-!\[](./assets/images/menuPiezas(provisional).png)
+![](./assets/images/menuPiezas(provisional).png)
 
-!\[](./assets/images/hudNivel(provisional).png)
+![](./assets/images/hudNivel(provisional).png)
 
 
 
