@@ -1,8 +1,8 @@
 {
 	"generator_info": "Shape definitions generated with PhysicsEditor. Visit https://www.codeandweb.com/physicseditor",
-	"Circuit": {
+	"log2": {
 		"type": "fromPhysicsEditor",
-		"label": "Circuit",
+		"label": "log2",
 		"isStatic": true,
 		"density": 0.1,
 		"restitution": 0,
@@ -18,17 +18,9 @@
 			{
 				"label": "",
 				"isSensor": false,
-				"circle": {
-					"x": 357,
-					"y": 417,
-					"radius": 147.2175261305528
-				}
-			},
-			{
-				"label": "",
-				"isSensor": false,
 				"vertices": [
-					[ { "x":506, "y":410 }, { "x":511, "y":231 }, { "x":336, "y":270 } ]
+					[ { "x":120, "y":7 }, { "x":110, "y":5 }, { "x":8, "y":5 }, { "x":8, "y":12 }, { "x":117, "y":12 } ],
+					[ { "x":6, "y":11 }, { "x":8, "y":12 }, { "x":8, "y":5 }, { "x":6, "y":6 } ]
 				]
 			}
 		]

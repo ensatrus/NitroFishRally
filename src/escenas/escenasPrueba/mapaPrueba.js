@@ -20,9 +20,10 @@ export default class mapaPrueba extends Phaser.Scene{
             isStatic: true,
         });
 
-        miObjeto.setScale(12);        
-        this.cameras.main.setZoom(0.5);
-        this.pez = new Pez(this.matter.world, 1000, 750, 'pezquesemueve', 6, 6, 6);
+        
+        miObjeto.setScale(10);        
+        this.cameras.main.setZoom(1);
+        this.pez = new Pez(this.matter.world, 2000, 200, 'pezquesemueve', 6, 6, 6);
         this.pez.setDepth(1);
 
         this.matter.world.debugConfig.showStaticBody = true;
