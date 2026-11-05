@@ -21,16 +21,16 @@ export default class mapaPrueba extends Phaser.Scene{
         });
 
         
-        miObjeto.setScale(10);        
-        this.cameras.main.setZoom(1);
-        this.pez = new Pez(this.matter.world, 2000, 200, 'pezquesemueve', 6, 6, 6);
+        miObjeto.setScale(9);        
+        this.cameras.main.setZoom(0.7);
+        this.pez = new Pez(this.matter.world, 2000, 200, 'pezquesemueve', 5, 5, 5);
         this.pez.setDepth(1);
 
         this.matter.world.debugConfig.showStaticBody = true;
         this.matter.world.debugConfig.showInternalEdges = true;
         
         this.cameras.main.centerOn(miObjeto.x, miObjeto.y);
-        this.cameras.main.startFollow(this.pez, true, 1, 1);
+        this.cameras.main.startFollow(this.pez, true, 0.8, 0.9);
 
         this.actualizarPez = () => this.pez.actualizarPasoFisico();
         this.matter.world.on("beforeupdate", this.actualizarPez);
@@ -41,6 +41,13 @@ export default class mapaPrueba extends Phaser.Scene{
     }
 
     update(){
+        const velocidad = this.pez.getVelocity();
+        const anticipacion = 6;
+
+        this.cameras.main.setFollowOffset(
+            -velocidad.x * anticipacion,
+            -velocidad.y * anticipacion
+        );
 
     }
 }

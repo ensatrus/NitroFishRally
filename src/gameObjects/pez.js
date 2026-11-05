@@ -24,10 +24,10 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
 
         this.setCircle();
         this.setScale(0.1);
-        this.setFriction(0.2, 0.01, 30);
+        this.setFriction(0.9, 0.01, 30);
         this.setFixedRotation();
         this.setMass(this.masa);
-        this.setBounce(0.4);
+        this.setBounce(0.5);
 
         this.keys = {
             a: this.scene.input.keyboard.addKey("A"),
@@ -52,7 +52,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         this.#stoppingFrictionDivider = 350; // Se divide el freno entre este numero para obtener la fricción del pez al frenar
         this.#frenoDivider = 2000; // Se divide la velocidad del pez entre este numero para obtener la fuerza de frenado
         this.#minSpeedForAuraFactor = Math.PI; // Se multiplica este numero por la aceleración para obtener la velocidad mínima a partir de la cual el pez empieza a generar aura
-        this.#aceleracionDivider = 8500; // Se divide la aceleración entre este numero para obtener la fuerza de aceleración del pez
+        this.#aceleracionDivider = 6500; // Se divide la aceleración entre este numero para obtener la fuerza de aceleración del pez
         this.#derrapeMargen = 0.1; // Margen del derrape, el factor minimo por el que se multiplica la fricción del pez
 
     }

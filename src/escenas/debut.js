@@ -13,17 +13,26 @@ export default class Debut extends Phaser.Scene {
         this.load.image("señalDch", "./assets/sprites/signalDch.png");
         this.load.font("Reloj Digital", "./assets/fonts/CursedTimerUlil-Aznm.ttf", "truetype");
         this.load.font("Velocidad", "./assets/fonts/AmericanCaptainPatrius02Fre-PvPd.ttf", "truetype");
-        this.load.image('Circuit', 'assets/json/Circuit.png');
-        this.load.json('Circuit_t', 'assets/json/Cosa1.json');
-        this.load.json("log1", "assets/json/log1.json");
-        this.load.json("log2", "assets/json/log2.json");
-        this.load.json("log3", "assets/json/log3.json");
-        this.load.json("log4", "assets/json/log4.json");
-        this.load.json("rock1", "assets/json/rock1.json");
-        this.load.json("rock2", "assets/json/rock2.json");
-        this.load.json("rock3", "assets/json/rock3.json");
-        this.load.json("rock4", "assets/json/rock4.json");
-        this.load.json("rock5", "assets/json/rock5.json");
+        this.load.image('Circuit', './assets/sprites/Circuit.png');
+        this.load.json('Circuit_t', './assets/json/circuit.json');
+        this.load.image('log1', './assets/sprites/log1.png');
+        this.load.json("log1_t", "./assets/json/log1.json");
+        this.load.image('log2', './assets/sprites/log2.png');
+        this.load.json("log2_t", "./assets/json/log2.json");
+        this.load.image('log3', './assets/sprites/log3.png');
+        this.load.json("log3_t", "./assets/json/log3.json");
+        this.load.image('log4', './assets/sprites/log4.png');
+        this.load.json("log4_t", "./assets/json/log4.json");
+        this.load.image('rock1', './assets/sprites/rock1.png');
+        this.load.json("rock1_t", "./assets/json/rock1.json");
+        this.load.image('rock2', './assets/sprites/rock2.png');
+        this.load.json("rock2_t", "./assets/json/rock2.json");
+        this.load.image('rock3', './assets/sprites/rock3.png');
+        this.load.json("rock3_t", "./assets/json/rock3.json");
+        this.load.image('rock4', './assets/sprites/rock4.png');
+        this.load.json("rock4_t", "./assets/json/rock4.json");
+        this.load.image('rock5', './assets/sprites/rock5.png');
+        this.load.json("rock5_t", "./assets/json/rock5.json");
 
         this.load.on("loaderror", (archivo) => {
             console.error(`No se pudo cargar el asset: ${archivo.key}`, archivo.src);
