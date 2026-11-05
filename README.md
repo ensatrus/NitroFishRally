@@ -11,7 +11,7 @@ Desarrollado por **LUHPEN Games**
 
 > **Nitro Fish Rally Deluxe** es un juego de carreras arcade protagonizado por el pez **alfredo-chan** a través de Japón en su viaje para ascender a dragón.
 
-## * Características principales
+## · Características principales
 * 🏎️ **Acelera a fondo:** Derrapa en cada curva para rascar el mejor tiempo en tres desafiantes circuitos a lo largo de todo Japón.
   
 ![](./assets/images/hudNivel(provisional).png)
