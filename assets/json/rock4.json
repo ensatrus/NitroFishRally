@@ -1,0 +1,31 @@
+{
+	"generator_info": "Shape definitions generated with PhysicsEditor. Visit https://www.codeandweb.com/physicseditor",
+	"Rock4": {
+		"type": "fromPhysicsEditor",
+		"label": "Rock4",
+		"isStatic": true,
+		"density": 0.1,
+		"restitution": 0,
+		"friction": 0.1,
+		"frictionAir": 0.01,
+		"frictionStatic": 0.5,
+		"collisionFilter": {
+			"group": 0,
+			"category": 1,
+			"mask": 255
+		},
+		"fixtures": [
+			{
+				"label": "",
+				"isSensor": false,
+				"vertices": [
+					[ { "x":65, "y":30 }, { "x":59, "y":25 }, { "x":56, "y":53 }, { "x":66, "y":45 }, { "x":66, "y":37 } ],
+					[ { "x":51, "y":12 }, { "x":43, "y":7 }, { "x":33, "y":7 }, { "x":25, "y":9 }, { "x":18, "y":14 }, { "x":12, "y":20 }, { "x":43, "y":61 }, { "x":54, "y":20 } ],
+					[ { "x":62, "y":51 }, { "x":66, "y":45 }, { "x":56, "y":53 } ],
+					[ { "x":4, "y":28 }, { "x":2, "y":39 }, { "x":6, "y":51 }, { "x":13, "y":58 }, { "x":18, "y":62 }, { "x":33, "y":64 }, { "x":43, "y":61 }, { "x":12, "y":20 } ],
+					[ { "x":51, "y":58 }, { "x":56, "y":53 }, { "x":59, "y":25 }, { "x":54, "y":20 }, { "x":43, "y":61 } ]
+				]
+			}
+		]
+	}
+}
