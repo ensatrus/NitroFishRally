@@ -1,4 +1,4 @@
-# NitroFishRally
+# Nitro Fish Rally DX
 
 Nitro Fish Rally Deluxe es un juego de carreras de rally desarrollado por LUHPEN Games. Controla al salmón alfredo-chan en su trepidante viaje a la ascensión.
 
