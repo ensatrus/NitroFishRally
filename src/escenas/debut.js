@@ -13,8 +13,17 @@ export default class Debut extends Phaser.Scene {
         this.load.image("señalDch", "./assets/sprites/signalDch.png");
         this.load.font("Reloj Digital", "./assets/fonts/CursedTimerUlil-Aznm.ttf", "truetype");
         this.load.font("Velocidad", "./assets/fonts/AmericanCaptainPatrius02Fre-PvPd.ttf", "truetype");
-        this.load.image('Circuit', 'assets/sprites/Circuit.png');
-        this.load.json('Circuit_t', 'assets/sprites/Cosa1.json');
+        this.load.image('Circuit', 'assets/json/Circuit.png');
+        this.load.json('Circuit_t', 'assets/json/Cosa1.json');
+        this.load.json("log1", "assets/json/log1.json");
+        this.load.json("log2", "assets/json/log2.json");
+        this.load.json("log3", "assets/json/log3.json");
+        this.load.json("log4", "assets/json/log4.json");
+        this.load.json("rock1", "assets/json/rock1.json");
+        this.load.json("rock2", "assets/json/rock2.json");
+        this.load.json("rock3", "assets/json/rock3.json");
+        this.load.json("rock4", "assets/json/rock4.json");
+        this.load.json("rock5", "assets/json/rock5.json");
 
         this.load.on("loaderror", (archivo) => {
             console.error(`No se pudo cargar el asset: ${archivo.key}`, archivo.src);
