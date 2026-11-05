@@ -11,8 +11,6 @@ export default class mapaPrueba extends Phaser.Scene{
 
     preload(){
         // this.load.image("fondo", " ")
-        this.load.image('Circuit', 'assets/sprites/Circuit.png');
-        this.load.json('Circuit_t', 'assets/sprites/Cosa1.json');
     }
 
     create(){

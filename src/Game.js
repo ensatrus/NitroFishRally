@@ -6,6 +6,7 @@ import PruebaMovimientoPez from './escenas/escenasPrueba/pruebaMovimientoPez.js'
 import Debut from './escenas/debut.js';
 import PruebaHUD from "./escenas/escenasPrueba/pruebaHUD.js";
 import mapaPrueba from './escenas/escenasPrueba/mapaPrueba.js'; 
+import PruebaPiezas from './escenas/escenasPrueba/pruebaPiezas.js';
 
 new Phaser.Game({
   type: Phaser.CANVAS,
@@ -13,7 +14,7 @@ new Phaser.Game({
   width: 800,
   height: 600,
   mode: Phaser.Scale.FIT,
-  scene: [Debut, TituloInicio, MenuPruebas, mapaPrueba, PruebaFisicas, PruebaMovimientoPez, PruebaHUD],
+  scene: [Debut, TituloInicio, MenuPruebas, mapaPrueba, PruebaFisicas, PruebaMovimientoPez, PruebaHUD, PruebaPiezas,],
   physics: {
     default: 'matter',
     matter:{

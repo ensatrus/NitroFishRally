@@ -6,11 +6,6 @@ export default class PruebaHUD extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("fondoPrueba", "./assets/sprites/fondoPrueba.jpg");
-        this.load.image("señalIzq", "./assets/sprites/signalIzq.png");
-        this.load.image("señalDch", "./assets/sprites/signalDch.png");
-        this.load.font("Reloj Digital", "./assets/fonts/CursedTimerUlil-Aznm.ttf", "truetype");
-        this.load.font("Velocidad", "./assets/fonts/AmericanCaptainPatrius02Fre-PvPd.ttf", "truetype");
     }
 
     create() {
@@ -37,7 +32,7 @@ export default class PruebaHUD extends Phaser.Scene {
 
         this.auraActual = 0; 
         this.auraMaxima = 30000;
-        this.auraAncho = 400;
+        this.auraAncho = 300;
         this.auraAlto = 20;
         this.velPez = 0;
 
@@ -125,11 +120,13 @@ export default class PruebaHUD extends Phaser.Scene {
         // Dibujar la barra inicialmente
         this.actualizarAuraHUD();
 
+        const mundo = this.matter.world;
+
         this.actualizarPez = () => this.pez.actualizarPasoFisico();
-        this.matter.world.on("beforeupdate", this.actualizarPez);
+        mundo.on("beforeupdate", this.actualizarPez);
 
         this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
-            this.matter.world.off("beforeupdate", this.actualizarPez);
+            mundo.off("beforeupdate", this.actualizarPez);
         });
 
         // Prueba de sistema de señal de curva (provisionalmente con las flechas)
@@ -181,6 +178,23 @@ export default class PruebaHUD extends Phaser.Scene {
                 });
             }
         })
+
+        let boton = this.add.rectangle(600, 50, 150, 50, 0x3287d1);
+        
+        boton.setInteractive();
+        boton.setScrollFactor(0, 0);
+
+        boton.on("pointerdown", () => {
+            this.scene.start("menuPruebas"); 
+        });
+
+        this.add.text(600, 50, "Volver",{
+            fontSize: "18px",
+            fill: "#ffffff",
+            fontStyle: "bold",
+            fontFamily: "Arial"
+            
+        }).setOrigin(0.5).setAbove(boton).setScrollFactor(0, 0);
 
         this.cameras.main.startFollow(this.pez, false, 1, 1);
     }
