@@ -1,36 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
+  
 <head>
   <meta charset="utf-8">
-  <title>NItroFishRally</title>
+  <title>Nitro Fish Rally</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="estilo.css"> <!-- Esto cargaria un archivo de estilo, pero no es necesario en Fiddle porque lo hace automáticamente -->
-  <script src="script.js"></script> <!--Aquí podriamos cargar los scripts, también se puede en el <body>, y pasa lo mismo que con el css de antes, en verdad aquí no estamos cargando nada-->
+  <link rel="stylesheet" href="./css/estilo.css"> <!-- Esto cargaria un archivo de estilo, pero no es necesario en Fiddle porque lo hace automáticamente -->
+  <script src="./lib/phaser.js"></script>
+  <script src="./src/Game.js" type="module"></script> <!--Aquí podriamos cargar los scripts, también se puede en el <body>, y pasa lo mismo que con el css de antes, en verdad aquí no estamos cargando nada-->
+  <script src="./src/main.js" type="module"></script>
 </head>
 
 <body>
-  <div class = menu>
-    <img class="logo" src="Imagenes/LogoYoutube.jpg" alt="Logo">
-    <h1>NITRO FISH RALLY DX</h1>
-    <h2>LUHPENG</h2>
-  </div>
-  <div>
-    <h2 class="descripcion">Nitro Fish Rally (硝化魚ラリ) DX es un juego de carreras 2D de vista cenital. Está compuesto de tres circuitos que el jugador irá desbloqueando progresivamente al completarlos en el menor tiempo posible. 
-    </h2>
-    <h2 class="descripcion">El juego se ambienta en Japón, y los circuitos del juego son ríos que recorre un pez. La historia del juego sigue el viaje de un pez desde el mar hasta la montaña, a lo largo de los tres circuitos. Al final de cada circuito, el pez llega a la cascada y se transforma en dragón.
-</h2>
-    <p><img class="imagen" src="https://i.pinimg.com/236x/88/be/a5/88bea53db51d24f54972d9106c49654d.jpg?nii=t" alt="Imagen del juego"></p>
-  </div>
-  <div class="creditos">
-    <p>Miembros fundadores de LUHPENG:</p> 
-      <p> Jesús Maldonado Becerra </p>
-      <p> Enrique Satrustegui Coca </p>
-      <p> Javier Hoyos Giunta </p>
-      <p> Nicolás Jimenez </p> 
-      <p><a color: rgb(167, 0, 34)  href="https://github.com/ensatrus/NitroFishRally" target="_blank">GitHub</a> 
-      <a  color: rgb(67, 0, 134) href="https://www.youtube.com/@LUHPENG" target="_blank">YouTube</a> 
-      <a  color: rgb(193,93,0) href="https://x.com/LUHPENG_NFRDX" target="_blank">Twitter</a> </p>
-  </div>
+  <nav class="menu" role="tablist" aria-label="Secciones de la web">
+    <button class="menu__enlace" id="tab-juego" type="button" role="tab" aria-selected="true" aria-controls="juego-seccion" data-seccion="juego-seccion">Juego</button>
+    <button class="menu__enlace" id="tab-descripcion" type="button" role="tab" aria-selected="false" aria-controls="descripcion" data-seccion="descripcion">Descripción</button>
+    <button class="menu__enlace" id="tab-controles" type="button" role="tab" aria-selected="false" aria-controls="controles" data-seccion="controles">Controles</button>
+    <button class="menu__enlace" id="tab-creditos" type="button" role="tab" aria-selected="false" aria-controls="creditos" data-seccion="creditos">Créditos y redes</button>
+  </nav>
+
+  <main>
+    <section id="juego-seccion" class="seccion seccion--juego" role="tabpanel" aria-labelledby="tab-juego" tabindex="0">
+      <h1 id="titulo-juego">Nitro Fish Rally</h1>
+      <canvas id="juego"></canvas>
+    </section>
+
+    <section id="descripcion" class="seccion" role="tabpanel" aria-labelledby="tab-descripcion" tabindex="0" hidden>
+      <h2 id="titulo-descripcion">Descripción</h2>
+      <p class="descripcion">Nitro Fish Rally (硝化魚ラリ) DX es un juego de carreras 2D de vista cenital. Está compuesto de tres circuitos que el jugador irá desbloqueando progresivamente al completarlos en el menor tiempo posible.</p>
+      <p class="descripcion">El juego se ambienta en Japón, y los circuitos son ríos que recorre un pez. La historia sigue su viaje desde el mar hasta la montaña. Al final del último circuito, el pez llega a una cascada y se transforma en dragón.</p>
+    </section>
+
+    <section id="controles" class="seccion" role="tabpanel" aria-labelledby="tab-controles" tabindex="0" hidden>
+      <h2 id="titulo-controles">Controles</h2>
+      <ul class="lista-controles">
+        <li><kbd>W</kbd> o <kbd>↑</kbd>: acelerar</li>
+        <li><kbd>S</kbd> o <kbd>↓</kbd>: marcha atrás</li>
+        <li><kbd>A</kbd>/<kbd>D</kbd> o <kbd>←</kbd>/<kbd>→</kbd>: girar</li>
+        <li><kbd>Espacio</kbd>: frenar</li>
+      </ul>
+    </section>
+
+    <footer id="creditos" class="seccion creditos" role="tabpanel" aria-labelledby="tab-creditos" tabindex="0" hidden>
+      <h2 id="titulo-creditos">Créditos y redes</h2>
+      <p>Miembros fundadores de LUHPENG:</p>
+      <ul class="lista-creditos">
+        <li>Jesús Maldonado Becerra</li>
+        <li>Enrique Satrustegui Coca</li>
+        <li>Javier Hoyos Giunta</li>
+        <li>Nicolás Jimenez</li>
+      </ul>
+      <p class="redes">
+        <a href="https://github.com/ensatrus/NitroFishRally" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.youtube.com/@Nitro_Fish_R" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://x.com/@Nitro_Fish_R" target="_blank" rel="noopener noreferrer">Twitter</a>
+      </p>
+    </footer>
+  </main>
 </body>
 <!--2023-2024-->
 </html>
