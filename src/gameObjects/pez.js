@@ -158,6 +158,10 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         return Phaser.Math.Clamp(Math.abs(seno)+this.#derrapeMargen, 0, 1+this.#derrapeMargen);
     }
 
+    getMaxSpeed() {
+        return this.#maxSpeedFactor / this.masa;
+    }
+
     setAceleracion(aceleracion) {
         this.aceleracion = aceleracion;
         this.setMasa(this.aceleracion + this.control + this.freno);

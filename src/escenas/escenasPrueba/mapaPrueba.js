@@ -42,7 +42,11 @@ export default class mapaPrueba extends Phaser.Scene{
 
     update(){
         const velocidad = this.pez.getVelocity();
+        const velMax = this.pez.getMaxSpeed();
         const anticipacion = 6;
+        const lerp = Phaser.Math.Clamp(this.pez.getSpeed() / velMax, 0.1, 1);
+
+        this.cameras.main.setLerp(lerp, lerp);
 
         this.cameras.main.setFollowOffset(
             -velocidad.x * anticipacion,
