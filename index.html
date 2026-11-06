@@ -14,34 +14,24 @@
 <body>
   <nav class="menu" role="tablist" aria-label="Secciones de la web">
     <button class="menu__enlace" id="tab-juego" type="button" role="tab" aria-selected="true" aria-controls="juego-seccion" data-seccion="juego-seccion">Juego</button>
-    <button class="menu__enlace" id="tab-descripcion" type="button" role="tab" aria-selected="false" aria-controls="descripcion" data-seccion="descripcion">Descripción</button>
     <button class="menu__enlace" id="tab-controles" type="button" role="tab" aria-selected="false" aria-controls="controles" data-seccion="controles">Controles</button>
-    <button class="menu__enlace" id="tab-creditos" type="button" role="tab" aria-selected="false" aria-controls="creditos" data-seccion="creditos">Créditos y redes</button>
+    <button class="menu__enlace" id="tab-descripcion" type="button" role="tab" aria-selected="false" aria-controls="descripcion" data-seccion="descripcion">Descripción</button>
   </nav>
 
   <main>
     <section id="juego-seccion" class="seccion seccion--juego" role="tabpanel" aria-labelledby="tab-juego" tabindex="0">
-      <h1 id="titulo-juego">Nitro Fish Rally</h1>
-      <canvas id="juego"></canvas>
+      <!-- <h1 id="titulo-juego">Nitro Fish Rally</h1> -->
+      <canvas id="juego"  width="1024" height="768"></canvas>
     </section>
 
     <section id="descripcion" class="seccion" role="tabpanel" aria-labelledby="tab-descripcion" tabindex="0" hidden>
+      <section style="margin-bottom: 40px;">
       <h2 id="titulo-descripcion">Descripción</h2>
       <p class="descripcion">Nitro Fish Rally (硝化魚ラリ) DX es un juego de carreras 2D de vista cenital. Está compuesto de tres circuitos que el jugador irá desbloqueando progresivamente al completarlos en el menor tiempo posible.</p>
       <p class="descripcion">El juego se ambienta en Japón, y los circuitos son ríos que recorre un pez. La historia sigue su viaje desde el mar hasta la montaña. Al final del último circuito, el pez llega a una cascada y se transforma en dragón.</p>
-    </section>
+      </section>
 
-    <section id="controles" class="seccion" role="tabpanel" aria-labelledby="tab-controles" tabindex="0" hidden>
-      <h2 id="titulo-controles">Controles</h2>
-      <ul class="lista-controles">
-        <li><kbd>W</kbd> o <kbd>↑</kbd>: acelerar</li>
-        <li><kbd>S</kbd> o <kbd>↓</kbd>: marcha atrás</li>
-        <li><kbd>A</kbd>/<kbd>D</kbd> o <kbd>←</kbd>/<kbd>→</kbd>: girar</li>
-        <li><kbd>Espacio</kbd>: frenar</li>
-      </ul>
-    </section>
-
-    <footer id="creditos" class="seccion creditos" role="tabpanel" aria-labelledby="tab-creditos" tabindex="0" hidden>
+      <section> 
       <h2 id="titulo-creditos">Créditos y redes</h2>
       <p>Miembros fundadores de LUHPENG:</p>
       <ul class="lista-creditos">
@@ -55,7 +45,19 @@
         <a href="https://www.youtube.com/@Nitro_Fish_R" target="_blank" rel="noopener noreferrer">YouTube</a>
         <a href="https://x.com/@Nitro_Fish_R" target="_blank" rel="noopener noreferrer">Twitter</a>
       </p>
-    </footer>
+      </section>
+      
+    </section>
+
+    <section id="controles" class="seccion" role="tabpanel" aria-labelledby="tab-controles" tabindex="0" hidden>
+      <h2 id="titulo-controles">Controles</h2>
+      <ul class="lista-controles">
+        <li><kbd>W</kbd> o <kbd>↑</kbd>: acelerar</li>
+        <li><kbd>S</kbd> o <kbd>↓</kbd>: marcha atrás</li>
+        <li><kbd>A</kbd>/<kbd>D</kbd> o <kbd>←</kbd>/<kbd>→</kbd>: girar</li>
+        <li><kbd>Espacio</kbd>: frenar</li>
+      </ul>
+    </section>
   </main>
 </body>
 <!--2023-2024-->
