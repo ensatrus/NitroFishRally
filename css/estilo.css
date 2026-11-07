@@ -80,7 +80,7 @@ a:active {
 
 #juego {
     width: 100% !important;     
-    max-width: 1024px;          
+    max-width: 1080px;          
     height: auto !important;    
     aspect-ratio: 4 / 3;     
 }
@@ -92,41 +92,58 @@ a:active {
   width: 100%;
   height: 58px;
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
+  display: flex;        
+  align-items: stretch;
   justify-content: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background-color: #111820;
-  border-bottom: 1px solid rgb(126, 178, 187);
+  gap: 0px;
+  padding: 0px 16px;
+  background-color: #000000;
   z-index: 1000;
+  box-shadow: 0 1px 0 rgb(218, 188, 19); 
+
+  outline: none !important;
+  outline: 0 !important;
 }
 
 .menu__enlace {
   display: inline-block;
-  border: 0;
+  border: none !important; 
+  vertical-align: top; 
   color: white;
   font-family: inherit;
-  background-color: #236d8a;
-  border-radius: 5px;
-  padding: 9px 14px;
+  background-color: #000000;
+  height: 100% !important; 
+  width: 500px;
+  display: inline-flex;    
+  align-items: center;     
+  justify-content: center; 
+  box-sizing: border-box !important;  
+  padding: 0px 35px;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: background-color 150ms ease;
 }
 
 .menu__enlace[aria-selected="true"] {
   color: white;
-  background-color: #3287d1;
+  background-color: #dabc13;
 }
 
-.menu__enlace:hover,
+.menu__enlace:hover{
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.menu__enlace:focus,
 .menu__enlace:focus-visible {
+  outline: 1px solid #dabc13;
+}
+
+/* .menu__enlace:focus-visible {
   color: white;
   background-color: #3287d1;
   outline: 2px solid white;
   outline-offset: 2px;
-}
+} */
 
 main {
   height: 100%;
