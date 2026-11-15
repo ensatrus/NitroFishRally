@@ -1,8 +1,8 @@
 {
 	"generator_info": "Shape definitions generated with PhysicsEditor. Visit https://www.codeandweb.com/physicseditor",
-	"log2": {
+	"log1": {
 		"type": "fromPhysicsEditor",
-		"label": "log2",
+		"label": "log1",
 		"isStatic": true,
 		"density": 0.1,
 		"restitution": 0,
