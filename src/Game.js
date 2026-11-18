@@ -7,6 +7,9 @@ import Debut from './escenas/debut.js';
 import PruebaHUD from "./escenas/escenasPrueba/pruebaHUD.js";
 import mapaPrueba from './escenas/escenasPrueba/mapaPrueba.js'; 
 import PruebaPiezas from './escenas/escenasPrueba/pruebaPiezas.js';
+import GameManager from './managers/GameManager.js';
+
+const gameManager = new GameManager();
 
 new Phaser.Game({
   type: Phaser.CANVAS,
