@@ -14,7 +14,7 @@ export default class Palmares extends Phaser.Scene {
             [400, 480, 720], // Oro
         ];
 
-        this.mejoresTiempos = [tiempo1, tiempo2, tiempo3];
+        this.mejoresTiempos = [1, 2, 3];
 
         for (let i = 0; i < this.mejoresTiempos.length; i++) {
             this.mejoresTiempos[i] = this.mejoresTiempos[i] !== undefined ? gameManager.getTiempo(i) : "No completado";

@@ -2,7 +2,7 @@ export default class GameManager {
     preload() {}
 
     constructor() {
-        this.niveles = [tiempo1, tiempo2, tiempo3];
+        this.niveles = [1, 2, 3];
     }
 
     setTiempoNivel(nivel, tiempo) {
