@@ -20,63 +20,7 @@ export default class mapaPrueba extends Phaser.Scene{
             isStatic: true,
         });
 
-
-        const datoslog = this.cache.json.get('log3_t');
-        const logObjeto = this.matter.add.sprite(2300, 300, 'log3', null, { 
-        shape: datoslog.log3,
-        isStatic: true,
-        friction: 0
-        });
-
-        let empujar = false;
-
-        this.matter.world.on('collisionstart', (e) => {
-            e.pairs.forEach((p) => {
-                if (p.bodyA.parent === logObjeto.body || p.bodyB.parent === logObjeto.body) {
-                    empujar = true;
-                }
-            });
-        });
-
-        this.matter.world.on('afterupdate', () => {
-            if (empujar) {
-                empujar = false;
-                const angulo = Phaser.Math.Angle.Between(logObjeto.x, logObjeto.y, this.pez.x, this.pez.y);
-                this.pez.setVelocity(Math.cos(angulo) * 10, Math.sin(angulo) * 10);
-            }
-        });
-
-
-        const datosrock = this.cache.json.get('rock3_t');
-        const rockObjeto = this.matter.add.sprite(2500, 300, 'rock3', null, { 
-        shape: datosrock.Rock3,
-        isStatic: true,
-        friction: 0
-        });
-
-        let empujarRock = false;
-
-        this.matter.world.on('collisionstart', (e) => {
-            e.pairs.forEach((p) => {
-                if (p.bodyA.parent === rockObjeto.body || p.bodyB.parent === rockObjeto.body) {
-                    empujarRock = true;
-                }
-            });
-        });
-
-        this.matter.world.on('afterupdate', () => {
-            if (empujarRock) {
-                empujarRock = false;
-                const angulo = Phaser.Math.Angle.Between(rockObjeto.x, rockObjeto.y, this.pez.x, this.pez.y);
-                this.pez.setVelocity(Math.cos(angulo) * 10, Math.sin(angulo) * 10);
-            }
-        });
-
-        rockObjeto.setOnCollide(() => {
-        const angulo = Phaser.Math.Angle.Between(rockObjeto.x, rockObjeto.y, this.pez.x, this.pez.y);
-        this.pez.setVelocity(Math.cos(angulo) * 35, Math.sin(angulo) * 35);
-        });
-                
+        
         miObjeto.setScale(9);        
         this.cameras.main.setZoom(0.7);
         this.pez = new Pez(this.matter.world, 2000, 200, 'pezquesemueve', 5, 5, 5);
