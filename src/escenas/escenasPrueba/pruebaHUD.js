@@ -11,7 +11,7 @@ export default class PruebaHUD extends Phaser.Scene {
 
     create() {
         const bg = this.add.image(0, 0, 'fondoPrueba');
-        bg.setScale(7);
+        bg.setScale(6);
 
         this.auraActual = 0; 
         this.auraMaxima = 30000;
@@ -21,6 +21,7 @@ export default class PruebaHUD extends Phaser.Scene {
         this.HUDManager = new HUDManager(this);
 
         this.cameras.main.startFollow(this.pez, false, 0.9, 0.9);
+        this.cameras.main.setZoom(0.5);
 
         bg.setOrigin(0, 0);
         bg.setDepth(-1);
@@ -37,7 +38,6 @@ export default class PruebaHUD extends Phaser.Scene {
             mundo.off("beforeupdate", this.actualizarPez);
         });
 
-        this.cameras.main.startFollow(this.pez, false, 1, 1);
     }
 
     update() {

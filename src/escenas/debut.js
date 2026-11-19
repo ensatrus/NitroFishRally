@@ -8,7 +8,7 @@ export default class Debut extends Phaser.Scene {
         this.load.image("pezquesemueve", "./assets/sprites/pezquesemueve.png");
         this.load.image("fih", "./assets/sprites/fih.png");
         this.load.image("placeholderBackground", "./assets/sprites/background-placeholder.png")
-        this.load.image("fondoPrueba", "./assets/sprites/fondoPrueba.jpg");
+        this.load.image("fondoPrueba", "./assets/sprites/Esquema-Circuito1.png");
         this.load.image("señalIzq", "./assets/sprites/signalIzq.png");
         this.load.image("señalDch", "./assets/sprites/signalDch.png");
         this.load.font("Reloj Digital", "./assets/fonts/CursedTimerUlil-Aznm.ttf", "truetype");

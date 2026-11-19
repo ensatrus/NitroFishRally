@@ -44,7 +44,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         this.scene.add.existing(this);
 
         this.#controlFactor = 5/6; // Sensibilidad de control, ajusta la velocidad de rotación del pez
-        this.#maxSpeedFactor = 225; // Se divide este numero entre la masa para obtener la velocidad máxima del pez
+        this.#maxSpeedFactor = 325; // Se divide este numero entre la masa para obtener la velocidad máxima del pez
         this.#drivingFrictionDivider = 1000; // Se divide la masa entre este numero para obtener la fricción del pez al acelerar
         this.#frictionFactor = 0.035; // El valor máximo de fricción que puede tener el pez al no acelerar
         this.#marchaAtrasFrictionFactor = 0.04; // El valor máximo de fricción que puede tener el pez al ir marcha atrás
