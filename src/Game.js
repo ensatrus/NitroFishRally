@@ -8,6 +8,7 @@ import mapaPrueba from './escenas/escenasPrueba/mapaPrueba.js';
 import PruebaPiezas from './escenas/escenasPrueba/pruebaPiezas.js';
 import GameManager from './managers/GameManager.js';
 import PruebaConstructorNiveles from './escenas/escenasPrueba/pruebaConstructorNiveles.js';
+import Garaje from './escenas/garaje.js';
 
 const gameManager = new GameManager();
 
@@ -17,8 +18,7 @@ const game = new Phaser.Game({
   width: 800,
   height: 600,
   mode: Phaser.Scale.FIT,
-  scene: [Debut, TituloInicio, MenuPruebas, mapaPrueba, Palmares, PruebaHUD, PruebaPiezas, PruebaConstructorNiveles],
-  physics: {
+scene: [Debut, TituloInicio, MenuPruebas, mapaPrueba, Palmares, PruebaHUD, PruebaPiezas, PruebaConstructorNiveles, Garaje],  physics: {
     default: 'matter',
     matter:{
       debug: true,
