@@ -5,7 +5,11 @@ export default class Debut extends Phaser.Scene {
 
     preload() {
         this.load.image("tituloImagen", "./assets/sprites/titulo640x480.png");
-        this.load.image("pezquesemueve", "./assets/sprites/pezquesemueve.png");
+        this.load.image("pezquesemueve", "./assets/sprites/pezquesemueve.png"); // esto borrar cuando esté la animacion del pez
+        this.load.spritesheet("pez", "./assets/sprites/pez.png", {
+            frameWidth: 512,  
+            frameHeight: 512  
+        });
         this.load.image("fih", "./assets/sprites/fih.png");
         this.load.image("placeholderBackground", "./assets/sprites/background-placeholder.png")
         this.load.image("fondoPrueba", "./assets/sprites/Esquema-Circuito1.png");
@@ -47,7 +51,34 @@ export default class Debut extends Phaser.Scene {
     }
 
     create() {
+        this.createAnims();
         this.scene.start("tituloInicio");
         
+    }
+
+    createAnims(){
+        // Animaciones Pez
+        this.anims.create({
+            key: "pez_movimiento",
+            frames: this.anims.generateFrameNumbers("pez", {start: 0, end:11}),
+            frameRate: 9, 
+            repeat: -1, // -1 para bucle, 0 para no bucle
+        })
+
+        this.anims.create({
+            key: "pez_giroIzq",
+            frames: this.anims.generateFrameNumbers("pez", {start: 0, end:5}),
+            frameRate: 9, 
+            repeat: -1, // -1 para bucle, 0 para no bucle
+        })
+
+        this.anims.create({
+            key: "pez_giroDch",
+            frames: this.anims.generateFrameNumbers("pez", {start: 6, end:11}),
+            frameRate: 9, 
+            repeat: -1, // -1 para bucle, 0 para no bucle
+        })
+
+        // Animaciones medallas
     }
 }
