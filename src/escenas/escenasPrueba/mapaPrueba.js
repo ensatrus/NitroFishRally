@@ -29,18 +29,21 @@ export default class mapaPrueba extends Phaser.Scene{
                 
         miObjeto.setScale(9);        
         this.cameras.main.setZoom(0.7);
+        this.cameraPos = new Phaser.Math.Vector2(0, 0);
         this.pez = new Pez(this.matter.world, 2000, 200, 'pezquesemueve', 5, 5, 5);
         this.pez.setDepth(1);
 
-        this.rock = new Rock(this, 2500, 300, 'rock3', 'rock3_t', 'Rock3', this.pez);
+        const formaRoca = this.cache.json.get('rock3_t').Rock3;
+        this.rock = new Rock(this, 2500, 300, 'rock3', formaRoca, this.pez);
 
-        this.log = new Log(this, 2300, 300, 'log3', 'log3_t', 'log3', this.pez);
+        const formaTronco = this.cache.json.get('log3_t').log3;
+        this.log = new Log(this, 2300, 300, 'log3', formaTronco, this.pez);
 
         this.matter.world.debugConfig.showStaticBody = true;
         this.matter.world.debugConfig.showInternalEdges = true;
         
         this.cameras.main.centerOn(miObjeto.x, miObjeto.y);
-        this.cameras.main.startFollow(this.pez, true, 0.8, 0.9);
+        this.cameras.main.startFollow(this.pez, true);
 
         this.actualizarPez = () => this.pez.actualizarPasoFisico();
         this.matter.world.on("beforeupdate", this.actualizarPez);
@@ -50,17 +53,27 @@ export default class mapaPrueba extends Phaser.Scene{
         });
     }
 
-    update(){
+    update(t, dt){
         const velocidad = this.pez.getVelocity();
-        const velMax = this.pez.getMaxSpeed();
+        const cameraSpeedPerSecond = 100;
         const anticipacion = 6;
-        const lerp = Phaser.Math.Clamp(this.pez.getSpeed() / velMax, 0.1, 1);
-
-        this.cameras.main.setLerp(lerp, lerp);
-
-        this.cameras.main.setFollowOffset(
+        const targetOffset = new Phaser.Math.Vector2(
             -velocidad.x * anticipacion,
             -velocidad.y * anticipacion
+        );
+        const difference = targetOffset.clone().subtract(this.cameraPos);
+        const distance = difference.length();
+        const maxStep = cameraSpeedPerSecond * dt / 1000;
+
+        if (distance <= maxStep) {
+            this.cameraPos.copy(targetOffset);
+        } else if (distance > 0) {
+            this.cameraPos.add(difference.scale(maxStep / distance));
+        }
+
+        this.cameras.main.setFollowOffset(
+            this.cameraPos.x,
+            this.cameraPos.y
         );
 
     }

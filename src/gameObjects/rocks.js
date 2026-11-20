@@ -1,17 +1,21 @@
 export default class Rock extends Phaser.Physics.Matter.Sprite {
     #fuerzaEmpuje;
     #empujar;
+    #scale;
 
-    constructor(scene, x, y, textura, pez) {
+    constructor(scene, x, y, textura, forma, pez) {
 
         super(scene.matter.world, x, y, textura, null, {
             shape: forma,
             friction: 0
         });
 
+        this.#scale = 0.5;
         this.pez = pez;
         this.#empujar = false;
-        this.#fuerzaEmpuje = 10; // Fuerza aplicada
+        this.#fuerzaEmpuje = 6; // Fuerza aplicada
+
+        this.setScale(this.#scale);
 
         this.scene.add.existing(this);
 

@@ -2,7 +2,7 @@ export default class Log extends Phaser.Physics.Matter.Sprite {
     #fuerzaEmpuje;
     #empujar;
 
-    constructor(scene, x, y, textura, pez) {
+    constructor(scene, x, y, textura, forma, pez,) {
 
         super(scene.matter.world, x, y, textura, null, {
             shape: forma,
