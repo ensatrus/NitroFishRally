@@ -1,23 +1,65 @@
 export default class Palmares extends Phaser.Scene {
-    constructor() {
+     constructor() {
         super({ key: "palmares" });
-    }
+     }
 
+     create(){
+          const bg = this.add.image(0, 0, 'fondoPalmares');
+          bg.setDisplaySize(800, 600);
+          bg.setOrigin(0, 0);
+          bg.setDepth(-1);
 
-    create(){
-        const gameManager = this.game.gameManager;
+          const gameManager = this.game.gameManager;
 
-        // Tiempos de cada nivel para cada medalla
-        const tiempos = [
-            [100, 120, 180], // Bronce
-            [200, 240, 360], // Plata
-            [400, 480, 720], // Oro
-        ];
+          // Tiempos a superar (o igualar) para obtener la medalla de oro
+          const tiempoOro = [100, 120, 180];
+          const multiplicadorMedalla = [1, 1.5, 2]; // Multiplicador para plata y bronce
+          const auraTrofeo = [1000, 2000, 3000];
 
-        this.mejoresTiempos = [1, 2, 3];
+          this.mejoresTiempos = [-1, -1, -1];
+          this.textosTiempos = [];
 
-        for (let i = 0; i < this.mejoresTiempos.length; i++) {
-            this.mejoresTiempos[i] = this.mejoresTiempos[i] !== undefined ? gameManager.getTiempo(i) : "No completado";
-        }
-    }
+          for (let i = 0; i < this.mejoresTiempos.length; i++) {
+               this.mejoresTiempos[i] = gameManager.getTiempoNivel(i);
+               this.mejoresTiempos[i] = 200; // Valor temporal
+
+               let textoTiempo = this.add.text(100 + i * 300, 200, "Nivel " + (i + 1) + ": " + (this.mejoresTiempos[i] / 60).toFixed(0) + ":" + (this.mejoresTiempos[i] % 60), {
+                    fontSize: "18px",
+                    fill: "#ffffff",
+                    fontStyle: "bold",
+                    fontFamily: "Arial"
+               }).setOrigin(0.5).setAlpha(0);
+
+               this.textosTiempos.push(textoTiempo);
+          }
+
+          let boton1 = this.add.rectangle(100, 300, 100, 100, 0xffffff);
+          let boton2 = this.add.rectangle(400, 300, 100, 100, 0xffffff);
+          let boton3 = this.add.rectangle(700, 300, 100, 100, 0xffffff);
+
+          boton1.setInteractive();
+          boton2.setInteractive();
+          boton3.setInteractive();
+        
+          const cambiarOpacidad = (i, alpha) => {
+               const texto = this.textosTiempos[i];
+
+               this.tweens.killTweensOf(texto); // Evita que se solapen animaciones
+               this.tweens.add({
+                    targets: texto,
+                    alpha,
+                    duration: 100, // milisegundos
+                    ease: "Linear"
+               });
+          };
+
+          boton1.on("pointerover", () => cambiarOpacidad(0, 1));
+          boton1.on("pointerout", () => cambiarOpacidad(0, 0));
+
+          boton2.on("pointerover", () => cambiarOpacidad(1, 1));
+          boton2.on("pointerout", () => cambiarOpacidad(1, 0));
+
+          boton3.on("pointerover", () => cambiarOpacidad(2, 1));
+          boton3.on("pointerout", () => cambiarOpacidad(2, 0));
+     }
 }

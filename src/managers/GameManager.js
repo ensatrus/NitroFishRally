@@ -40,7 +40,7 @@ export default class GameManager {
     preload() {}
 
     constructor() {
-        this.niveles = [1, 2, 3];
+        this.tNivel = [undefined, undefined, undefined];
 
         this.statsPez = {
             aceleracion: 5,
@@ -60,13 +60,13 @@ export default class GameManager {
     }
 
     setTiempoNivel(nivel, tiempo) {
-        if (this.niveles[nivel - 1] === undefined || tiempo < this.niveles[nivel - 1]) {
-            this.niveles[nivel - 1] = tiempo;
+        if (this.tNivel[nivel - 1] === undefined || tiempo < this.tNivel[nivel - 1]) {
+            this.tNivel[nivel - 1] = tiempo;
         }
     }
 
     getTiempoNivel(nivel) {
-        return this.niveles[nivel - 1];
+        return this.tNivel[nivel - 1];
     }
 
     construirNivel(scene, nivel, escala = 1) {
