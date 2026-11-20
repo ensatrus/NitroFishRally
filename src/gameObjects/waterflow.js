@@ -1,10 +1,12 @@
 export default class Waterflow extends Phaser.Physics.Matter.Sprite {
     #pezDentro;
+    #fuerza;
+    #direccion;
 
-    constructor(scene, x, y, textura, pez) {
+    constructor(scene, x, y, textura, pez, fuerza = 0.05, direccion = 0) {
 
         super(scene.matter.world, x, y, textura, null, {
-            shape: forma,
+            shape: scene.cache.json.get('waterflow_t').waterflow,
         });
 
         this.pez = pez;
@@ -13,8 +15,26 @@ export default class Waterflow extends Phaser.Physics.Matter.Sprite {
         this.scene.add.existing(this);
 
         this.#configurarDeteccion();
+
+        this.#fuerza = fuerza;
+        this.#direccion = direccion;
+        this.setAngle(this.#direccion);
     }
 
+    preUpdate(time, delta) {
+        super.preUpdate(time, delta);
+
+        if (this.#pezDentro && this.pez) {
+            this.pez.setAwake(true);
+
+            const rad = Phaser.Math.DegToRad(this.#direccion);
+            const vectorFuerza = new Phaser.Math.Vector2()
+                .setToPolar(rad, this.#fuerza * this.pez.masa);
+
+            this.pez.applyForce(vectorFuerza);
+        }
+    }
+   
     #configurarDeteccion() {
         this.scene.matter.world.on('collisionstart', (e) => {
             e.pairs.forEach((p) => {
@@ -23,7 +43,6 @@ export default class Waterflow extends Phaser.Physics.Matter.Sprite {
 
                 if (isWaterflow && isPez) {
                     this.#pezDentro = true;
-                    this.#alEntrar();
                 }
             });
         });
@@ -38,10 +57,6 @@ export default class Waterflow extends Phaser.Physics.Matter.Sprite {
                 }
             });
         });
-    }
-
-    #alEntrar() {
-        
     }
 
     estaPezDentro() {

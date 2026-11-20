@@ -5,7 +5,7 @@ export default class Rock extends Phaser.Physics.Matter.Sprite {
     constructor(scene, x, y, textura, pez) {
 
         super(scene.matter.world, x, y, textura, null, {
-            shape: forma,
+            shape: scene.cache.json.get('rock3_t').Rock3,
             friction: 0
         });
 

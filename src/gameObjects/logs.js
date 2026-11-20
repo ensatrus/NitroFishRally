@@ -1,22 +1,38 @@
 export default class Log extends Phaser.Physics.Matter.Sprite {
     #fuerzaEmpuje;
     #empujar;
+    #velocidad;
+    #direccion;
 
-    constructor(scene, x, y, textura, pez) {
+    constructor(scene, x, y, textura, pez, velocidad = 0, direccion = 0) {
 
         super(scene.matter.world, x, y, textura, null, {
-            shape: forma,
-            friction: 0
+            shape: scene.cache.json.get('log3_t').log3,
+            friction: 0,
+            ignoreGravity: true,
+            frictionAir: 0
         });
 
         this.pez = pez;
         this.#empujar = false;
         this.#fuerzaEmpuje = 10; // Fuerza aplicada
 
+        this.#velocidad = velocidad;
+        this.#direccion = direccion;
+        this.setFixedRotation();
+        this.setMass(10000);
+
         this.scene.add.existing(this);
 
         this.#configurarColisiones();
+
+        this.angle = this.#direccion;
+
+        const rad = Phaser.Math.DegToRad(this.#direccion);
+        this.setVelocity(Math.cos(rad) * this.#velocidad, Math.sin(rad) * this.#velocidad);
     }
+
+    
 
     #configurarColisiones() {
         this.scene.matter.world.on('collisionstart', (e) => {

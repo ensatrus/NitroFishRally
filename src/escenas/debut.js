@@ -33,6 +33,10 @@ export default class Debut extends Phaser.Scene {
         this.load.json("rock4_t", "./assets/json/rock4.json");
         this.load.image('rock5', './assets/sprites/rock5.png');
         this.load.json("rock5_t", "./assets/json/rock5.json");
+        this.load.image('waterflow', './assets/sprites/waterflow.png');
+        this.load.json("waterflow_t", "./assets/json/waterflow.json");
+        this.load.image('heron', './assets/sprites/heron.png');
+        this.load.json("heron_t", "./assets/json/heron.json");
 
         this.load.on("loaderror", (archivo) => {
             console.error(`No se pudo cargar el asset: ${archivo.key}`, archivo.src);

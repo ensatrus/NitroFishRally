@@ -3,7 +3,7 @@
 	"log3": {
 		"type": "fromPhysicsEditor",
 		"label": "log3",
-		"isStatic": true,
+		"isStatic": false,
 		"density": 0.1,
 		"restitution": 0,
 		"friction": 0.1,

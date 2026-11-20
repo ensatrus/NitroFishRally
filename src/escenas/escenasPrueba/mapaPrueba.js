@@ -1,6 +1,8 @@
 import Pez from "../../gameObjects/pez.js";
 import Rock from "../../gameObjects/rocks.js";
 import Log from "../../gameObjects/logs.js";
+import Waterflow from "../../gameObjects/waterflow.js";
+import Heron from "../../gameObjects/heron.js";
 
 export default class mapaPrueba extends Phaser.Scene{
     constructor(){
@@ -32,9 +34,17 @@ export default class mapaPrueba extends Phaser.Scene{
         this.pez = new Pez(this.matter.world, 2000, 200, 'pezquesemueve', 5, 5, 5);
         this.pez.setDepth(1);
 
-        this.rock = new Rock(this, 2500, 300, 'rock3', 'rock3_t', 'Rock3', this.pez);
+        //Roca (rebota al chocar)
+        //this.rock = new Rock(this, 2300, 300, 'rock3', this.pez);
 
-        this.log = new Log(this, 2300, 300, 'log3', 'log3_t', 'log3', this.pez);
+        //Tronco (rebota al chocar y se mueve con velocidad y dirección en grados)
+        //this.log = new Log(this, 2300, 300, 'log3', this.pez, 2, 180);
+
+        //Corriente de agua (arrastra al pez mientras esté dentro con fuerza y dirección en grados)
+        //this.waterflow = new Waterflow(this, 2300, 300, 'waterflow', this.pez, 0.0002, 0);
+
+        //Garza (avisa durante 1 segundo al entrar y te expulsa si sigues dentro)
+        //this.heron = new Heron(this, 2300, 300, 'heron', this.pez, 20);
 
         this.matter.world.debugConfig.showStaticBody = true;
         this.matter.world.debugConfig.showInternalEdges = true;

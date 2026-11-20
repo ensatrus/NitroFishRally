@@ -1,15 +1,19 @@
 export default class Heron extends Phaser.Physics.Matter.Sprite {
     #pezDentro;
+    #avisando;
+    #fuerzaEmpuje;
 
-    constructor(scene, x, y, textura, pez) {
-
+    constructor(scene, x, y, textura, pez, fuerzaEmpuje = 0) {
         super(scene.matter.world, x, y, textura, null, {
-            shape: forma,
+            shape: scene.cache.json.get('heron_t').heron
         });
 
         this.pez = pez;
         this.#pezDentro = false;
+        this.#avisando = false;
+        this.#fuerzaEmpuje = fuerzaEmpuje;
 
+        this.setSensor(true);
         this.scene.add.existing(this);
 
         this.#configurarDeteccion();
@@ -41,7 +45,21 @@ export default class Heron extends Phaser.Physics.Matter.Sprite {
     }
 
     #alEntrar() {
-        // Por ahora no hace nada
+        if (this.#avisando) return;
+        this.#avisando = true;
+
+    
+        this.setAlpha(0.5);
+
+        this.scene.time.delayedCall(1000, () => {
+            this.setAlpha(1); 
+            this.#avisando = false;
+
+            if (this.#pezDentro) {
+                const angulo = Phaser.Math.Angle.Between(this.x, this.y, this.pez.x, this.pez.y);
+                this.pez.setVelocity(Math.cos(angulo) * this.#fuerzaEmpuje, Math.sin(angulo) * this.#fuerzaEmpuje);
+            }
+        });
     }
 
     estaPezDentro() {
