@@ -42,10 +42,10 @@ export default class menuPruebas extends Phaser.Scene{
         boton3.setInteractive(); 
         
         boton3.on("pointerdown", () => {
-            this.scene.start("pruebaMovimientoPez"); 
+            this.scene.start("palmares"); 
         });
 
-        this.add.text(400, 260, "Prueba Movimiento Pez", {
+        this.add.text(400, 260, "Palmares", {
             fontSize: "18px",
             fill: "#ffffff",
             fontStyle: "bold",

@@ -15,6 +15,7 @@ export default class Debut extends Phaser.Scene {
         this.load.font("Velocidad", "./assets/fonts/AmericanCaptainPatrius02Fre-PvPd.ttf", "truetype");
         this.load.image('Circuit', './assets/sprites/Circuit.png');
         this.load.json('Circuit_t', './assets/json/circuit.json');
+        this.load.image('fondoPalmares', './assets/sprites/fondoPalmares.jpg');
         this.load.image('log1', './assets/sprites/log1.png');
         this.load.json("log1_t", "./assets/json/log1.json");
         this.load.image('log2', './assets/sprites/log2.png');

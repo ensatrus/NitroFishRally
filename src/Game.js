@@ -1,7 +1,7 @@
 import MenuPrincipal from './escenas/menuPrincipal.js';
 import TituloInicio from './escenas/tituloInicio.js';
 import MenuPruebas from './escenas/menuPruebas.js';
-import PruebaMovimientoPez from './escenas/escenasPrueba/pruebaMovimientoPez.js';
+import Palmares from './escenas/palmares.js';
 import Debut from './escenas/debut.js';
 import PruebaHUD from "./escenas/escenasPrueba/pruebaHUD.js";
 import mapaPrueba from './escenas/escenasPrueba/mapaPrueba.js'; 
@@ -18,7 +18,7 @@ const game = new Phaser.Game({
   width: 800,
   height: 600,
   mode: Phaser.Scale.FIT,
-scene: [Debut, TituloInicio, MenuPruebas, mapaPrueba, PruebaMovimientoPez, PruebaHUD, PruebaPiezas, PruebaConstructorNiveles, Garaje],  physics: {
+scene: [Debut, TituloInicio, MenuPruebas, mapaPrueba, Palmares, PruebaHUD, PruebaPiezas, PruebaConstructorNiveles, Garaje],  physics: {
     default: 'matter',
     matter:{
       debug: true,
