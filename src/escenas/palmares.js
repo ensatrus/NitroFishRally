@@ -44,11 +44,11 @@ export default class Palmares extends Phaser.Scene {
           const cambiarOpacidad = (i, alpha) => {
                const texto = this.textosTiempos[i];
 
-               this.tweens.killTweensOf(texto); // Evita que se solapen animaciones
+               this.tweens.killTweensOf(texto);
                this.tweens.add({
                     targets: texto,
                     alpha,
-                    duration: 100, // milisegundos
+                    duration: 100,
                     ease: "Linear"
                });
           };
@@ -61,5 +61,20 @@ export default class Palmares extends Phaser.Scene {
 
           boton3.on("pointerover", () => cambiarOpacidad(2, 1));
           boton3.on("pointerout", () => cambiarOpacidad(2, 0));
+
+          let botonVolver = this.add.rectangle(100, 100, 150, 50, 0x3287d1);
+        
+          botonVolver.setInteractive();
+          botonVolver.setScrollFactor(0);
+
+          botonVolver.on("pointerdown", () => this.scene.start("menuPruebas"));
+
+          this.add.text(100, 100, "Volver",{
+            fontSize: "18px",
+            fill: "#ffffff",
+            fontStyle: "bold",
+            fontFamily: "Arial"
+            
+        }).setOrigin(0.5).setAbove(botonVolver).setScrollFactor(0, 0);
      }
 }
