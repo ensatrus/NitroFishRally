@@ -24,7 +24,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
 
         this.setCircle();
         this.setScale(0.1);
-        this.setFriction(0, 0.01, 30);
+        this.setFriction(0.01, 0.01, 30);
         this.setFixedRotation();
         this.setMass(this.masa);
         this.setBounce(0.4);

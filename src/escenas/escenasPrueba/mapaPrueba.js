@@ -1,6 +1,7 @@
 import Pez from "../../gameObjects/pez.js";
 import Rock from "../../gameObjects/rocks.js";
 import Log from "../../gameObjects/logs.js";
+import CameraManager from "../../managers/CameraManager.js";
 
 export default class mapaPrueba extends Phaser.Scene{
     constructor(){
@@ -27,9 +28,8 @@ export default class mapaPrueba extends Phaser.Scene{
 
        
                 
-        miObjeto.setScale(9);        
-        this.cameras.main.setZoom(0.7);
-        this.cameraPos = new Phaser.Math.Vector2(0, 0);
+        miObjeto.setScale(9);
+
         this.pez = new Pez(this.matter.world, 2000, 200, 'pezquesemueve', 5, 5, 5);
         this.pez.setDepth(1);
 
@@ -41,9 +41,6 @@ export default class mapaPrueba extends Phaser.Scene{
 
         this.matter.world.debugConfig.showStaticBody = true;
         this.matter.world.debugConfig.showInternalEdges = true;
-        
-        this.cameras.main.centerOn(miObjeto.x, miObjeto.y);
-        this.cameras.main.startFollow(this.pez, true);
 
         this.actualizarPez = () => this.pez.actualizarPasoFisico();
         this.matter.world.on("beforeupdate", this.actualizarPez);
@@ -51,30 +48,11 @@ export default class mapaPrueba extends Phaser.Scene{
         this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
             this.matter.world.off("beforeupdate", this.actualizarPez);
         });
+
+        this.cameraManager = new CameraManager(this);
     }
 
-    update(t, dt){
-        const velocidad = this.pez.getVelocity();
-        const cameraSpeedPerSecond = 100;
-        const anticipacion = 6;
-        const targetOffset = new Phaser.Math.Vector2(
-            -velocidad.x * anticipacion,
-            -velocidad.y * anticipacion
-        );
-        const difference = targetOffset.clone().subtract(this.cameraPos);
-        const distance = difference.length();
-        const maxStep = cameraSpeedPerSecond * dt / 1000;
-
-        if (distance <= maxStep) {
-            this.cameraPos.copy(targetOffset);
-        } else if (distance > 0) {
-            this.cameraPos.add(difference.scale(maxStep / distance));
-        }
-
-        this.cameras.main.setFollowOffset(
-            this.cameraPos.x,
-            this.cameraPos.y
-        );
-
+    update(time, delta) {
+        this.cameraManager.update(time, delta);
     }
 }
