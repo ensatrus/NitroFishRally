@@ -17,7 +17,8 @@ export default class PruebaHUD extends Phaser.Scene {
         this.auraMaxima = 30000;
         this.velPez = 0;
 
-        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 5, 5, 5);
+        const stats = this.game.gameManager.getStatsPez();
+        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', stats.aceleracion, stats.control, stats.freno);
         this.HUDManager = new HUDManager(this);
 
         this.cameras.main.startFollow(this.pez, false, 0.9, 0.9);

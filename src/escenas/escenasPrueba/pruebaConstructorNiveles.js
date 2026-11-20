@@ -14,7 +14,8 @@ export default class PruebaConstructorNiveles extends Phaser.Scene{
     }
 
     create(){
-        this.pez = new Pez(this.matter.world, 400, 100, 'pezquesemueve', 5, 5, 5);
+        const stats = this.game.gameManager.getStatsPez();
+        this.pez = new Pez(this.matter.world, 400, 100, 'pezquesemueve', stats.aceleracion, stats.control, stats.freno);
         const miObjeto = this.game.gameManager.construirNivel(this, "Circuit_t", 6);
 
         this.cameras.main.setZoom(0.5);

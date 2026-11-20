@@ -12,8 +12,13 @@ export default class PruebaPiezas extends Phaser.Scene{
     create(){
         this.add.image(2600, 1800,"fondoPrueba").setScale(7);
         
-        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 5, 5, 5);
+        const stats = this.game.gameManager.getStatsPez();
+
+        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', stats.aceleracion, stats.control, stats.freno);
         
+        
+
+
         this.matter.world.setBounds(0, 0, 5200, 3400);
         
         this.cameras.main.startFollow(this.pez, true, 0.9, 0.9);
@@ -25,6 +30,7 @@ export default class PruebaPiezas extends Phaser.Scene{
         boton.setScrollFactor(0);
 
         boton.on("pointerdown", () => {
+            this.game.gameManager.setStatsPez(this.pez.aceleracion, this.pez.control, this.pez.freno);
             this.scene.start("menuPruebas"); 
         });
 

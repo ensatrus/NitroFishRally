@@ -13,7 +13,8 @@ export default class PruebaMovimientoPez extends Phaser.Scene{
     create(){
         this.add.image(1600,1200,"placeholderBackground").setScale(3);
 
-        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', 6, 6, 6);
+        const stats = this.game.gameManager.getStatsPez();
+        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', stats.aceleracion, stats.control, stats.freno);
 
         this.matter.world.setBounds(0, 0, 3200, 2400);
 

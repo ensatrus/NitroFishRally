@@ -31,7 +31,9 @@ export default class mapaPrueba extends Phaser.Scene{
        
                 
         miObjeto.setScale(9);
-        this.pez = new Pez(this.matter.world, 2000, 200, 'pezquesemueve', 5, 5, 5);
+
+        const stats = this.game.gameManager.getStatsPez();
+        this.pez = new Pez(this.matter.world, 2000, 200, 'pezquesemueve', stats.aceleracion, stats.control, stats.freno);
         this.pez.setDepth(1);
 
         //Roca (rebota al chocar)

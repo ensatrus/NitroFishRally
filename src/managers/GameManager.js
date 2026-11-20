@@ -41,6 +41,22 @@ export default class GameManager {
 
     constructor() {
         this.niveles = [1, 2, 3];
+
+        this.statsPez = {
+            aceleracion: 5,
+            control: 5,
+            freno: 5
+        };
+    }
+
+    
+
+    setStatsPez(aceleracion, control, freno) {
+        this.statsPez = { aceleracion, control, freno };
+    }
+
+    getStatsPez() {
+        return this.statsPez;
     }
 
     setTiempoNivel(nivel, tiempo) {
