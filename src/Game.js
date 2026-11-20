@@ -1,5 +1,4 @@
 import MenuPrincipal from './escenas/menuPrincipal.js';
-import PruebaFisicas from './escenas/escenasPrueba/pruebaFisicas.js';
 import TituloInicio from './escenas/tituloInicio.js';
 import MenuPruebas from './escenas/menuPruebas.js';
 import PruebaMovimientoPez from './escenas/escenasPrueba/pruebaMovimientoPez.js';
@@ -8,17 +7,17 @@ import PruebaHUD from "./escenas/escenasPrueba/pruebaHUD.js";
 import mapaPrueba from './escenas/escenasPrueba/mapaPrueba.js'; 
 import PruebaPiezas from './escenas/escenasPrueba/pruebaPiezas.js';
 import GameManager from './managers/GameManager.js';
+import PruebaConstructorNiveles from './escenas/escenasPrueba/pruebaConstructorNiveles.js';
 
 const gameManager = new GameManager();
 
-new Phaser.Game({
+const game = new Phaser.Game({
   type: Phaser.CANVAS,
   canvas: document.getElementById('juego'),
   width: 800,
   height: 600,
   mode: Phaser.Scale.FIT,
-  scene: [Debut, TituloInicio, MenuPruebas, mapaPrueba, PruebaFisicas, PruebaMovimientoPez, PruebaHUD, PruebaPiezas,],
-  physics: {
+scene: [Debut, TituloInicio, MenuPruebas, mapaPrueba, PruebaMovimientoPez, PruebaHUD, PruebaPiezas, PruebaConstructorNiveles],  physics: {
     default: 'matter',
     matter:{
       debug: true,
@@ -26,4 +25,6 @@ new Phaser.Game({
     }
   },
   roundPixels: true
-})
+});
+
+game.gameManager = gameManager;
