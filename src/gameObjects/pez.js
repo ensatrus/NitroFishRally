@@ -54,7 +54,6 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         this.#minSpeedForAuraFactor = Math.PI; // Se multiplica este numero por la aceleración para obtener la velocidad mínima a partir de la cual el pez empieza a generar aura
         this.#aceleracionDivider = 6500; // Se divide la aceleración entre este numero para obtener la fuerza de aceleración del pez
         this.#derrapeMargen = 0.1; // Margen del derrape, el factor minimo por el que se multiplica la fricción del pez
-
     }
 
     getSpeed() {
@@ -87,6 +86,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         if (this.keys.w.isDown || this.keys.up.isDown) {
             if(this.getSpeed() < (this.#maxSpeedFactor/(this.masa))) this.acelerar(1);
             this.setFrictionAir(derrape * this.masa / this.#drivingFrictionDivider);
+            //this.play("pez_movimiento");  esto no funciona bien de momento
         } 
         else {
             this.setFrictionAir(derrape * this.#frictionFactor);
