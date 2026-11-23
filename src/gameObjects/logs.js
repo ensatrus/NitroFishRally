@@ -20,7 +20,7 @@ export default class Log extends Phaser.Physics.Matter.Sprite {
         this.#velocidad = velocidad;
         this.#direccion = direccion;
         this.setFixedRotation();
-        this.setMass(10000);
+        this.setMass(100000);
 
         this.scene.add.existing(this);
 

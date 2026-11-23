@@ -1,5 +1,3 @@
-import Pez from "../../gameObjects/pez.js";
-
 export default class PruebaConstructorNiveles extends Phaser.Scene{
     constructor(){
         super({key: "pruebaConstructorNiveles"});
@@ -14,9 +12,7 @@ export default class PruebaConstructorNiveles extends Phaser.Scene{
     }
 
     create(){
-        const stats = this.game.gameManager.getStatsPez();
-        this.pez = new Pez(this.matter.world, 400, 100, 'pezquesemueve', stats.aceleracion, stats.control, stats.freno);
-        const miObjeto = this.game.gameManager.construirNivel(this, "Circuit_t", 6);
+        this.game.gameManager.construirNivel(this, "Mapa1", 6);
 
         this.cameras.main.setZoom(0.5);
         this.pez.setDepth(1);
@@ -24,7 +20,6 @@ export default class PruebaConstructorNiveles extends Phaser.Scene{
         this.matter.world.debugConfig.showStaticBody = true;
         this.matter.world.debugConfig.showInternalEdges = true;
         
-        this.cameras.main.centerOn(miObjeto.x, miObjeto.y);
         this.cameras.main.startFollow(this.pez, true, 0.8, 0.9);
 
         this.actualizarPez = () => this.pez.actualizarPasoFisico();

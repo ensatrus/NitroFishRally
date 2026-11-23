@@ -10,7 +10,7 @@ export default class Rock extends Phaser.Physics.Matter.Sprite {
             friction: 0
         });
 
-        this.#scale = 0.5;
+        this.#scale = 0.7;
         this.pez = pez;
         this.#empujar = false;
         this.#fuerzaEmpuje = 6; // Fuerza aplicada

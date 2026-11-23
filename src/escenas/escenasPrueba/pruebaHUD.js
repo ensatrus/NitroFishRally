@@ -1,5 +1,5 @@
-import Pez from "../../gameObjects/pez.js";
 import HUDManager from "../../managers/HUDManager.js";
+import CameraManager from "../../managers/CameraManager.js";
 
 export default class PruebaHUD extends Phaser.Scene {
     constructor() {
@@ -11,21 +11,22 @@ export default class PruebaHUD extends Phaser.Scene {
 
     create() {
         const bg = this.add.image(0, 0, 'fondoPrueba');
-        bg.setScale(6);
+        const escalaMapa = 6;
+        bg.setScale(escalaMapa);
+        bg.setOrigin(0, 0);
+        bg.setDepth(-1);
 
         this.auraActual = 0; 
         this.auraMaxima = 30000;
         this.velPez = 0;
 
-        const stats = this.game.gameManager.getStatsPez();
-        this.pez = new Pez(this.matter.world, 300, 300, 'pezquesemueve', stats.aceleracion, stats.control, stats.freno);
+        this.game.gameManager.construirNivel(this, 'Mapa1', escalaMapa);
+        this.pez.setDepth(1);
         this.HUDManager = new HUDManager(this);
 
-        this.cameras.main.startFollow(this.pez, false, 0.9, 0.9);
-        this.cameras.main.setZoom(0.5);
+        this.CameraManager = new CameraManager(this);
 
-        bg.setOrigin(0, 0);
-        bg.setDepth(-1);
+        this.matter.world.debugConfig.showStaticBody = true;
 
         // Dibujar la barra inicialmente
         this.HUDManager.actualizarAuraHUD(this.auraActual, this.auraMaxima);
@@ -41,19 +42,10 @@ export default class PruebaHUD extends Phaser.Scene {
 
     }
 
-    update() {
+    update(t, dt) {
         this.pez.actualizarAura();
         this.HUDManager.actualizarHUD(this.pez.getAura(), this.auraMaxima,
                                       this.time.now, this.pez.getSpeed());
-    }
-
-    actualizarCamara(){
-        const velocidad = this.pez.getVelocity();
-        const anticipacion = 6;
-
-        this.cameras.main.setFollowOffset(
-            -velocidad.x * anticipacion,
-            -velocidad.y * anticipacion
-        );
+        this.CameraManager.update(t, dt);
     }
 }
