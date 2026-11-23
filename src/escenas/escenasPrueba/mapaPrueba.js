@@ -25,11 +25,9 @@ export default class mapaPrueba extends Phaser.Scene{
             isStatic: true,
         });
 
+        this.reiniciando = false;
+        this.teclaR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
 
-       
-
-       
-                
         miObjeto.setScale(9);
 
         const stats = this.game.gameManager.getStatsPez();
@@ -57,11 +55,20 @@ export default class mapaPrueba extends Phaser.Scene{
         this.matter.world.debugConfig.showInternalEdges = true;   
      
 
-        this.actualizarPez = () => this.pez.actualizarPasoFisico();
+        this.actualizarPez = () => {
+            if (this.pez?.active) {
+                this.pez.actualizarPasoFisico();
+            }
+        };
+
         this.matter.world.on("beforeupdate", this.actualizarPez);
 
         this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
-            this.matter.world.off("beforeupdate", this.actualizarPez);
+            this.matter.world?.off("beforeupdate", this.actualizarPez);
+
+            if (this.teclaR) {
+                this.input.keyboard?.removeKey(this.teclaR);
+            }
         });
     
         this.cameraManager = new CameraManager(this);
@@ -69,5 +76,10 @@ export default class mapaPrueba extends Phaser.Scene{
 
     update(time, delta) {
         this.cameraManager.update(time, delta);
+
+        if (!this.reiniciando && Phaser.Input.Keyboard.JustDown(this.teclaR)) {
+            this.reiniciando = true;
+            this.scene.restart();
+        }
     }
 }
