@@ -18,7 +18,7 @@ const game = new Phaser.Game({
   width: 800,
   height: 600,
   mode: Phaser.Scale.FIT,
-scene: [Debut, TituloInicio, MenuPruebas, mapaPrueba, Palmares, PruebaHUD, PruebaPiezas, PruebaConstructorNiveles, Garaje],  physics: {
+scene: [Debut, TituloInicio, MenuPrincipal, MenuPruebas, mapaPrueba, Palmares, PruebaHUD, PruebaPiezas, PruebaConstructorNiveles, Garaje],  physics: {
     default: 'matter',
     matter:{
       debug: true,

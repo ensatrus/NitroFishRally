@@ -4,7 +4,7 @@ export default class Debut extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("tituloImagen", "./assets/sprites/titulo640x480.png");
+        this.load.image("titulo640x480", "./assets/sprites/titulo640x480.png");
         this.load.image("pezquesemueve", "./assets/sprites/pezquesemueve.png"); // esto borrar cuando esté la animacion del pez
         this.load.image("señalIzq", "./assets/sprites/signalIzq.png");
         this.load.image("señalDch", "./assets/sprites/signalDch.png");
@@ -24,6 +24,7 @@ export default class Debut extends Phaser.Scene {
             frameWidth: 512,  
             frameHeight: 512  
         });
+        this.load.video("videoEjemplo", "./assets/videos/bad apple.mp4", true); //true para que esté muteado
         this.load.image("fih", "./assets/sprites/fih.png");
         this.load.image("placeholderBackground", "./assets/sprites/background-placeholder.png")
         this.load.image("fondoPrueba", "./assets/sprites/Esquema-Circuito1.png");

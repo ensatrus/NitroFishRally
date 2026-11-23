@@ -26,7 +26,7 @@ export default class Garaje extends Phaser.Scene{
 
         boton.on("pointerdown", () => {
             this.game.gameManager.setStatsPez(this.aceleracion, this.control, this.freno);
-            this.scene.start("menuPruebas"); 
+            this.scene.start("menuPrincipal"); 
         });
 
         this.add.text(130, 100, "Volver",{

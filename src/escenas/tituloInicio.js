@@ -15,7 +15,7 @@ export default class tituloInicio extends Phaser.Scene{
         const centroX = this.cameras.main.width / 2;
         const centroY = this.cameras.main.height / 2;
         
-        this.add.image(centroX, centroY - 80, "tituloImagen").setOrigin(0.5).setScale(1.2);
+        this.add.image(centroX, centroY - 80, "titulo640x480").setOrigin(0.5).setScale(1.2);
 
         let textoInicio = this.add.text(centroX, centroY + 150, "PULSA CUALQUIER TECLA", {
             fontFamily: '"Courier New", monospace',
@@ -50,7 +50,7 @@ export default class tituloInicio extends Phaser.Scene{
             // Cambio de escena
             this.time.delayedCall(1800, () => {
                 parpadeoTexto.destroy();
-                this.scene.start("menuPruebas");
+                this.scene.start("menuPrincipal");
             }, [], this);
 
         }, this);
