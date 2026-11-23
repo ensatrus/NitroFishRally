@@ -23,7 +23,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         this.aura = 0;
 
         this.setCircle();
-        this.setScale(0.1);
+        this.setScale(0.2);
         this.setFriction(0.01, 0.01, 30);
         this.setFixedRotation();
         this.setMass(this.masa);
@@ -86,10 +86,13 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         if (this.keys.w.isDown || this.keys.up.isDown) {
             if(this.getSpeed() < (this.#maxSpeedFactor/(this.masa))) this.acelerar(1);
             this.setFrictionAir(derrape * this.masa / this.#drivingFrictionDivider);
-            //this.play("pez_movimiento");  esto no funciona bien de momento
+            this.play("pez_movimiento", true);  // esto no funciona bien de momento
+            this.anims.timeScale = Math.max(0.5, this.getSpeed() / 2);
         } 
         else {
             this.setFrictionAir(derrape * this.#frictionFactor);
+            this.play("pez_idle", true);
+            this.anims.timeScale = 1;
         }
 
         if (this.keys.s.isDown || this.keys.down.isDown) {

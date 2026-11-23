@@ -6,15 +6,27 @@ export default class Debut extends Phaser.Scene {
     preload() {
         this.load.image("tituloImagen", "./assets/sprites/titulo640x480.png");
         this.load.image("pezquesemueve", "./assets/sprites/pezquesemueve.png"); // esto borrar cuando esté la animacion del pez
-        this.load.spritesheet("pez", "./assets/sprites/pez.png", {
+        this.load.image("señalIzq", "./assets/sprites/signalIzq.png");
+        this.load.image("señalDch", "./assets/sprites/signalDch.png");
+        this.load.spritesheet("pez", "./assets/sprites/pez_spritesheet.png", {
+            frameWidth: 512,  
+            frameHeight: 512  
+        });
+        this.load.spritesheet("medallaBronce", "./assets/sprites/medallaBronce_spritesheet.png", {
+            frameWidth: 512,  
+            frameHeight: 512  
+        });
+        this.load.spritesheet("medallaPlata", "./assets/sprites/medallaPlata_spritesheet.png", {
+            frameWidth: 512,  
+            frameHeight: 512  
+        });
+        this.load.spritesheet("medallaOro", "./assets/sprites/medallaOro_spritesheet.png", {
             frameWidth: 512,  
             frameHeight: 512  
         });
         this.load.image("fih", "./assets/sprites/fih.png");
         this.load.image("placeholderBackground", "./assets/sprites/background-placeholder.png")
         this.load.image("fondoPrueba", "./assets/sprites/Esquema-Circuito1.png");
-        this.load.image("señalIzq", "./assets/sprites/signalIzq.png");
-        this.load.image("señalDch", "./assets/sprites/signalDch.png");
         this.load.font("Reloj Digital", "./assets/fonts/CursedTimerUlil-Aznm.ttf", "truetype");
         this.load.font("Velocidad", "./assets/fonts/AmericanCaptainPatrius02Fre-PvPd.ttf", "truetype");
         this.load.image('Circuit', './assets/sprites/Circuit.png');
@@ -60,26 +72,70 @@ export default class Debut extends Phaser.Scene {
     createAnims(){
         // Animaciones Pez
         this.anims.create({
+            key: "pez_idle",
+            frames: this.anims.generateFrameNumbers("pez", {start: 0, end:0}),
+            frameRate: 9
+        })
+
+        this.anims.create({
             key: "pez_movimiento",
             frames: this.anims.generateFrameNumbers("pez", {start: 0, end:11}),
             frameRate: 9, 
-            repeat: -1, // -1 para bucle, 0 para no bucle
+            repeat: -1 // -1 para bucle, 0 para no bucle
         })
 
         this.anims.create({
             key: "pez_giroIzq",
             frames: this.anims.generateFrameNumbers("pez", {start: 0, end:5}),
             frameRate: 9, 
-            repeat: -1, // -1 para bucle, 0 para no bucle
+            repeat: -1 // -1 para bucle, 0 para no bucle
         })
 
         this.anims.create({
             key: "pez_giroDch",
             frames: this.anims.generateFrameNumbers("pez", {start: 6, end:11}),
             frameRate: 9, 
-            repeat: -1, // -1 para bucle, 0 para no bucle
+            repeat: -1 // -1 para bucle, 0 para no bucle
         })
 
         // Animaciones medallas
+        this.anims.create({
+            key: "medallaBronce_idle",
+            frames: this.anims.generateFrameNumbers("medallaBronce", {start: 0, end:0}),
+            frameRate: 9
+        })
+
+        this.anims.create({
+            key: "medallaBronce_animacion",
+            frames: this.anims.generateFrameNumbers("medallaBronce", {start: 0, end:29}),
+            frameRate: 9, 
+            repeat: 0 // -1 para bucle, 0 para no bucle
+        })
+
+        this.anims.create({
+            key: "medallaPlata_idle",
+            frames: this.anims.generateFrameNumbers("medallaPlata", {start: 0, end:0}),
+            frameRate: 9
+        })
+
+        this.anims.create({
+            key: "medallaPlata_animacion",
+            frames: this.anims.generateFrameNumbers("medallaPlata", {start: 0, end:29}),
+            frameRate: 9, 
+            repeat: 0 // -1 para bucle, 0 para no bucle
+        })
+
+        this.anims.create({
+            key: "medallaOro_idle",
+            frames: this.anims.generateFrameNumbers("medallaOro", {start: 0, end:0}),
+            frameRate: 9
+        })
+
+        this.anims.create({
+            key: "medallaOro_animacion",
+            frames: this.anims.generateFrameNumbers("medallaOro", {start: 0, end:29}),
+            frameRate: 9, 
+            repeat: 0 // -1 para bucle, 0 para no bucle
+        })
     }
 }
