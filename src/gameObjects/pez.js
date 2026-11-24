@@ -61,6 +61,10 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         return Math.hypot(x, y);
     }
 
+    getPolarRot(){
+        return new Phaser.Math.Vector2().setToPolar(this.rotation);
+    }
+
     getAura() {
         return this.aura;
     }
