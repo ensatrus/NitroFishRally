@@ -36,7 +36,7 @@ export default class Garaje extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(boton).setScrollFactor(0);
 
-        let acMin = this.add.rectangle(130, 450, 150, 50, 0x3287d1);
+        let acMin = this.add.rectangle(130, 420, 150, 50, 0x3287d1);
         
         acMin.setInteractive();
         acMin.setScrollFactor(0);
@@ -48,14 +48,14 @@ export default class Garaje extends Phaser.Scene{
             acMax.setFillStyle(0x3287d1);
         });
 
-        this.add.text(130, 450, "Aceleración Mínima",{
+        this.add.text(130, 420, "Aceleración Mínima",{
             fontSize: "14px",
             fill: "#ffffff",
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(acMin).setScrollFactor(0);
 
-        let acMid = this.add.rectangle(130, 500, 150, 50, 0x00d0d0);
+        let acMid = this.add.rectangle(130, 470, 150, 50, 0x00d0d0);
         
         acMid.setInteractive();
         acMid.setScrollFactor(0);
@@ -67,14 +67,14 @@ export default class Garaje extends Phaser.Scene{
             acMax.setFillStyle(0x3287d1);
         });
 
-        this.add.text(130, 500, "Aceleración Media",{
+        this.add.text(130, 470, "Aceleración Media",{
             fontSize: "14px",
             fill: "#ffffff",
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(acMid).setScrollFactor(0);
 
-        let acMax = this.add.rectangle(130, 550, 150, 50, 0x3287d1);
+        let acMax = this.add.rectangle(130, 520, 150, 50, 0x3287d1);
         
         acMax.setInteractive();
         acMax.setScrollFactor(0);
@@ -86,14 +86,14 @@ export default class Garaje extends Phaser.Scene{
             acMin.setFillStyle(0x3287d1);
         });
 
-        this.add.text(130, 550, "Aceleración Máxima",{
+        this.add.text(130, 520, "Aceleración Máxima",{
             fontSize: "14px",
             fill: "#ffffff",
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(acMax).setScrollFactor(0);
 
-        let frMin = this.add.rectangle(260, 450, 130, 50, 0x3287d1);
+        let frMin = this.add.rectangle(260, 420, 130, 50, 0x3287d1);
         
         frMin.setInteractive();
         frMin.setScrollFactor(0);
@@ -105,14 +105,14 @@ export default class Garaje extends Phaser.Scene{
             frMax.setFillStyle(0x3287d1);
         });
 
-        this.add.text(260, 450, "Freno Mínimo",{
+        this.add.text(260, 420, "Freno Mínimo",{
             fontSize: "14px",
             fill: "#ffffff",
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(frMin).setScrollFactor(0);
 
-        let frMid = this.add.rectangle(260, 500, 130, 50, 0x00d0d0);
+        let frMid = this.add.rectangle(260, 470, 130, 50, 0x00d0d0);
         
         frMid.setInteractive();
         frMid.setScrollFactor(0);
@@ -124,14 +124,14 @@ export default class Garaje extends Phaser.Scene{
             frMax.setFillStyle(0x3287d1);
         });
 
-        this.add.text(260, 500, "Freno Medio",{
+        this.add.text(260, 470, "Freno Medio",{
             fontSize: "14px",
             fill: "#ffffff",
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(frMid).setScrollFactor(0);
 
-        let frMax = this.add.rectangle(250, 550, 130, 50, 0x3287d1);
+        let frMax = this.add.rectangle(250, 520, 130, 50, 0x3287d1);
         
         frMax.setInteractive();
         frMax.setScrollFactor(0);
@@ -143,14 +143,14 @@ export default class Garaje extends Phaser.Scene{
             frMin.setFillStyle(0x3287d1);
         });
 
-        this.add.text(250, 550, "Freno Máximo",{
+        this.add.text(250, 520, "Freno Máximo",{
             fontSize: "14px",
             fill: "#ffffff",
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(frMax).setScrollFactor(0);
 
-        let ctrMin = this.add.rectangle(370, 450, 120, 50, 0x3287d1);
+        let ctrMin = this.add.rectangle(370, 420, 120, 50, 0x3287d1);
         
         ctrMin.setInteractive();
         ctrMin.setScrollFactor(0);
@@ -162,14 +162,14 @@ export default class Garaje extends Phaser.Scene{
             ctrMax.setFillStyle(0x3287d1);
         });
 
-        this.add.text(370, 450, "Control Mínimo",{
+        this.add.text(370, 420, "Control Mínimo",{
             fontSize: "14px",
             fill: "#ffffff",
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(ctrMin).setScrollFactor(0);
 
-        let ctrMid = this.add.rectangle(370, 500, 120, 50, 0x00d0d0);
+        let ctrMid = this.add.rectangle(370, 470, 120, 50, 0x00d0d0);
         
         ctrMid.setInteractive();
         ctrMid.setScrollFactor(0);
@@ -181,14 +181,14 @@ export default class Garaje extends Phaser.Scene{
             ctrMax.setFillStyle(0x3287d1);
         });
 
-        this.add.text(370, 500, "Control Medio",{
+        this.add.text(370, 470, "Control Medio",{
             fontSize: "14px",
             fill: "#ffffff",
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(ctrMid).setScrollFactor(0);
 
-        let ctrMax = this.add.rectangle(370, 550, 120, 50, 0x3287d1);
+        let ctrMax = this.add.rectangle(370, 520, 120, 50, 0x3287d1);
         
         ctrMax.setInteractive();
         ctrMax.setScrollFactor(0);
@@ -200,27 +200,28 @@ export default class Garaje extends Phaser.Scene{
             ctrMin.setFillStyle(0x3287d1);
         });
 
-        this.add.text(370, 550, "Control Máximo",{
+        this.add.text(370, 520, "Control Máximo",{
             fontSize: "14px",
             fill: "#ffffff",
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(ctrMax).setScrollFactor(0);
 
-        this.masaHUD = this.add.text(600, 50, `Masa: ${this.aceleracion + this.control + this.freno}`, {
+        this.masaHUD = this.add.text(600, 450, `Masa: ${this.aceleracion + this.control + this.freno}`, {
             fontSize: "18px",
             fill: "#ffffff",
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5).setScrollFactor(0);
 
-        this.maxSpeedHUD = this.add.text(600, 100, `Velocidad Máxima: ${(1350/(this.aceleracion + this.control + this.freno)).toFixed(0)} km/h`, {
+        this.maxSpeedHUD = this.add.text(600, 500, `Velocidad Máxima: ${(1350/(this.aceleracion + this.control + this.freno)).toFixed(0)} km/h`, {
             fontSize: "18px",
             fill: "#ffffff",
             fontStyle: "bold",
             fontFamily: "Arial"
         }).setOrigin(0.5).setScrollFactor(0);
 
+        this.cameras.main.fadeIn(400, 0, 0, 0); 
     }
 
     update() {

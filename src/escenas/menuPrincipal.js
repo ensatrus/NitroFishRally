@@ -115,6 +115,6 @@ export default class MenuPrincipal extends Phaser.Scene{
         videoEjemplo.setDepth(-11);
         videoEjemplo.play(true);
 
-        this.cameras.main.fadeIn(200, 0, 0, 0); 
+        this.cameras.main.fadeIn(500, 0, 0, 0); 
     }
 };
