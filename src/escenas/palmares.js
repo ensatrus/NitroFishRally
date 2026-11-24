@@ -67,7 +67,7 @@ export default class Palmares extends Phaser.Scene {
           botonVolver.setInteractive();
           botonVolver.setScrollFactor(0);
 
-          botonVolver.on("pointerdown", () => this.scene.start("menuPruebas"));
+          botonVolver.on("pointerdown", () => this.scene.start("menuPrincipal"));
 
           this.add.text(100, 100, "Volver",{
             fontSize: "18px",
@@ -76,5 +76,7 @@ export default class Palmares extends Phaser.Scene {
             fontFamily: "Arial"
             
         }).setOrigin(0.5).setAbove(botonVolver).setScrollFactor(0, 0);
+
+        this.cameras.main.fadeIn(400, 0, 0, 0); 
      }
 }

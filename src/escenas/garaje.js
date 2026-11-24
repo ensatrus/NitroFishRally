@@ -221,6 +221,7 @@ export default class Garaje extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5).setScrollFactor(0);
 
+        this.cameras.main.fadeIn(400, 0, 0, 0); 
     }
 
     update() {
