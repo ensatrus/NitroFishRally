@@ -81,7 +81,7 @@ export default class mapaPrueba extends Phaser.Scene{
     }
 
     update(time, delta) {
-        this.pez.actualizarAura();
+        this.pez.actualizarAura(this.auraMaxima);
         this.cameraManager.update(time, delta);
 
         this.HUDManager.actualizarHUD(this.pez.getAura(), this.auraMaxima,

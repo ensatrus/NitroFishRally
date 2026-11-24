@@ -126,13 +126,13 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
     }
 
 
-    actualizarAura() {
+    actualizarAura(auraMax) {
         const velocidad = this.getSpeed()*3;
         const minVelocidad = this.#minSpeedForAuraFactor * this.aceleracion;
 
         const incrementoAura = Phaser.Math.Clamp(velocidad - minVelocidad, -minVelocidad, (this.aceleracion+this.control)*2);
 
-        this.aura = Math.max(0, this.aura + incrementoAura);
+        this.aura = Math.max(0, Math.min(auraMax * 2, this.aura + incrementoAura));
     }
 
     acelerar(sentido){
