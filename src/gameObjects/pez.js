@@ -12,8 +12,8 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
     #aceleracionDivider;
     #derrapeMargen;
 
-    constructor(scene, x, y, textura, direccion, aceleracion, control, freno){
-        super(scene, x, y, textura);
+    constructor(scene, x, y, direccion, aceleracion, control, freno){
+        super(scene, x, y);
 
         this.masa = aceleracion + control + freno;
         this.aceleracion = aceleracion;

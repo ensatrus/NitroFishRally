@@ -9,6 +9,9 @@ export default class GameManager {
     constructor() {
         this.tNivel = [undefined, undefined, undefined];
 
+        // VALORES TEMPORALES
+        this.tNivel = [97, 162, undefined];
+
         this.statsPez = {
             aceleracion: 5,
             control: 5,
@@ -67,7 +70,7 @@ export default class GameManager {
                 }
             }
         }
-        scene.pez = new Pez(scene.matter.world, puntoPez.x * escala, puntoPez.y * escala, "pezquesemueve", direccion,
+        scene.pez = new Pez(scene.matter.world, puntoPez.x * escala, puntoPez.y * escala, direccion,
                             statsPez.aceleracion, statsPez.control, statsPez.freno);
 
 
