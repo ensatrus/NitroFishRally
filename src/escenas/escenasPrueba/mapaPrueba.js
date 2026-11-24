@@ -4,6 +4,7 @@ import Log from "../../gameObjects/logs.js";
 import Waterflow from "../../gameObjects/waterflow.js";
 import Heron from "../../gameObjects/heron.js";
 import CameraManager from "../../managers/CameraManager.js";
+import HUDManager from "../../managers/HUDManager.js";
 
 export default class mapaPrueba extends Phaser.Scene{
     constructor(){
@@ -24,6 +25,11 @@ export default class mapaPrueba extends Phaser.Scene{
             shape: datos.Circuit,
             isStatic: true,
         });
+
+        this.auraMaxima = 30000;
+
+        this.HUDManager = new HUDManager(this);
+        this.HUDManager.actualizarAuraHUD(0, this.auraMaxima);
 
         this.reiniciando = false;
         this.teclaR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
@@ -75,7 +81,11 @@ export default class mapaPrueba extends Phaser.Scene{
     }
 
     update(time, delta) {
+        this.pez.actualizarAura();
         this.cameraManager.update(time, delta);
+
+        this.HUDManager.actualizarHUD(this.pez.getAura(), this.auraMaxima,
+                                      this.time.now, this.pez.getSpeed());
 
         if (!this.reiniciando && Phaser.Input.Keyboard.JustDown(this.teclaR)) {
             this.reiniciando = true;

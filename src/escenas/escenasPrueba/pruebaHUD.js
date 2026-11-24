@@ -15,9 +15,7 @@ export default class PruebaHUD extends Phaser.Scene {
         bg.setScale(escalaMapa);
         bg.setOrigin(0, 0);
         bg.setDepth(-1);
-
-        this.auraActual = 0; 
-        this.auraMaxima = 30000;
+        this.auraMaxima = 5000;
         this.velPez = 0;
 
         this.game.gameManager.construirNivel(this, 'Mapa1', escalaMapa);
@@ -29,7 +27,7 @@ export default class PruebaHUD extends Phaser.Scene {
         this.matter.world.debugConfig.showStaticBody = true;
 
         // Dibujar la barra inicialmente
-        this.HUDManager.actualizarAuraHUD(this.auraActual, this.auraMaxima);
+        this.HUDManager.actualizarAuraHUD(0, this.auraMaxima);
 
         const mundo = this.matter.world;
 

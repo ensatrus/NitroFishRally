@@ -33,7 +33,7 @@ export default class HUDManager {
             strokeThickness: 5 
         });
 
-        this.textoAura = escena.add.text(25, this.auraY - this.auraAlto, "AURA", {
+        this.textoAura = escena.add.text(this.auraX, this.auraY - this.auraAlto, "AURA", {
             fontSize: "12px",
             fill: "#ffc800", // Color del texto
             fontStyle: "bold",
@@ -79,10 +79,26 @@ export default class HUDManager {
         this.barraAura.setScrollFactor(0, 0); 
         this.barraAura.setDepth(10);
 
+        // Temporal
+        this.textoOverdrive = escena.add.text(this.auraX + 10, this.auraY + 2, "OVERDRIVE", {
+            fontSize: "10px",
+            fill: "#d30000", // Color del texto
+            fontStyle: "bold",
+            fontFamily: "Velocidad",
+            stroke: '#000000', // Color del borde 
+            strokeThickness: 1
+        });
+
         this.textoAura.setOrigin(0, 0);
         this.textoAura.setScrollFactor(0, 0); 
         this.textoAura.setDepth(10);
         this.textoAura.scaleX = 1.5;
+
+        this.textoOverdrive.setOrigin(0, 0);
+        this.textoOverdrive.setScrollFactor(0, 0); 
+        this.textoOverdrive.setDepth(10);
+        this.textoOverdrive.scaleX = 1.5;
+        this.textoOverdrive.setAlpha(0);
 
         this.textoTiempo.setOrigin(1, 0);
         this.textoTiempo.setScrollFactor(0, 0); 
@@ -167,8 +183,11 @@ export default class HUDManager {
         }
     }
     
+    // Cuando el aura llegue a overdrive, tendremos un sprite con la barra en 3D y fueguito y tal
+    // Mientras tanto he hecho un texto para el overdrive.
     actualizarAuraHUD(auraPez, auraMaxima) {
         this.barraAura.clear();
+        this.textoOverdrive.setAlpha(auraPez >= auraMaxima * 2 ? 1 : 0);
 
         // Fondo de la barra 
         this.barraAura.fillStyle(0x333333, 1);
@@ -176,11 +195,22 @@ export default class HUDManager {
 
         // Relleno de la barra
         const porcentaje = auraPez / auraMaxima;
-        const anchoRelleno = Math.min(this.auraAncho * porcentaje, this.auraAncho);
+        const anchoRelleno = Math.min(this.auraAncho * porcentaje, this.auraAncho * 2);
 
-        if (anchoRelleno > 0) {
+        if (anchoRelleno > 0 && anchoRelleno <= this.auraAncho) {
             this.barraAura.fillStyle(0x00ffff, 1); 
             this.barraAura.fillRect(this.auraX + 2, this.auraY + 2, anchoRelleno - 4, this.auraAlto - 4);
+        }
+        else if (anchoRelleno > this.auraAncho && anchoRelleno < this.auraAncho * 2) {
+            this.barraAura.fillStyle(0x00ffff, 1); 
+            this.barraAura.fillRect(this.auraX + 2, this.auraY + 2, this.auraAncho - 4, this.auraAlto - 4);
+
+            this.barraAura.fillStyle(0x9d00ff, 1);
+            this.barraAura.fillRect(this.auraX + 2, this.auraY + 2, anchoRelleno - 4 - this.auraAncho, this.auraAlto - 4);
+        }
+        else if (anchoRelleno >= this.auraAncho * 2) {
+            this.barraAura.fillStyle(0xefbf04, 1);
+            this.barraAura.fillRect(this.auraX + 2, this.auraY + 2, this.auraAncho - 4, this.auraAlto - 4);
         }
     }
 
