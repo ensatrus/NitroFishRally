@@ -1,5 +1,6 @@
 import MenuPrincipal from './escenas/menuPrincipal.js';
 import TituloInicio from './escenas/tituloInicio.js';
+import MenuNiveles from './escenas/menuNiveles.js';
 import MenuPruebas from './escenas/menuPruebas.js';
 import Palmares from './escenas/palmares.js';
 import Debut from './escenas/debut.js';
@@ -18,7 +19,7 @@ const game = new Phaser.Game({
   width: 800,
   height: 600,
   mode: Phaser.Scale.FIT,
-scene: [Debut, TituloInicio, MenuPrincipal, MenuPruebas, mapaPrueba, Palmares, PruebaHUD, PruebaPiezas, PruebaConstructorNiveles, Garaje],  physics: {
+scene: [Debut, TituloInicio, MenuPrincipal, MenuNiveles, MenuPruebas, mapaPrueba, Palmares, PruebaHUD, PruebaPiezas, PruebaConstructorNiveles, Garaje],  physics: {
     default: 'matter',
     matter:{
       debug: true,
