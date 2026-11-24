@@ -52,6 +52,7 @@ export default class GameManager {
 
         //Creamos primero el pez porque los obstáculos dependen de que exista
         let puntoPez;
+        let direccion = 0;
         for (const object of objects) {
             if (object.point && object.name === "pez") {
                 puntoPez = object;
@@ -59,14 +60,22 @@ export default class GameManager {
             }
         }
         const statsPez = this.getStatsPez();
-        scene.pez = new Pez(scene.matter.world, puntoPez.x * escala, puntoPez.y * escala, "pezquesemueve", 
+
+        if (Array.isArray(puntoPez.properties)) {
+            for (const property of puntoPez.properties) {
+                if (property.name === "direction") {
+                    direccion = property.value;
+                }
+            }
+        }
+        scene.pez = new Pez(scene.matter.world, puntoPez.x * escala, puntoPez.y * escala, "pezquesemueve", direccion,
                             statsPez.aceleracion, statsPez.control, statsPez.freno);
 
 
         for (const object of objects) {
             const name = object.name;
 
-            if (Array.isArray(object.polygon)) {
+            if (Array.isArray(object.polygon) && name === "circuit") {
                 const vertices = [];
 
                 for (const point of object.polygon) {
@@ -88,7 +97,7 @@ export default class GameManager {
                 new Rock(scene, object.x * escala, object.y * escala, "rock3", scene.pez);
             
             } else if (object.point && name === "log") {
-                let direccion = 0;
+                direccion = 0;
                 let velocity = 0;
 
                 if (Array.isArray(object.properties)) {
