@@ -23,7 +23,7 @@ export default class HUDManager {
         const señalY = altoPantalla - 20;
         const señalDim = 64;
         const señalEscala = 1.5;
-        this.auraAncho = 300;
+        this.auraAncho = 210;
         this.auraAlto = 20;
 
         this.textoTiempo = escena.add.text(tiempoX, tiempoY, "00:00:000", {

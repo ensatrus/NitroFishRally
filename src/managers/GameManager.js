@@ -16,8 +16,6 @@ export default class GameManager {
         };
     }
 
-    
-
     setStatsPez(aceleracion, control, freno) {
         this.statsPez = { aceleracion, control, freno };
     }
