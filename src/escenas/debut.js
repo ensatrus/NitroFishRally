@@ -8,6 +8,8 @@ export default class Debut extends Phaser.Scene {
         this.load.image("pezquesemueve", "./assets/sprites/pezquesemueve.png"); // esto borrar cuando esté la animacion del pez
         this.load.image("señalIzq", "./assets/sprites/signalIzq.png");
         this.load.image("señalDch", "./assets/sprites/signalDch.png");
+        this.load.image("señalObs", "./assets/sprites/signalObs.png");
+        this.load.image("señalMultiple", "./assets/sprites/singalMult.png");
         this.load.spritesheet("pez", "./assets/sprites/pez_spritesheet.png", {
             frameWidth: 512,  
             frameHeight: 512  

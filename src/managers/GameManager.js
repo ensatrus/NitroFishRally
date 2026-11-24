@@ -1,6 +1,7 @@
 import Rock from "../gameObjects/rocks.js";
 import Log from "../gameObjects/logs.js";
 import Pez from "../gameObjects/pez.js";
+import Warning from "../gameObjects/warning.js";
 
 export default class GameManager {
     preload() {}
@@ -75,28 +76,49 @@ export default class GameManager {
         for (const object of objects) {
             const name = object.name;
 
-            if (Array.isArray(object.polygon) && name === "circuit") {
-                const vertices = [];
+            if (Array.isArray(object.polygon)) {
+                if(name === "circuit"){
+                    const vertices = [];
 
-                for (const point of object.polygon) {
-                    vertices.push({
-                        x: (object.x + point.x) * escala,
-                        y: (object.y + point.y) * escala
-                    });
+                    for (const point of object.polygon) {
+                        vertices.push({
+                            x: (object.x + point.x) * escala,
+                            y: (object.y + point.y) * escala
+                        });
+                    }
+
+                    const matterVertices = scene.matter.vertices;
+
+
+                    const center = matterVertices.centre(vertices);
+                    const circuitBody = scene.matter.add.fromVertices(center.x, center.y, vertices );
+
+                    scene.matter.body.setStatic(circuitBody, true);
                 }
+                else if(name === "warning"){
 
-                const matterVertices = scene.matter.vertices;
+                    const rotation = Phaser.Math.DegToRad(object.rotation);
+                    const cos = Math.cos(rotation);
+                    const sin = Math.sin(rotation);
+                    const vertices = [];
 
+                    for (const point of object.polygon) {
+                        vertices.push({
+                            x: (object.x + point.x * cos - point.y * sin) * escala,
+                            y: (object.y + point.x * sin + point.y * cos) * escala
+                        });
+                    }
 
-                const center = matterVertices.centre(vertices);
-                const circuitBody = scene.matter.add.fromVertices(center.x, center.y, vertices );
+                    const center = scene.matter.vertices.centre(vertices);
 
-                scene.matter.body.setStatic(circuitBody, true);
-
-            } else if (object.point && name === "rock") {
-                new Rock(scene, object.x * escala, object.y * escala, "rock3", scene.pez);
-            
-            } else if (object.point && name === "log") {
+                    new Warning(scene, object.x * escala, object.y * escala, null, center, vertices, object.type);
+                }
+            }
+            else if (object.point) {
+                if(name === "rock"){
+                    new Rock(scene, object.x * escala, object.y * escala, "rock3", scene.pez);
+                }
+                else if (name === "log") {
                 direccion = 0;
                 let velocity = 0;
 
@@ -109,6 +131,7 @@ export default class GameManager {
                 }
 
                 new Log(scene, object.x * escala, object.y * escala, "log3", scene.pez, velocity, direccion);
+                }
             }
         }
     }

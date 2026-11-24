@@ -2,7 +2,9 @@ export default class HUDManager {
     preload() {
     }
 
-    constructor(escena) {
+    constructor(escena, escenaSalida = "menuPruebas") {
+        this.escena = escena;
+        this.temporizadoresSenal = new Map();
         this.inicioTimer = escena.sys.game.loop.time;
 
         const anchoPantalla = escena.sys.game.config.width;
@@ -60,20 +62,34 @@ export default class HUDManager {
             strokeThickness: 5
         });
 
-        const señalDerecha = escena.add.image(señalX, señalY, "señalDch");
-        señalDerecha.setVisible(false);
-        señalDerecha.setOrigin(0.5, 1);       
-        señalDerecha.setScrollFactor(0);    
-        señalDerecha.setDepth(10);
+        this.señalDerecha = escena.add.image(señalX + señalDim, señalY, "señalDch");
+        this.señalDerecha.setVisible(false);
+        this.señalDerecha.setOrigin(0.5, 1);
+        this.señalDerecha.setScrollFactor(0);
+        this.señalDerecha.setDepth(10);
 
-        const señalIzquierda = escena.add.image(señalX, señalY, "señalIzq");
-        señalIzquierda.setVisible(false);
-        señalIzquierda.setOrigin(0.5, 1);       
-        señalIzquierda.setScrollFactor(0);    
-        señalIzquierda.setDepth(10);
+        this.señalIzquierda = escena.add.image(señalX - señalDim, señalY, "señalIzq");
+        this.señalIzquierda.setVisible(false);
+        this.señalIzquierda.setOrigin(0.5, 1);
+        this.señalIzquierda.setScrollFactor(0);
+        this.señalIzquierda.setDepth(10);
 
-        señalDerecha.setDisplaySize(señalDim * señalEscala, señalDim * señalEscala); 
-        señalIzquierda.setDisplaySize(señalDim * señalEscala, señalDim * señalEscala);
+        this.señalObstaculo = escena.add.image(señalX, señalY, "señalObs");
+        this.señalObstaculo.setVisible(false);
+        this.señalObstaculo.setOrigin(0.5, 1);
+        this.señalObstaculo.setScrollFactor(0);
+        this.señalObstaculo.setDepth(11);
+
+        this.señalMultiple = escena.add.image(señalX, señalY, "señalMultiple");
+        this.señalMultiple.setVisible(false);
+        this.señalMultiple.setOrigin(0.5, 1);
+        this.señalMultiple.setScrollFactor(0);
+        this.señalMultiple.setDepth(10);
+
+        this.señalDerecha.setDisplaySize(señalDim * señalEscala, señalDim * señalEscala);
+        this.señalIzquierda.setDisplaySize(señalDim * señalEscala, señalDim * señalEscala);
+        this.señalObstaculo.setDisplaySize(señalDim * señalEscala, señalDim * señalEscala);
+        this.señalMultiple.setDisplaySize(señalDim * señalEscala, señalDim * señalEscala);
 
         this.barraAura = escena.add.graphics();
         this.barraAura.setScrollFactor(0, 0); 
@@ -120,7 +136,7 @@ export default class HUDManager {
         boton.setScrollFactor(0, 0);
 
         boton.on("pointerdown", () => {
-            escena.scene.start("menuPruebas"); 
+            escena.scene.start(escenaSalida);
         });
 
         escena.add.text(600, 50, "Volver",{
@@ -138,49 +154,70 @@ export default class HUDManager {
         this.actualizarVelocidadHUD(velPez);
     }
 
-    actualizarSenalHUD(event){
-        let estaParpadeando = false;
-        if (event.key === 'ArrowLeft' && !estaParpadeando) {
-            estaParpadeando = true;
-
-            señalIzquierda.setVisible(true);
-            señalIzquierda.setAlpha(1);
-
-            const parpadeo = this.tweens.add({
-                targets: señalIzquierda,
-                alpha: 0,           
-                duration: 90,      
-                yoyo: true,        
-                repeat: -1         
+    actualizarSenalHUD(type){
+        //Señal de obstáculos múltiples
+        if (type === "start") {
+            this.escena.tweens.killTweensOf(this.señalMultiple);
+            this.señalMultiple.setVisible(true);
+            this.señalMultiple.setAlpha(1);
+            this.escena.tweens.add({
+                targets: this.señalMultiple,
+                alpha: 0,
+                duration: 90,
+                yoyo: true,
+                repeat: -1
             });
-
-            this.time.delayedCall(2000, () => {
-                parpadeo.remove();   
-                señalIzquierda.setVisible(false); 
-                estaParpadeando = false;    
-            });
+            return;
         }
 
-        if (event.key === 'ArrowRight' && !estaParpadeando) {
-            estaParpadeando = true;
-
-            señalDerecha.setVisible(true);
-            señalDerecha.setAlpha(1);
-
-            const parpadeo = this.tweens.add({
-                targets: señalDerecha,
-                alpha: 0,           
-                duration: 90,      
-                yoyo: true,        
-                repeat: -1         
-            });
-
-            this.time.delayedCall(2000, () => {
-                parpadeo.remove();   
-                señalDerecha.setVisible(false); 
-                estaParpadeando = false;    
-            });
+        if (type === "end") {
+            this.escena.tweens.killTweensOf(this.señalMultiple);
+            this.señalMultiple.setVisible(false);
+            this.señalMultiple.setAlpha(1);
+            return;
         }
+
+        if (type === "multiple") {
+            return;
+        }
+
+        //Señales que desaparecen con el tiempo
+        const señales = {
+            left: this.señalIzquierda,
+            right: this.señalDerecha,
+            obstacle: this.señalObstaculo
+        };
+        const señal = señales[type];
+
+        if (!señal) {
+            console.warn(`Tipo de señal de warning no reconocido: ${type}`);
+            return;
+        }
+
+        const temporizadorAnterior = this.temporizadoresSenal.get(type);
+        if (temporizadorAnterior) {
+            this.escena.time.removeEvent(temporizadorAnterior);
+        }
+
+        señal.setVisible(true);
+        señal.setAlpha(1);
+
+        this.escena.tweens.killTweensOf(señal);
+        this.escena.tweens.add({
+            targets: señal,
+            alpha: 0,
+            duration: 90,
+            yoyo: true,
+            repeat: -1
+        });
+
+        const temporizador = this.escena.time.delayedCall(2000, () => {
+            this.escena.tweens.killTweensOf(señal);
+            señal.setVisible(false);
+            señal.setAlpha(1);
+            this.temporizadoresSenal.delete(type);
+        });
+        this.temporizadoresSenal.set(type, temporizador);
     }
     
     // Cuando el aura llegue a overdrive, tendremos un sprite con la barra en 3D y fueguito y tal
