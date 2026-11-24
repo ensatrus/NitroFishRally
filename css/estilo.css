@@ -79,10 +79,9 @@ a:active {
 }
 
 #juego {
-    width: 100% !important;     
-    max-width: 1080px;          
-    height: auto !important;    
-    aspect-ratio: 4 / 3;     
+  width: min(100%, calc((100dvh - 102px) * 4 / 3), 1080px);
+  aspect-ratio: 4 / 3;
+  height: auto;   
 }
 
 .menu{
