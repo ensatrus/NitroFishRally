@@ -18,7 +18,11 @@ const game = new Phaser.Game({
   canvas: document.getElementById('juego'),
   width: 800,
   height: 600,
-  mode: Phaser.Scale.FIT,
+  scale: {
+    parent: 'juego-seccion',
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH
+  },
 scene: [Debut, TituloInicio, MenuPrincipal, MenuNiveles, MenuPruebas, mapaPrueba, Palmares, PruebaHUD, PruebaPiezas, PruebaConstructorNiveles, Garaje],  physics: {
     default: 'matter',
     matter:{
