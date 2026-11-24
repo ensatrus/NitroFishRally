@@ -40,8 +40,16 @@ export default class MenuPrincipal extends Phaser.Scene{
         botonPalmares.setInteractive();
         botonOpciones.setInteractive();
 
+        botonJugar.on("pointerdown", () => {
+            this.scene.start("menuNiveles"); 
+        });
+
         botonGaraje.on("pointerdown", () => {
             this.scene.start("garaje"); 
+        });
+
+        botonPalmares.on("pointerdown", () => {
+            this.scene.start("palmares"); 
         });
 
         const textoJugar = this.add.text(300, 250, "Jugar",{

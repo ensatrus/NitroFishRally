@@ -61,6 +61,10 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         return Math.hypot(x, y);
     }
 
+    getPolarRot(){
+        return new Phaser.Math.Vector2().setToPolar(this.rotation);
+    }
+
     getAura() {
         return this.aura;
     }
@@ -70,41 +74,57 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
     }
 
     actualizarPasoFisico() {
-       
         const derrape = this.getDerrape();
 
-        if (this.keys.a.isDown || this.keys.left.isDown) {
-            this.rotar(-this.control  * this.#controlFactor);
-        }
+        const giroIzq = this.keys.a.isDown || this.keys.left.isDown;
+        const giroDch = this.keys.d.isDown || this.keys.right.isDown;
+        const adelante = this.keys.w.isDown || this.keys.up.isDown;
+        const atras = this.keys.s.isDown || this.keys.down.isDown;
 
-        if (this.keys.d.isDown || this.keys.right.isDown) {
-            this.rotar(this.control  * this.#controlFactor);
+        if (giroIzq) {
+            this.rotar(-this.control * this.#controlFactor);
+        }
+        if (giroDch) {
+            this.rotar(this.control * this.#controlFactor);
         }
 
         this.dirToAngle();
 
-        if (this.keys.w.isDown || this.keys.up.isDown) {
-            if(this.getSpeed() < (this.#maxSpeedFactor/(this.masa))) this.acelerar(1);
+        if (adelante) {
+            if (this.getSpeed() < (this.#maxSpeedFactor / this.masa)) this.acelerar(1);
             this.setFrictionAir(derrape * this.masa / this.#drivingFrictionDivider);
-            this.play("pez_movimiento", true);  // esto no funciona bien de momento
-            this.anims.timeScale = Math.max(0.5, this.getSpeed() / 2);
+        } 
+        else if (atras) {
+            this.acelerar(this.#marchaAtras);
+            this.setFrictionAir(derrape * this.#marchaAtrasFrictionFactor);
         } 
         else {
             this.setFrictionAir(derrape * this.#frictionFactor);
+        }
+
+        if (this.keys.space.isDown) {
+            if (this.getSpeed() > 0.1) this.frenar();
+            this.setFrictionAir((this.freno + 2) / this.#stoppingFrictionDivider);
+        }
+
+        if (giroIzq && !giroDch) {
+            this.play("pez_giroIzq", true);
+            this.anims.timeScale = 1;
+        } 
+        else if (giroDch && !giroIzq) {
+            this.play("pez_giroDch", true);
+            this.anims.timeScale = 1;
+        } 
+        else if (adelante || atras) {
+            this.play("pez_movimiento", true);
+            this.anims.timeScale = Math.max(0.5, this.getSpeed() / 2);
+        } 
+        else {
             this.play("pez_idle", true);
             this.anims.timeScale = 1;
         }
-
-        if (this.keys.s.isDown || this.keys.down.isDown) {
-            this.acelerar(this.#marchaAtras);
-            this.setFrictionAir(derrape * this.#marchaAtrasFrictionFactor);
-        }
-        
-        if(this.keys.space.isDown){
-            if(this.getSpeed() > 0.1) this.frenar();
-            this.setFrictionAir((this.freno+2)/this.#stoppingFrictionDivider);
-        }
     }
+
 
     actualizarAura() {
         const velocidad = this.getSpeed()*3;

@@ -2,19 +2,21 @@ export default class CameraManager {
     constructor(scene) {
         this.scene=scene;
 
-        scene.cameras.main.setZoom(0.7);
+        scene.cameras.main.setZoom(0.6);
         scene.cameras.main.startFollow(scene.pez, true);
-        this.cameraPos = new Phaser.Math.Vector2(0, 0);
+        this.cameraPos = new Phaser.Math.Vector2(0, 0)
         
     }
     
     update(t, dt){
         const velocidad = this.scene.pez.getVelocity();
-        const cameraSpeedPerSecond = 100;
-        const anticipacion = 8;
+        const rotation = this.scene.pez.getPolarRot();
+        const cameraSpeedPerSecond = 120;
+        const anticipacion = 7;
+        const rotationMult = 10;
         const targetOffset = new Phaser.Math.Vector2(
-            -velocidad.x * anticipacion,
-            -velocidad.y * anticipacion
+            -(velocidad.x + rotation.x * rotationMult)* anticipacion,
+            -(velocidad.y + rotation.y * rotationMult)* anticipacion
         );
         const difference = targetOffset.clone().subtract(this.cameraPos);
         const distance = difference.length();

@@ -88,14 +88,14 @@ export default class Debut extends Phaser.Scene {
         this.anims.create({
             key: "pez_giroIzq",
             frames: this.anims.generateFrameNumbers("pez", {start: 0, end:5}),
-            frameRate: 9, 
+            frameRate: 15, 
             repeat: -1 // -1 para bucle, 0 para no bucle
         })
 
         this.anims.create({
             key: "pez_giroDch",
             frames: this.anims.generateFrameNumbers("pez", {start: 6, end:11}),
-            frameRate: 9, 
+            frameRate: 15, 
             repeat: -1 // -1 para bucle, 0 para no bucle
         })
 
