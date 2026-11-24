@@ -41,7 +41,7 @@ export default class PruebaHUD extends Phaser.Scene {
     }
 
     update(t, dt) {
-        this.pez.actualizarAura();
+        this.pez.actualizarAura(this.auraMaxima);
         this.HUDManager.actualizarHUD(this.pez.getAura(), this.auraMaxima,
                                       this.time.now, this.pez.getSpeed());
         this.CameraManager.update(t, dt);
