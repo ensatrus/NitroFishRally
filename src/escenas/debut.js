@@ -112,7 +112,7 @@ export default class Debut extends Phaser.Scene {
         this.anims.create({
             key: "medallaBronce_animacion",
             frames: this.anims.generateFrameNumbers("medallaBronce", {start: 0, end:29}),
-            frameRate: 9, 
+            frameRate: 15, 
             repeat: 0 // -1 para bucle, 0 para no bucle
         })
 
@@ -125,7 +125,7 @@ export default class Debut extends Phaser.Scene {
         this.anims.create({
             key: "medallaPlata_animacion",
             frames: this.anims.generateFrameNumbers("medallaPlata", {start: 0, end:29}),
-            frameRate: 9, 
+            frameRate: 15, 
             repeat: 0 // -1 para bucle, 0 para no bucle
         })
 
@@ -138,7 +138,7 @@ export default class Debut extends Phaser.Scene {
         this.anims.create({
             key: "medallaOro_animacion",
             frames: this.anims.generateFrameNumbers("medallaOro", {start: 0, end:29}),
-            frameRate: 9, 
+            frameRate: 15, 
             repeat: 0 // -1 para bucle, 0 para no bucle
         })
     }
