@@ -3,8 +3,11 @@ export default class Log extends Phaser.Physics.Matter.Sprite {
     #empujar;
     #velocidad;
     #direccion;
+    #distancia;
+    #mX;
+    #mY;
 
-    constructor(scene, x, y, textura, pez, velocidad = 0, direccion = 0) {
+    constructor(scene, x, y, textura, pez, velocidad = 0, direccion = 0, distancia = 0) {
 
         super(scene.matter.world, x, y, textura, null, {
             shape: scene.cache.json.get('log3_t').log3,
@@ -30,10 +33,27 @@ export default class Log extends Phaser.Physics.Matter.Sprite {
 
         const rad = Phaser.Math.DegToRad(this.#direccion);
         this.setVelocity(Math.cos(rad) * this.#velocidad, Math.sin(rad) * this.#velocidad);
+        
+
+        this.#distancia = distancia;
+        this.#mX = x;
+        this.#mY = y;
+        this.#movimiento();
     }
 
-    
+    #movimiento() {
+        this.scene.matter.world.on('beforeupdate', () => {
 
+            const distActual = Phaser.Math.Distance.Between(this.#mX, this.#mY, this.x, this.y);
+
+            if (distActual >= this.#distancia) {
+
+                this.setVelocity(-this.body.velocity.x, -this.body.velocity.y);
+            }
+        });
+    }
+
+   
     #configurarColisiones() {
         this.scene.matter.world.on('collisionstart', (e) => {
             e.pairs.forEach((p) => {

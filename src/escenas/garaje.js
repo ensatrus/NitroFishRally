@@ -36,7 +36,7 @@ export default class Garaje extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(boton).setScrollFactor(0);
 
-        let acMin = this.add.rectangle(130, 420, 150, 50, 0x3287d1);
+        let acMin = this.add.rectangle(130, 420, 150, 50, this.aceleracion === 3 ? 0x00d0d0 : 0x3287d1);
         
         acMin.setInteractive();
         acMin.setScrollFactor(0);
@@ -55,7 +55,7 @@ export default class Garaje extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(acMin).setScrollFactor(0);
 
-        let acMid = this.add.rectangle(130, 470, 150, 50, 0x00d0d0);
+        let acMid = this.add.rectangle(130, 470, 150, 50, this.aceleracion === 5 ? 0x00d0d0 : 0x3287d1);
         
         acMid.setInteractive();
         acMid.setScrollFactor(0);
@@ -74,7 +74,7 @@ export default class Garaje extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(acMid).setScrollFactor(0);
 
-        let acMax = this.add.rectangle(130, 520, 150, 50, 0x3287d1);
+        let acMax = this.add.rectangle(130, 520, 150, 50, this.aceleracion === 7 ? 0x00d0d0 : 0x3287d1);
         
         acMax.setInteractive();
         acMax.setScrollFactor(0);
@@ -93,7 +93,7 @@ export default class Garaje extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(acMax).setScrollFactor(0);
 
-        let frMin = this.add.rectangle(260, 420, 130, 50, 0x3287d1);
+        let frMin = this.add.rectangle(260, 420, 130, 50, this.freno === 3 ? 0x00d0d0 : 0x3287d1);
         
         frMin.setInteractive();
         frMin.setScrollFactor(0);
@@ -112,7 +112,7 @@ export default class Garaje extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(frMin).setScrollFactor(0);
 
-        let frMid = this.add.rectangle(260, 470, 130, 50, 0x00d0d0);
+        let frMid = this.add.rectangle(260, 470, 130, 50, this.freno === 5 ? 0x00d0d0 : 0x3287d1);
         
         frMid.setInteractive();
         frMid.setScrollFactor(0);
@@ -131,7 +131,7 @@ export default class Garaje extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(frMid).setScrollFactor(0);
 
-        let frMax = this.add.rectangle(250, 520, 130, 50, 0x3287d1);
+        let frMax = this.add.rectangle(250, 520, 130, 50, this.freno === 7 ? 0x00d0d0 : 0x3287d1);
         
         frMax.setInteractive();
         frMax.setScrollFactor(0);
@@ -150,7 +150,7 @@ export default class Garaje extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(frMax).setScrollFactor(0);
 
-        let ctrMin = this.add.rectangle(370, 420, 120, 50, 0x3287d1);
+        let ctrMin = this.add.rectangle(370, 420, 120, 50, this.control === 3 ? 0x00d0d0 : 0x3287d1);
         
         ctrMin.setInteractive();
         ctrMin.setScrollFactor(0);
@@ -169,7 +169,7 @@ export default class Garaje extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(ctrMin).setScrollFactor(0);
 
-        let ctrMid = this.add.rectangle(370, 470, 120, 50, 0x00d0d0);
+        let ctrMid = this.add.rectangle(370, 470, 120, 50, this.control === 5 ? 0x00d0d0 : 0x3287d1);
         
         ctrMid.setInteractive();
         ctrMid.setScrollFactor(0);
@@ -188,7 +188,7 @@ export default class Garaje extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5).setAbove(ctrMid).setScrollFactor(0);
 
-        let ctrMax = this.add.rectangle(370, 520, 120, 50, 0x3287d1);
+        let ctrMax = this.add.rectangle(370, 520, 120, 50, this.control === 7 ? 0x00d0d0 : 0x3287d1);
         
         ctrMax.setInteractive();
         ctrMax.setScrollFactor(0);
@@ -221,6 +221,8 @@ export default class Garaje extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5).setScrollFactor(0);
 
+
+
         this.cameras.main.fadeIn(400, 0, 0, 0); 
     }
 
@@ -229,5 +231,7 @@ export default class Garaje extends Phaser.Scene{
 
         this.masaHUD.setText(`Masa: ${masaActual}`);
         this.maxSpeedHUD.setText(`Velocidad Máxima: ${(1350/(masaActual)).toFixed(0)} km/h`);
+
+
     }
 }
