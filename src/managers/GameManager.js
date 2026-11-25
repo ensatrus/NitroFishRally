@@ -121,17 +121,17 @@ export default class GameManager {
                 }
                 else if (name === "log") {
                 direccion = 0;
-                let velocity = 3;
+                let velocity = 2;
 
                 if (Array.isArray(object.properties)) {
                     for (const property of object.properties) {
                         if (property.name === "direction") {
-                            direccion = property.value;
+                            direccion = property.value - 90;
                         }
                     }
                 }
 
-                new Log(scene, object.x * escala, object.y * escala, "log3", scene.pez, velocity, direccion, 100);
+                new Log(scene, object.x * escala, object.y * escala, "log3", scene.pez, velocity, direccion, 200);
                 }
             }
         }

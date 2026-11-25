@@ -30,12 +30,14 @@ export default class Debut extends Phaser.Scene {
         this.load.video("videoEjemplo", "./assets/videos/bad apple.mp4", true); //true para que esté muteado
         this.load.image("fih", "./assets/sprites/fih.png");
         this.load.image("placeholderBackground", "./assets/sprites/background-placeholder.png")
-        this.load.image("fondoPrueba", "./assets/sprites/Esquema-Circuito1.png");
+        this.load.image("fondoPrueba1", "./assets/sprites/Esquema-Circuito1.png");
+        this.load.image("fondoPrueba2", "./assets/sprites/Nivel_2.png");
         this.load.font("Reloj Digital", "./assets/fonts/CursedTimerUlil-Aznm.ttf", "truetype");
         this.load.font("Velocidad", "./assets/fonts/AmericanCaptainPatrius02Fre-PvPd.ttf", "truetype");
         this.load.image('Circuit', './assets/sprites/Circuit.png');
         this.load.json('Circuit_t', './assets/json/circuit.json');
         this.load.tilemapTiledJSON('Mapa1', './assets/json/Mapa1.tmj');
+        this.load.tilemapTiledJSON('Mapa2', './assets/json/Mapa2.tmj');
         this.load.image('fondoPalmares', './assets/sprites/fondoPalmares.jpg');
         this.load.image('log1', './assets/sprites/log1.png');
         this.load.json("log1_t", "./assets/json/log1.json");

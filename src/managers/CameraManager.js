@@ -12,7 +12,7 @@ export default class CameraManager {
         const velocidad = this.scene.pez.getVelocity();
         const rotation = this.scene.pez.getPolarRot();
         const cameraSpeedPerSecond = 120;
-        const anticipacion = 7;
+        const anticipacion = 8;
         const rotationMult = 10;
         const targetOffset = new Phaser.Math.Vector2(
             -(velocidad.x + rotation.x * rotationMult)* anticipacion,

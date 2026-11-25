@@ -95,7 +95,7 @@
                         {
                          "name":"direction",
                          "type":"int",
-                         "value":75
+                         "value":165
                         }],
                  "rotation":0,
                  "type":"log",
@@ -1640,7 +1640,7 @@
                  "type":"circuit",
                  "visible":true,
                  "width":0,
-                 "x":115.666666666667,
+                 "x":116.666666666667,
                  "y":79.3333333333334
                 }, 
                 {
@@ -1652,7 +1652,7 @@
                         {
                          "name":"direction",
                          "type":"int",
-                         "value":0
+                         "value":90
                         }],
                  "rotation":0,
                  "type":"log",
@@ -1670,7 +1670,7 @@
                         {
                          "name":"direction",
                          "type":"int",
-                         "value":0
+                         "value":270
                         }],
                  "rotation":0,
                  "type":"log",
@@ -1724,7 +1724,7 @@
                         {
                          "name":"direction",
                          "type":"int",
-                         "value":55
+                         "value":145
                         }],
                  "rotation":0,
                  "type":"log",
@@ -1742,7 +1742,7 @@
                         {
                          "name":"direction",
                          "type":"int",
-                         "value":55
+                         "value":325
                         }],
                  "rotation":0,
                  "type":"log",
@@ -1760,7 +1760,7 @@
                         {
                          "name":"direction",
                          "type":"int",
-                         "value":85
+                         "value":175
                         }],
                  "rotation":0,
                  "type":"log",
@@ -1778,7 +1778,7 @@
                         {
                          "name":"direction",
                          "type":"int",
-                         "value":60
+                         "value":330
                         }],
                  "rotation":0,
                  "type":"log",
@@ -1881,7 +1881,7 @@
                         {
                          "name":"direction",
                          "type":"int",
-                         "value":40
+                         "value":130
                         }],
                  "rotation":0,
                  "type":"log",
@@ -1899,7 +1899,7 @@
                         {
                          "name":"direction",
                          "type":"int",
-                         "value":140
+                         "value":230
                         }],
                  "rotation":0,
                  "type":"log",
@@ -3220,7 +3220,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":89,
+ "nextobjectid":90,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
