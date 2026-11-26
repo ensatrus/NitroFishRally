@@ -89,7 +89,7 @@ export default class Level extends Phaser.Scene {
             const otroObjeto = meta === objetoA ? objetoB : objetoA;
 
             if (meta && otroObjeto === this.pez) {
-                this.game.gameManager.terminarNivel(this.sys.game.loop.time - this.inicioTimer, meta.nivel, this.pez.getAura(), this.configNivel.auraMaxima);
+                this.game.gameManager.terminarNivel(this.sys.game.loop.time - this.inicioTimer, meta.nivel, this.pez.getAura(), this.auraMaxima);
                 this.scene.start(this.configNivel.escenaSalida);
             }
         }

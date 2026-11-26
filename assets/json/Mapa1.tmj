@@ -1784,8 +1784,8 @@
                  "type":"log",
                  "visible":true,
                  "width":0,
-                 "x":1094.66666666667,
-                 "y":1072
+                 "x":1100.16666666667,
+                 "y":1077
                 },
             
                 {
@@ -3198,7 +3198,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":91,
+ "nextobjectid":92,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

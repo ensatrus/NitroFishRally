@@ -11,9 +11,6 @@ export default class GameManager {
     constructor() {
         this.tNivel = [undefined, undefined, undefined];
 
-        // VALORES TEMPORALES
-        this.tNivel = [97, 162, undefined];
-
         this.statsPez = {
             aceleracion: 5,
             control: 5,
@@ -39,11 +36,9 @@ export default class GameManager {
         return this.tNivel[nivel - 1];
     }
 
-    terminarNivel(tiempo, nivel){
+    terminarNivel(tiempo, nivel, aura, auraMin){
 
-        this.setTiempoNivel(nivel , Math.floor(tiempo/1000));
-        
-        console.log(Math.floor(tiempo/1000));
+        this.setTiempoNivel(nivel , Math.floor(tiempo/1000), aura, auraMin);
 
     }
 
