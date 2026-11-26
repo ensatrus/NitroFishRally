@@ -29,7 +29,7 @@ export default class Palmares extends Phaser.Scene {
                this.mejoresTiempos[i] = gameManager.getTiempoNivel(i + 1);
                let textoTiempo;
                if (this.mejoresTiempos[i] !== undefined) {
-                    textoTiempo = this.add.text(150 + i * 250, 200, "Nivel " + (i + 1) + ": " + (this.mejoresTiempos[i] / 60).toFixed(0) + ":" + (this.mejoresTiempos[i] % 60), {
+                    textoTiempo = this.add.text(150 + i * 250, 200, "Nivel " + (i + 1) + ": " + Math.floor(this.mejoresTiempos[i] / 60) + ":" + (this.mejoresTiempos[i] % 60), {
                          fontSize: "18px",
                          fill: "#ffffff",
                          fontStyle: "bold",

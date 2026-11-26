@@ -2,6 +2,8 @@ import Rock from "../gameObjects/rocks.js";
 import Log from "../gameObjects/logs.js";
 import Pez from "../gameObjects/pez.js";
 import Warning from "../gameObjects/warning.js";
+import Waterflow from "../gameObjects/waterflow.js";
+import Meta from "../gameObjects/meta.js";
 
 export default class GameManager {
     preload() {}
@@ -27,14 +29,22 @@ export default class GameManager {
         return this.statsPez;
     }
 
-    setTiempoNivel(nivel, tiempo) {
-        if (this.tNivel[nivel - 1] === undefined || tiempo < this.tNivel[nivel - 1]) {
+    setTiempoNivel(nivel, tiempo, aura, auraMin) {
+        if ((this.tNivel[nivel - 1] === undefined || tiempo < this.tNivel[nivel - 1]) && aura > auraMin) {
             this.tNivel[nivel - 1] = tiempo;
         }
     }
 
     getTiempoNivel(nivel) {
         return this.tNivel[nivel - 1];
+    }
+
+    terminarNivel(tiempo, nivel){
+
+        this.setTiempoNivel(nivel , Math.floor(tiempo/1000));
+        
+        console.log(Math.floor(tiempo/1000));
+
     }
 
     construirNivel(scene, nivel, escala = 1) {
@@ -54,7 +64,7 @@ export default class GameManager {
 
         //Creamos primero el pez porque los obstáculos dependen de que exista
         let puntoPez;
-        let direccion = 0;
+        let direction = 0;
         for (const object of objects) {
             if (object.point && object.name === "pez") {
                 puntoPez = object;
@@ -66,11 +76,11 @@ export default class GameManager {
         if (Array.isArray(puntoPez.properties)) {
             for (const property of puntoPez.properties) {
                 if (property.name === "direction") {
-                    direccion = property.value;
+                    direction = property.value;
                 }
             }
         }
-        scene.pez = new Pez(scene.matter.world, puntoPez.x * escala, puntoPez.y * escala, direccion,
+        scene.pez = new Pez(scene.matter.world, puntoPez.x * escala, puntoPez.y * escala, direction,
                             statsPez.aceleracion, statsPez.control, statsPez.freno);
 
 
@@ -78,60 +88,131 @@ export default class GameManager {
             const name = object.name;
 
             if (Array.isArray(object.polygon)) {
-                if(name === "circuit"){
-                    const vertices = [];
+                switch(name){
+                    case "circuit":{
+                        const vertices = [];
 
-                    for (const point of object.polygon) {
-                        vertices.push({
-                            x: (object.x + point.x) * escala,
-                            y: (object.y + point.y) * escala
-                        });
+                        for (const point of object.polygon) {
+                            vertices.push({
+                                x: (object.x + point.x) * escala,
+                                y: (object.y + point.y) * escala
+                            });
+                        }
+
+                        const matterVertices = scene.matter.vertices;
+
+
+                        const center = matterVertices.centre(vertices);
+                        const circuitBody = scene.matter.add.fromVertices(center.x, center.y, vertices );
+
+                        scene.matter.body.setStatic(circuitBody, true);
+                        break;
                     }
+                    case"warning":{
 
-                    const matterVertices = scene.matter.vertices;
+                        const rotation = Phaser.Math.DegToRad(object.rotation);
+                        const cos = Math.cos(rotation);
+                        const sin = Math.sin(rotation);
+                        const vertices = [];
 
+                        for (const point of object.polygon) {
+                            vertices.push({
+                                x: (object.x + point.x * cos - point.y * sin) * escala,
+                                y: (object.y + point.x * sin + point.y * cos) * escala
+                            });
+                        }
 
-                    const center = matterVertices.centre(vertices);
-                    const circuitBody = scene.matter.add.fromVertices(center.x, center.y, vertices );
+                        const center = scene.matter.vertices.centre(vertices);
 
-                    scene.matter.body.setStatic(circuitBody, true);
-                }
-                else if(name === "warning"){
-
-                    const rotation = Phaser.Math.DegToRad(object.rotation);
-                    const cos = Math.cos(rotation);
-                    const sin = Math.sin(rotation);
-                    const vertices = [];
-
-                    for (const point of object.polygon) {
-                        vertices.push({
-                            x: (object.x + point.x * cos - point.y * sin) * escala,
-                            y: (object.y + point.x * sin + point.y * cos) * escala
-                        });
+                        new Warning(scene, object.x * escala, object.y * escala, null, center, vertices, object.type);
+                        break;
                     }
+                    case "waterflow":{
+                        const rotation = Phaser.Math.DegToRad(object.rotation);
+                        const cos = Math.cos(rotation);
+                        const sin = Math.sin(rotation);
+                        const vertices = [];
+                        let force;
 
-                    const center = scene.matter.vertices.centre(vertices);
+                        for (const point of object.polygon) {
+                            vertices.push({
+                                x: (object.x + point.x * cos - point.y * sin) * escala,
+                                y: (object.y + point.x * sin + point.y * cos) * escala
+                            });
+                        }
 
-                    new Warning(scene, object.x * escala, object.y * escala, null, center, vertices, object.type);
+                        if (Array.isArray(object.properties)) {
+                            for (const property of object.properties) {
+                                if (property.name === "direction") {
+                                    direction = property.value-90;
+                                }
+                                if (property.name === "force"){
+                                    force = property.value/20000;
+                                }
+                            }
+                        }
+
+                        const center = scene.matter.vertices.centre(vertices);
+
+                        new Waterflow(scene, object.x * escala, object.y * escala, "waterflow", scene.pez, force, direction, center, vertices);
+                        break;
+                    }
+                    case "meta":{
+                        const rotation = Phaser.Math.DegToRad(object.rotation);
+                        const cos = Math.cos(rotation);
+                        const sin = Math.sin(rotation);
+                        const vertices = [];
+                        let nivel;
+
+                        for (const point of object.polygon) {
+                            vertices.push({
+                                x: (object.x + point.x * cos - point.y * sin) * escala,
+                                y: (object.y + point.x * sin + point.y * cos) * escala
+                            });
+                        }
+
+                        if (Array.isArray(object.properties)) {
+                            for (const property of object.properties) {
+                                if (property.name === "nivel") {
+                                    nivel = property.value;
+                                }
+                            }
+                        }
+
+                        const center = scene.matter.vertices.centre(vertices);
+
+                        new Meta(scene, object.x * escala, object.y * escala, null, center, vertices, nivel);
+                        break;
+                    }
                 }
             }
             else if (object.point) {
-                if(name === "rock"){
-                    new Rock(scene, object.x * escala, object.y * escala, "rock3", scene.pez);
-                }
-                else if (name === "log") {
-                direccion = 0;
-                let velocity = 2;
+                switch(name){
+                    case "rock":{
+                        new Rock(scene, object.x * escala, object.y * escala, "rock3", scene.pez);
+                        break;
+                    }
+                    case "log": {
+                    direction = 0;
+                    let velocity = 2;
+                    let distance = 250;
 
-                if (Array.isArray(object.properties)) {
-                    for (const property of object.properties) {
-                        if (property.name === "direction") {
-                            direccion = property.value - 90;
+                    if (Array.isArray(object.properties)) {
+                        for (const property of object.properties) {
+                            if (property.name === "direction") {
+                                direction = property.value - 90;
+                            }
+                            if (property.name === "velocity"){
+                                velocity = property.value;
+                            }
+                            if (property.name === "distance"){
+                                distance = property.value*escala;
+                            }
                         }
                     }
-                }
-
-                new Log(scene, object.x * escala, object.y * escala, "log3", scene.pez, velocity, direccion, 200);
+                    new Log(scene, object.x * escala, object.y * escala, "log3", scene.pez, velocity, direction, distance);
+                    break;
+                    }
                 }
             }
         }

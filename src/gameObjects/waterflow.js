@@ -2,28 +2,27 @@ export default class Waterflow extends Phaser.Physics.Matter.Sprite {
     #pezDentro;
     #fuerza;
     #direccion;
+    #actualizarCorriente;
 
-    constructor(scene, x, y, textura, pez, fuerza = 0.05, direccion = 0) {
+    constructor(scene, x, y, textura, pez, fuerza = 0.05, direccion = 0, center, vertices,) {
 
-        super(scene.matter.world, x, y, textura, null, {
-            shape: scene.cache.json.get('waterflow_t').waterflow,
-        });
+        super(scene.matter.world, x, y, textura, null);
 
         this.pez = pez;
         this.#pezDentro = false;
 
-        this.scene.add.existing(this);
-
-        this.#configurarDeteccion();
+        const body = scene.matter.add.fromVertices(center.x, center.y, vertices);
+        this.setExistingBody(body);
+        this.setStatic(true);
+        this.setSensor(true);
+        scene.add.existing(this);
 
         this.#fuerza = fuerza;
         this.#direccion = direccion;
-        this.setAngle(this.#direccion);
+        this.#configurarDeteccion();
     }
 
-    preUpdate(time, delta) {
-        super.preUpdate(time, delta);
-
+    #aplicarCorriente() {
         if (this.#pezDentro && this.pez) {
             this.pez.setAwake(true);
 
@@ -36,26 +35,39 @@ export default class Waterflow extends Phaser.Physics.Matter.Sprite {
     }
    
     #configurarDeteccion() {
-        this.scene.matter.world.on('collisionstart', (e) => {
-            e.pairs.forEach((p) => {
+        const mundo = this.scene.matter.world;
+        const alEmpezarColision = (e) => {
+            for (const p of e.pairs) {
                 const isWaterflow = p.bodyA.parent === this.body || p.bodyB.parent === this.body;
                 const isPez = p.bodyA.parent === this.pez.body || p.bodyB.parent === this.pez.body;
 
                 if (isWaterflow && isPez) {
                     this.#pezDentro = true;
                 }
-            });
-        });
+            }
+        };
 
-        this.scene.matter.world.on('collisionend', (e) => {
-            e.pairs.forEach((p) => {
+        const alTerminarColision = (e) => {
+            for (const p of e.pairs) {
                 const isWaterflow = p.bodyA.parent === this.body || p.bodyB.parent === this.body;
                 const isPez = p.bodyA.parent === this.pez.body || p.bodyB.parent === this.pez.body;
 
                 if (isWaterflow && isPez) {
                     this.#pezDentro = false;
                 }
-            });
+            }
+        };
+
+        this.#actualizarCorriente = () => this.#aplicarCorriente();
+
+        mundo.on('collisionstart', alEmpezarColision);
+        mundo.on('collisionend', alTerminarColision);
+        mundo.on('beforeupdate', this.#actualizarCorriente);
+
+        this.scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+            mundo.off('collisionstart', alEmpezarColision);
+            mundo.off('collisionend', alTerminarColision);
+            mundo.off('beforeupdate', this.#actualizarCorriente);
         });
     }
 

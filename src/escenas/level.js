@@ -1,6 +1,7 @@
 import CameraManager from "../managers/CameraManager.js";
 import HUDManager from "../managers/HUDManager.js";
 import Warning from "../gameObjects/warning.js";
+import Meta from "../gameObjects/meta.js";
 
 export default class Level extends Phaser.Scene {
     constructor(config) {
@@ -32,6 +33,7 @@ export default class Level extends Phaser.Scene {
         this.auraMaxima = auraMaxima;
         this.game.gameManager.construirNivel(this, mapa, escalaMapa);
         this.pez.setDepth(1);
+        this.inicioTimer = this.sys.game.loop.time;
 
         this.HUDManager = new HUDManager(this, escenaSalida);
         this.CameraManager = new CameraManager(this);
@@ -42,16 +44,19 @@ export default class Level extends Phaser.Scene {
         this.actualizarPez = () => this.pez.actualizarPasoFisico();
         mundo.on("beforeupdate", this.actualizarPez);
         mundo.on("collisionstart", this.warningTrigger);
+        mundo.on("collisionstart", this.winTrigger);
 
         this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
             mundo.off("beforeupdate", this.actualizarPez);
             mundo.off("collisionstart", this.warningTrigger);
+            mundo.off("collisionstart", this.winTrigger)
         });
     }
 
     update(t, dt) {
         this.pez.actualizarAura(this.auraMaxima);
-        this.HUDManager.actualizarHUD( this.pez.getAura(), this.auraMaxima, this.time.now, this.pez.getSpeed());
+        const tiempoTranscurrido = this.sys.game.loop.time - this.inicioTimer;
+        this.HUDManager.actualizarHUD(this.pez.getAura(), this.auraMaxima, tiempoTranscurrido, this.pez.getSpeed());
         this.CameraManager.update(t, dt);
     }
 
@@ -70,5 +75,24 @@ export default class Level extends Phaser.Scene {
                 warning.actualizarWarning();
             }
         }
+    }
+
+    winTrigger = ({pairs}) =>{
+        for (const pair of pairs) {
+            const objetoA = pair.bodyA.parent.gameObject;
+            const objetoB = pair.bodyB.parent.gameObject;
+
+            const meta = objetoA instanceof Meta? objetoA: 
+                            objetoB instanceof Meta? objetoB
+                            : null;
+
+            const otroObjeto = meta === objetoA ? objetoB : objetoA;
+
+            if (meta && otroObjeto === this.pez) {
+                this.game.gameManager.terminarNivel(this.sys.game.loop.time - this.inicioTimer, meta.nivel, this.pez.getAura(), this.configNivel.auraMaxima);
+                this.scene.start(this.configNivel.escenaSalida);
+            }
+        }
+
     }
 }

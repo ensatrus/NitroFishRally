@@ -5,7 +5,6 @@ export default class HUDManager {
     constructor(escena, escenaSalida = "menuPruebas") {
         this.escena = escena;
         this.temporizadoresSenal = new Map();
-        this.inicioTimer = escena.sys.game.loop.time;
 
         const anchoPantalla = escena.sys.game.config.width;
         const altoPantalla = escena.sys.game.config.height;
@@ -189,11 +188,6 @@ export default class HUDManager {
         };
         const señal = señales[type];
 
-        if (!señal) {
-            console.warn(`Tipo de señal de warning no reconocido: ${type}`);
-            return;
-        }
-
         const temporizadorAnterior = this.temporizadoresSenal.get(type);
         if (temporizadorAnterior) {
             this.escena.time.removeEvent(temporizadorAnterior);
@@ -252,7 +246,7 @@ export default class HUDManager {
     }
 
     actualizarTimerHUD(tiempo) {
-        const tiempoMs = Math.floor(tiempo - this.inicioTimer);
+        const tiempoMs = Math.floor(tiempo);
         const minutos = Math.floor(tiempoMs / 60000);
         const segundos = Math.floor(tiempoMs / 1000) % 60;
         const milisegundos = tiempoMs % 1000;
