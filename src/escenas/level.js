@@ -51,6 +51,8 @@ export default class Level extends Phaser.Scene {
             mundo.off("collisionstart", this.warningTrigger);
             mundo.off("collisionstart", this.winTrigger)
         });
+
+        this.restart = this.input.keyboard.addKey("R");
     }
 
     update(t, dt) {
@@ -58,6 +60,10 @@ export default class Level extends Phaser.Scene {
         const tiempoTranscurrido = this.sys.game.loop.time - this.inicioTimer;
         this.HUDManager.actualizarHUD(this.pez.getAura(), this.auraMaxima, tiempoTranscurrido, this.pez.getSpeed());
         this.CameraManager.update(t, dt);
+
+        if (this.restart.isDown) {
+            this.scene.restart();
+        }
     }
 
     warningTrigger = ({ pairs }) => {
