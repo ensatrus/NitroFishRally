@@ -39,7 +39,7 @@ export default class GameManager {
 
     terminarNivel(tiempo, nivel, aura, auraMin){
 
-        this.setTiempoNivel(nivel , Math.floor(tiempo/1000), aura, auraMin);
+        this.setTiempoNivel(nivel , tiempo, aura, auraMin);
 
     }
 

@@ -27,9 +27,13 @@ export default class Palmares extends Phaser.Scene {
 
           for (let i = 0; i < this.mejoresTiempos.length; i++) {
                this.mejoresTiempos[i] = gameManager.getTiempoNivel(i + 1);
+               const minutos = Math.floor(this.mejoresTiempos[i] / 60000);
+               const segundos = Math.floor(this.mejoresTiempos[i] / 1000) % 60;
+               const milisegundos = Math.floor(this.mejoresTiempos[i] % 1000);
                let textoTiempo;
+
                if (this.mejoresTiempos[i] !== undefined) {
-                    textoTiempo = this.add.text(150 + i * 250, 200, "Nivel " + (i + 1) + ": " + Math.floor(this.mejoresTiempos[i] / 60) + ":" + (this.mejoresTiempos[i] % 60), {
+                    textoTiempo = this.add.text(150 + i * 250, 200, `${String(minutos).padStart(2, "0")}:${String(segundos).padStart(2, "0")}:${String(milisegundos).padStart(3, "0")}`, {
                          fontSize: "18px",
                          fill: "#ffffff",
                          fontStyle: "bold",
@@ -76,9 +80,10 @@ export default class Palmares extends Phaser.Scene {
      }
 
      ponerMedalla (tiempo, nivel) {
+          const t = Math.floor(tiempo / 1000);
           let medalla;
           for (let i = this.multMedalla.length - 1; i >= 0; i--) {
-               if (tiempo <= this.tiempoOro[nivel - 1] * this.multMedalla[i]) medalla = i;
+               if (t <= this.tiempoOro[nivel - 1] * this.multMedalla[i]) medalla = i;
           }
 
           if      (medalla == 2) this.medallas[nivel - 1].play("medallaBronce_idle", true);
