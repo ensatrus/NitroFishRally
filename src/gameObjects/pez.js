@@ -11,6 +11,12 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
     #minSpeedForAuraFactor;
     #aceleracionDivider;
     #derrapeMargen;
+    #ultimoChoque;
+    #cooldownChoque;
+    #maxPerdChoque;
+    #velPreChoque;
+
+
 
     constructor(scene, x, y, direccion, aceleracion, control, freno){
         super(scene, x, y);
@@ -56,6 +62,12 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         this.#minSpeedForAuraFactor = Math.PI; // Se multiplica este numero por la aceleración para obtener la velocidad mínima a partir de la cual el pez empieza a generar aura
         this.#aceleracionDivider = 6300; // Se divide la aceleración entre este numero para obtener la fuerza de aceleración del pez
         this.#derrapeMargen = 0.1; // Margen del derrape, el factor minimo por el que se multiplica la fricción del pez
+        this.#ultimoChoque = 0; // Tiempo del último choque
+        this.#cooldownChoque = 1000; // Cooldown de perdida en ms 
+        this.#maxPerdidaChoque = 50; // Cantidad máxima de aura que puedes perder
+        this.#velocidadPreChoque = 0; // Velocidad del pez antes del choque
+
+        this.#configurarColisiones();
     }
 
     getSpeed() {
@@ -72,7 +84,8 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
     }
 
     preUpdate(time, delta) {
-    super.preUpdate(time, delta);
+        super.preUpdate(time, delta);
+        this.#velocidadPreChoque = this.getSpeed();
     }
 
     actualizarPasoFisico() {
@@ -209,5 +222,30 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
     setMasa(masa) {
         this.masa = masa;
         this.setMass(this.masa);
+    }
+
+    #configurarColisiones() {
+        this.scene.matter.world.on('collisionstart', (e) => {
+            e.pairs.forEach((p) => {
+                const isPez = p.bodyA.parent === this.body || p.bodyB.parent === this.body;
+
+                if (isPez) {
+                    this.#procesarChoque();
+                }
+            });
+        });
+    }
+
+    #procesarChoque() {
+        const tiempoActual = this.scene.time.now;
+        if (tiempoActual - this.#ultimoChoque < this.#cooldownChoque) return;
+
+        const factor = Phaser.Math.Clamp(this.#velocidadPreChoque / this.getMaxSpeed(), 0, 1);
+        const auraPerdida = factor * this.#maxPerdidaChoque;
+
+        if (auraPerdida > 0) {
+            this.aura = Math.max(0, this.aura - auraPerdida);
+            this.#ultimoChoque = tiempoActual;
+        }
     }
 }
