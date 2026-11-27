@@ -228,7 +228,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         this.scene.matter.world.on('collisionstart', (e) => {
             e.pairs.forEach((p) => {
 
-                if (p.bodyA.isSensor || p.bodyB.isSensor) return;
+                if (p.bodyA.isSensor() || p.bodyB.isSensor()) return;
 
                 const isPez = p.bodyA.parent === this.body || p.bodyB.parent === this.body;
 
