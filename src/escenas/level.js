@@ -30,12 +30,16 @@ export default class Level extends Phaser.Scene {
                 .setDepth(-1);
         }
 
+        this.scene.launch("escenaHUD");
+        this.scene.bringToTop("escenaHUD");
+        const hudescena = this.scene.get("escenaHUD");
+
         this.auraMaxima = auraMaxima;
         this.game.gameManager.construirNivel(this, mapa, escalaMapa);
         this.pez.setDepth(1);
         this.inicioTimer = this.sys.game.loop.time;
 
-        this.HUDManager = new HUDManager(this, escenaSalida);
+        this.HUDManager = new HUDManager(hudescena, this.pez.getMultOverdrive(), escenaSalida);
         this.CameraManager = new CameraManager(this);
         this.matter.world.debugConfig.showStaticBody = true;
         this.HUDManager.actualizarAuraHUD(0, this.auraMaxima);

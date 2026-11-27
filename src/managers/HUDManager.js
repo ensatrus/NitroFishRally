@@ -2,7 +2,7 @@ export default class HUDManager {
     preload() {
     }
 
-    constructor(escena, escenaSalida = "menuPruebas") {
+    constructor(escena, multOverdrive, escenaSalida = "menuPruebas") {
         this.escena = escena;
         this.temporizadoresSenal = new Map();
 
@@ -99,7 +99,7 @@ export default class HUDManager {
         this.overdrive.setOrigin(0.02, 0.3);
         this.overdrive.setScrollFactor(0, 0);
         this.overdrive.setDepth(10);
-        this.multOverdrive = escena.pez.getMultOverdrive();
+        this.multOverdrive = multOverdrive;
 
         this.textoAura.setOrigin(0, 0);
         this.textoAura.setScrollFactor(0, 0); 
@@ -119,23 +119,6 @@ export default class HUDManager {
         this.textoKMH.setScrollFactor(0, 0);
         this.textoKMH.setDepth(10);
         this.textoKMH.scaleX = 1.2;
-
-        let boton = escena.add.rectangle(600, 50, 150, 50, 0x3287d1);
-        
-        boton.setInteractive();
-        boton.setScrollFactor(0, 0);
-
-        boton.on("pointerdown", () => {
-            escena.scene.start(escenaSalida);
-        });
-
-        escena.add.text(600, 50, "Volver",{
-            fontSize: "18px",
-            fill: "#ffffff",
-            fontStyle: "bold",
-            fontFamily: "Arial"
-            
-        }).setOrigin(0.5).setAbove(boton).setScrollFactor(0, 0);
     }
 
     actualizarHUD(auraActual, auraMaxima, tiempo, velPez) {

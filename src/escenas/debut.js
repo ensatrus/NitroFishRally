@@ -44,8 +44,8 @@ export default class Debut extends Phaser.Scene {
         this.load.image('fondoPalmares', './assets/sprites/fondoPalmares.jpg');
         this.load.image('tronco', './assets/sprites/tronco.png');
         this.load.json("tronco_t", "./assets/json/log.json");
-        this.load.json("roca1", "./assets/json/roca1.png");
-        this.load.json("roca2", "./assets/json/roca2.png");
+        this.load.image("roca1", "./assets/sprites/roca1.png");
+        this.load.image("roca2", "./assets/sprites/roca2.png");
         this.load.image('rock3', './assets/sprites/rock3.png');
         this.load.json("rock3_t", "./assets/json/rock3.json");
         this.load.image('waterflow', './assets/sprites/waterflow.png');

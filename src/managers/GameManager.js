@@ -44,7 +44,7 @@ export default class GameManager {
     }
 
     construirNivel(scene, nivel, escala = 1) {
-        const map = scene.make.tilemap({ key: nivel });
+        const map = scene.make.tilemap({ key: nivel});
 
         if (!Array.isArray(map.objects) || map.objects.length === 0) {
             throw new Error(`El mapa "${nivel}" no contiene capas de objetos.`);
