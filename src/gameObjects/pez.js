@@ -13,8 +13,8 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
     #derrapeMargen;
     #ultimoChoque;
     #cooldownChoque;
-    #maxPerdChoque;
-    #velPreChoque;
+    #maxPerdidaChoque;
+    #velocidadPreChoque;
 
 
 
@@ -64,7 +64,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         this.#derrapeMargen = 0.1; // Margen del derrape, el factor minimo por el que se multiplica la fricción del pez
         this.#ultimoChoque = 0; // Tiempo del último choque
         this.#cooldownChoque = 1000; // Cooldown de perdida en ms 
-        this.#maxPerdidaChoque = 50; // Cantidad máxima de aura que puedes perder
+        this.#maxPerdidaChoque = 5000; // Cantidad máxima de aura que puedes perder
         this.#velocidadPreChoque = 0; // Velocidad del pez antes del choque
 
         this.#configurarColisiones();
