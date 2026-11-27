@@ -11,7 +11,10 @@ export default class Waterflow extends Phaser.Physics.Matter.Sprite {
         this.pez = pez;
         this.#pezDentro = false;
 
-        const body = scene.matter.add.fromVertices(center.x, center.y, vertices);
+        const body = scene.matter.add.fromVertices(center.x, center.y, vertices, {
+            isStatic: true,
+            isSensor: true
+        });
         this.setExistingBody(body);
         this.setStatic(true);
         this.setSensor(true);

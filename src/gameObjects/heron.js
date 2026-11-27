@@ -3,18 +3,22 @@ export default class Heron extends Phaser.Physics.Matter.Sprite {
     #avisando;
     #fuerzaEmpuje;
 
-    constructor(scene, x, y, textura, pez, fuerzaEmpuje = 0) {
-        super(scene.matter.world, x, y, textura, null, {
-            shape: scene.cache.json.get('heron_t').heron
-        });
+    constructor(scene, x, y, textura, pez, fuerzaEmpuje = 0, center, vertices,) {
+        super(scene.matter.world, x, y, textura, null)
 
         this.pez = pez;
         this.#pezDentro = false;
         this.#avisando = false;
         this.#fuerzaEmpuje = fuerzaEmpuje;
 
+        const body = scene.matter.add.fromVertices(center.x, center.y, vertices,{
+            isStatic: true,
+            isSensor: true
+        });
+        this.setExistingBody(body);
+        this.setStatic(true);
         this.setSensor(true);
-        this.scene.add.existing(this);
+        scene.add.existing(this);
 
         this.#configurarDeteccion();
     }

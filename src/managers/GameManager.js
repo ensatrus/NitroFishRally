@@ -4,6 +4,7 @@ import Pez from "../gameObjects/pez.js";
 import Warning from "../gameObjects/warning.js";
 import Waterflow from "../gameObjects/waterflow.js";
 import Meta from "../gameObjects/meta.js";
+import Heron from "../gameObjects/heron.js";
 
 export default class GameManager {
     preload() {}
@@ -71,7 +72,7 @@ export default class GameManager {
         if (Array.isArray(puntoPez.properties)) {
             for (const property of puntoPez.properties) {
                 if (property.name === "direction") {
-                    direction = property.value;
+                    direction = property.value-90;
                 }
             }
         }
@@ -150,6 +151,33 @@ export default class GameManager {
                         const center = scene.matter.vertices.centre(vertices);
 
                         new Waterflow(scene, object.x * escala, object.y * escala, "waterflow", scene.pez, force, direction, center, vertices);
+                        break;
+                    }
+                    case "heron":{
+                        const rotation = Phaser.Math.DegToRad(object.rotation);
+                        const cos = Math.cos(rotation);
+                        const sin = Math.sin(rotation);
+                        const vertices = [];
+                        let force;
+
+                        for (const point of object.polygon) {
+                            vertices.push({
+                                x: (object.x + point.x * cos - point.y * sin) * escala,
+                                y: (object.y + point.x * sin + point.y * cos) * escala
+                            });
+                        }
+
+                        if (Array.isArray(object.properties)) {
+                            for (const property of object.properties) {
+                                if (property.name === "force"){
+                                    force = property.value/200;
+                                }
+                            }
+                        }
+
+                        const center = scene.matter.vertices.centre(vertices);
+
+                        new Heron(scene, object.x * escala, object.y * escala, "heron", scene.pez, force, center, vertices);
                         break;
                     }
                     case "meta":{
