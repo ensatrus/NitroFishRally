@@ -44,16 +44,10 @@ export default class Debut extends Phaser.Scene {
         this.load.image('fondoPalmares', './assets/sprites/fondoPalmares.jpg');
         this.load.image('tronco', './assets/sprites/tronco.png');
         this.load.json("tronco_t", "./assets/json/log.json");
-        this.load.image('rock1', './assets/sprites/rock1.png');
-        this.load.json("rock1_t", "./assets/json/rock1.json");
-        this.load.image('rock2', './assets/sprites/rock2.png');
-        this.load.json("rock2_t", "./assets/json/rock2.json");
+        this.load.json("roca1", "./assets/json/roca1.png");
+        this.load.json("roca2", "./assets/json/roca2.png");
         this.load.image('rock3', './assets/sprites/rock3.png');
         this.load.json("rock3_t", "./assets/json/rock3.json");
-        this.load.image('rock4', './assets/sprites/rock4.png');
-        this.load.json("rock4_t", "./assets/json/rock4.json");
-        this.load.image('rock5', './assets/sprites/rock5.png');
-        this.load.json("rock5_t", "./assets/json/rock5.json");
         this.load.image('waterflow', './assets/sprites/waterflow.png');
         this.load.json("waterflow_t", "./assets/json/waterflow.json");
         this.load.image('heron', './assets/sprites/heron.png');
