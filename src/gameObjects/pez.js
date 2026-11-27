@@ -63,7 +63,7 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
         this.#aceleracionDivider = 6300; // Se divide la aceleración entre este numero para obtener la fuerza de aceleración del pez
         this.#derrapeMargen = 0.1; // Margen del derrape, el factor minimo por el que se multiplica la fricción del pez
         this.#ultimoChoque = 0; // Tiempo del último choque
-        this.#cooldownChoque = 1000; // Cooldown de perdida en ms 
+        this.#cooldownChoque = 100; // Cooldown de perdida en ms 
         this.#maxPerdidaChoque = 5000; // Cantidad máxima de aura que puedes perder
         this.#velocidadPreChoque = 0; // Velocidad del pez antes del choque
 

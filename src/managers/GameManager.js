@@ -217,9 +217,8 @@ export default class GameManager {
                     }
                     case "log": {
                     direction = 0;
-                    let velocity = 2;
-                    let distance = 250;
-
+                    let velocity;
+                    let distance;
                     if (Array.isArray(object.properties)) {
                         for (const property of object.properties) {
                             if (property.name === "direction") {
