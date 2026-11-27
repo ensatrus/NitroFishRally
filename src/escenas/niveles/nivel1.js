@@ -6,7 +6,7 @@ export default class Nivel1 extends Level {
             key: "nivel1",
             mapa: "Mapa1",
             escalaMapa: 6,
-            fondo: "fondoPrueba1",
+            fondo: "fondoNivel1",
             auraMaxima: 50000,
             escenaSalida: "menuNiveles"
         });

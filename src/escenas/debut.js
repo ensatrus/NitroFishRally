@@ -29,6 +29,7 @@ export default class Debut extends Phaser.Scene {
         });
         this.load.video("videoEjemplo", "./assets/videos/bad apple.mp4", true); //true para que esté muteado
         this.load.image("fih", "./assets/sprites/fih.png");
+        this.load.image("fondoNivel1", "./assets/niveles/level1.png");
         this.load.image("placeholderBackground", "./assets/sprites/background-placeholder.png")
         this.load.image("fondoPrueba1", "./assets/sprites/Esquema-Circuito1.png");
         this.load.image("fondoPrueba2", "./assets/sprites/Nivel_2.png");
