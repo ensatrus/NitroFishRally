@@ -233,13 +233,13 @@ export default class Pez extends Phaser.Physics.Matter.Sprite{
                 const isPez = p.bodyA.parent === this.body || p.bodyB.parent === this.body;
 
                 if (isPez) {
-                    this.#procesarChoque();
+                    this.procesarChoque();
                 }
             });
         });
     }
 
-    #procesarChoque() {
+    procesarChoque() {
         const tiempoActual = this.scene.time.now;
         if (tiempoActual - this.#ultimoChoque < this.#cooldownChoque) return;
 

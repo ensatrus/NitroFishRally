@@ -62,6 +62,7 @@ export default class Heron extends Phaser.Physics.Matter.Sprite {
             if (this.#pezDentro) {
                 const angulo = Phaser.Math.Angle.Between(this.x, this.y, this.pez.x, this.pez.y);
                 this.pez.setVelocity(Math.cos(angulo) * this.#fuerzaEmpuje, Math.sin(angulo) * this.#fuerzaEmpuje);
+                this.pez.procesarChoque();
             }
         });
     }
