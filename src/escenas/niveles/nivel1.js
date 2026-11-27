@@ -8,7 +8,8 @@ export default class Nivel1 extends Level {
             escalaMapa: 6,
             fondo: "fondoNivel1",
             auraMaxima: 50000,
-            escenaSalida: "menuNiveles"
+            escenaSalida: "menuNiveles",
+            offset: {x: 500, y: 200}
         });
     }
 }
