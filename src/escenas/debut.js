@@ -42,14 +42,8 @@ export default class Debut extends Phaser.Scene {
         this.load.tilemapTiledJSON('Mapa2', './assets/json/Mapa2.tmj');
         this.load.tilemapTiledJSON('Mapa3', './assets/json/Mapa3.tmj');
         this.load.image('fondoPalmares', './assets/sprites/fondoPalmares.jpg');
-        this.load.image('log1', './assets/sprites/log1.png');
-        this.load.json("log1_t", "./assets/json/log1.json");
-        this.load.image('log2', './assets/sprites/log2.png');
-        this.load.json("log2_t", "./assets/json/log2.json");
-        this.load.image('log3', './assets/sprites/log3.png');
-        this.load.json("log3_t", "./assets/json/log3.json");
-        this.load.image('log4', './assets/sprites/log4.png');
-        this.load.json("log4_t", "./assets/json/log4.json");
+        this.load.image('tronco', './assets/sprites/tronco.png');
+        this.load.json("tronco_t", "./assets/json/log.json");
         this.load.image('rock1', './assets/sprites/rock1.png');
         this.load.json("rock1_t", "./assets/json/rock1.json");
         this.load.image('rock2', './assets/sprites/rock2.png');

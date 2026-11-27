@@ -233,7 +233,7 @@ export default class GameManager {
                             }
                         }
                     }
-                    new Log(scene, object.x * escala, object.y * escala, "log3", scene.pez, velocity, direction, distance);
+                    new Log(scene, object.x * escala, object.y * escala, "tronco", scene.pez, velocity, direction, distance);
                     break;
                     }
                 }

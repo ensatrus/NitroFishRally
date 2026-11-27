@@ -11,7 +11,7 @@ export default class Log extends Phaser.Physics.Matter.Sprite {
     constructor(scene, x, y, textura, pez, velocidad = 1, direccion = 0, distancia = 0) {
 
         super(scene.matter.world, x, y, textura, null, {
-            shape: scene.cache.json.get('log3_t').log3,
+            shape: scene.cache.json.get('tronco_t').log,
             friction: 0,
             ignoreGravity: true,
             frictionAir: 0
