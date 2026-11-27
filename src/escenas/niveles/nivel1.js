@@ -5,11 +5,10 @@ export default class Nivel1 extends Level {
         super({
             key: "nivel1",
             mapa: "Mapa1",
-            escalaMapa: 6,
+            escalaMapa: 5,
             fondo: "fondoNivel1",
             auraMaxima: 50000,
-            escenaSalida: "menuNiveles",
-            offset: {x: 500, y: 200}
+            escenaSalida: "menuNiveles"
         });
     }
 }

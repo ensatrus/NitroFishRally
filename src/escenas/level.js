@@ -16,16 +16,15 @@ export default class Level extends Phaser.Scene {
             fondo: config.fondo,
             escalaMapa: escalaMapa,
             auraMaxima: auraMaxima,
-            escenaSalida: config.escenaSalida || "menuNiveles",
-            offset: config.offset
+            escenaSalida: config.escenaSalida || "menuNiveles"
         };
     }
 
     create() {
-        const {fondo, escalaMapa, mapa, auraMaxima, escenaSalida, offset } = this.configNivel;
+        const {fondo, escalaMapa, mapa, auraMaxima, escenaSalida} = this.configNivel;
 
         if (fondo) {
-            this.add.image(0 + offset.x, 0 + offset.y, fondo)
+            this.add.image(0, 0, fondo)
                 .setScale(escalaMapa)
                 .setOrigin(0, 0)
                 .setDepth(-1);
