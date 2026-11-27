@@ -1917,7 +1917,7 @@
                         {
                          "name":"direction",
                          "type":"int",
-                         "value":90
+                         "value":180
                         }],
                  "rotation":0,
                  "type":"pez",

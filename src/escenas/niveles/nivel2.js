@@ -7,7 +7,7 @@ export default class Nivel2 extends Level {
             mapa: "Mapa2",
             escalaMapa: 5,
             fondo: "fondoPrueba2",
-            auraMaxima: 5000,
+            auraMaxima: 50000,
             escenaSalida: "menuNiveles"
         });
     }

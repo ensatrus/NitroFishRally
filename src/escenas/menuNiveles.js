@@ -35,6 +35,19 @@ export default class MenuNiveles extends Phaser.Scene{
             fontFamily: "Arial"
         }).setOrigin(0.5)
 
+        let boton3 = this.add.rectangle(400, 300, 200, 50, 0x3287d1);
+
+        boton3.setInteractive();
+        boton3.setScrollFactor(0);
+
+        boton3.on("pointerdown", () => this.scene.start("nivel3"));
+
+        this.add.text(400, 300, "Nivel 3",{
+            fontSize: "18px",
+            fill: "#ffffff",
+            fontStyle: "bold",
+            fontFamily: "Arial"
+        }).setOrigin(0.5)
 
         let botonVolver = this.add.rectangle(100, 100, 150, 50, 0x3287d1);
         

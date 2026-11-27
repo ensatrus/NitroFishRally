@@ -11,6 +11,7 @@ import PruebaConstructorNiveles from './escenas/escenasPrueba/pruebaConstructorN
 import Garaje from './escenas/garaje.js';
 import Nivel1 from './escenas/niveles/nivel1.js';
 import Nivel2 from './escenas/niveles/nivel2.js';
+import Nivel3 from './escenas/niveles/nivel3.js';
 
 const gameManager = new GameManager();
 
@@ -24,7 +25,7 @@ const game = new Phaser.Game({
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
-scene: [Debut, TituloInicio, MenuPrincipal, MenuNiveles, MenuPruebas, Palmares, PruebaHUD, PruebaPiezas, PruebaConstructorNiveles, Garaje, Nivel1, Nivel2],  physics: {
+scene: [Debut, TituloInicio, MenuPrincipal, MenuNiveles, MenuPruebas, Palmares, PruebaHUD, PruebaPiezas, PruebaConstructorNiveles, Garaje, Nivel1, Nivel2, Nivel3],  physics: {
     default: 'matter',
     matter:{
       debug: true,
